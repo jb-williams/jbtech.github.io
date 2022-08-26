@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bash on jb</title>
+    <link>https://jb-williams.github.io/jbtech.github.io/tags/bash/</link>
+    <description>Recent content in bash on jb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 26 Aug 2022 11:59:26 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Brightxf</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</link>
+      <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
+      <description>Brightxf  !! Run at Own Risk !!
+  No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be
+  These scripts are NOT fully dynamic yet(on TODO&amp;rsquo;s) and these values are hard-coded into brightxf:
+ minimum brightness, if you don&amp;rsquo;t want the screen to ever fully go black or if any negative numbers can be written to that file and cause any problems the amount to increment up/down is not dynamic yet, will try to get it 5%-10% each time, sometime.</description>
+    </item>
+    
+  </channel>
+</rss>

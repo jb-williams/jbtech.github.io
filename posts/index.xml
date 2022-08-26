@@ -1,0 +1,78 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on jb</title>
+        <link>https://jb-williams.github.io/jbtech.github.io/posts/</link>
+        <description>Recent content in Posts on jb</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Fri, 26 Aug 2022 11:59:26 -0500</lastBuildDate>
+        <atom:link href="https://jb-williams.github.io/jbtech.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Brightxf</title>
+            <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</link>
+            <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
+            
+            <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
+            <description>Brightxf  !! Run at Own Risk !!
+  No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be
+  These scripts are NOT fully dynamic yet(on TODO&amp;rsquo;s) and these values are hard-coded into brightxf:
+ minimum brightness, if you don&amp;rsquo;t want the screen to ever fully go black or if any negative numbers can be written to that file and cause any problems the amount to increment up/down is not dynamic yet, will try to get it 5%-10% each time, sometime.</description>
+            <content type="html"><![CDATA[<h3 id="brightxf">Brightxf</h3>
+<p> <strong>!! Run at Own Risk !!</strong></p>
+<ul>
+<li>
+<p>No issues have come from my use of these but that doesn&rsquo;t mean there won&rsquo;t be</p>
+</li>
+<li>
+<p>These scripts are <strong>NOT</strong> fully dynamic yet(on TODO&rsquo;s) and these values are hard-coded into <a href="https://github.com/jb-williams/Bash_Projects/blob/main/brightxf/brightxf">brightxf</a>:</p>
+<ul>
+<li>minimum brightness, if you don&rsquo;t want the screen to ever fully go black or if any negative numbers can be written to that file and cause any problems</li>
+<li>the amount to increment up/down is not dynamic yet, will try to get it 5%-10% each time, sometime.</li>
+</ul>
+</li>
+</ul>
+<p> I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on a several different laptops of different specs.<br>
+ I have major issues getting all my &ldquo;Fn&rdquo;+ F keys to work properly across all my devices and just can&rsquo;t seem to wrap my head around any explanation I&rsquo;ve come across(very likely just me). So, I put together these series of scripts and a systemd service file to specifically give both easy terminal control of your screen brightness as well as easily assigning hot-keys with sxhkd.</p>
+<ul>
+<li>
+<p>Copy these somewhere in your PATH:</p>
+<ul>
+<li>brcur - current brightness</li>
+<li>brwn  - brightness down</li>
+<li>brup  - brightness up</li>
+<li>brmx  - set brightness to max</li>
+<li>brightxf - main script</li>
+</ul>
+</li>
+<li>
+<p>As sudo(root), make a directory <em>/etc/startup</em> and copy <em>brightness_mod.sh</em> there.</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo mkdir -p /etc/startup
+
+sudo cp /path/to/brightness_mod.sh /etc/startup
+</code></pre></div><ul>
+<li>Also as sudo(root), and copy <em>brightness_mod.service</em> to <em>/etc/systemd/system/</em> .</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp /path/to/brightness_mod.service /etc/systemd/system/
+</code></pre></div><ul>
+<li>Then run:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo systemctl daemon-reload
+
+sudo systemctl enable brightness_mod.service
+</code></pre></div><ul>
+<li>I also believe, with how I&rsquo;ve set it up, it needs a reboot.</li>
+</ul>
+<p>Then the commands are:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brcur
+brwn
+brup
+brmx
+</code></pre></div>]]></content>
+        </item>
+        
+    </channel>
+</rss>

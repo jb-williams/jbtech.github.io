@@ -1,1 +1,0 @@
-# jbtech.github.io

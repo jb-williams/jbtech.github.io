@@ -1,0 +1,206 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on jb</title>
+        <link>https://jb-williams.github.io/jbtech.github.io/posts/</link>
+        <description>Recent content in Posts on jb</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Fri, 26 Aug 2022 16:43:11 -0500</lastBuildDate>
+        <atom:link href="https://jb-williams.github.io/jbtech.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>My_Usb_Encrypton_Process</title>
+            <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</link>
+            <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
+            
+            <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
+            <description>This is the process I use to partition and encrypt usb drives. * I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.
+!! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
+ Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) Reqs:   linux cryptsetup (deb package)  (depending on desired file system)</description>
+            <content type="html"><![CDATA[<p>This is the process I use to partition and encrypt usb drives.
+* I have not tested tested it on anything other than usb&rsquo;s, though a similar process would potentially work.</p>
+<p><strong>!! Notice !!</strong>
+<strong>Running these commands on the wrong drive could Erase All Data on that Drive!!</strong></p>
+<ul>
+<li>Only Recoverable if You Had a Backup</li>
+<li>Make sure you know:
+<ul>
+<li>Device Name(ie: /dev/sdb)</li>
+<li>Device Size(ie: 15GiB)
+<strong>Reqs:</strong></li>
+</ul>
+</li>
+<li>linux</li>
+<li>cryptsetup    (deb package)</li>
+</ul>
+<p><strong>(depending on desired file system)</strong></p>
+<ul>
+<li>
+<p>dosfstools - FAT32, vfat <em>(can be read by both Windows and Linux)</em></p>
+</li>
+<li>
+<p>ntfs-3g    - NTFS, ntfs <em>(Windows)</em></p>
+</li>
+<li>
+<p>(standard on linux) - EXT4, ext4 <em>(Linux)</em></p>
+</li>
+<li>
+<p>I use the package <code>udiskie</code> to mount and dismount the drive.</p>
+</li>
+</ul>
+<h3 id="step-1">Step 1</h3>
+<ul>
+<li>(Surprise) Insert the usb</li>
+<li>Find the desired device name for the usb<br>
+<em>for this go threw we are goinig to assume that the Computer Hard Drive is /dev/sda,<br>
+the desired USB is /dev/sdb from here out<br>
+/dev/sda - computer <br>
+/dev/sdb - usb</em><br>
+<br>
+to find device name</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsblk
+</code></pre></div><p><em>example output</em></p>
+<pre><code>NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda      8:0    0 931.5G  0 disk 
+|-sda1   8:1    0   100M  0 part /boot
+|-sda2   8:2    0    53G  0 part /
+|-sda3   8:3    0   293G  0 part /home
+|-sda7   8:4    0     4G  0 part [SWAP]
+|-sda5   8:5    0    30G  0 part /tmp
+|-sda6   8:6    0    30G  0 part /var
+sdb      8:12   1  14.7G  0 disk 
+|-sdb1   8:13   1     4G  0 part 
+`-sdb2   8:14   1  10.5G  0 part
+</code></pre><ul>
+<li>Then, if you wish you can switch user to <em>root</em>, we will be here. Also make double-check that the device is unmounted.<br>
+Remember USB is /dev/sdb.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">su -
+
+umount /dev/sdb
+</code></pre></div><ul>
+<li>Next, before we partition and encrypt the drive, we will &ldquo;shred&rdquo; the data on the usb. This writes over the data that exists on it in an attempt destroy any recoverable data. It can be done a specified number of times.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">shred -v -n <span style="color:#ae81ff">1</span> /dev/sdb
+</code></pre></div><p>Where &ldquo;-v&rdquo; is verbose so you can monitor the progress, and &ldquo;-n 1&rdquo; is the number of iterations or number of times it should be overwitten. I have read anywhere between 1-7 is ok.</p>
+<h3 id="step-2">Step 2</h3>
+<p> At this point the data is clear on the usb and we will start partitioning and formatting the device. During this part you can create several partitions and encrypt and format then as you prefer.</p>
+<p>I will will go through this using <em>fdisk</em> and use the all the available space.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">fdisk /dev/sdb
+</code></pre></div><ul>
+<li>&ldquo;o&rdquo; for DOS disklabel</li>
+<li>&ldquo;n&rdquo; to create new partition</li>
+<li>&ldquo;p&rdquo; set it as primary</li>
+<li>Use the Full Disk Sectors, would usually be the default if no sizes are specified</li>
+<li>&ldquo;w&rdquo; will write the changes</li>
+</ul>
+<p>Now we are ready to begin encrypting the usb with <em>cryptsetup</em> and give it the name &ldquo;ENCRYPTED&rdquo;.</p>
+<p><em>if the following commands don&rsquo;t properly name the drive. after it&rsquo;s open you can open another terminal and either do <code>lsblk</code> to find the name of the drive, or <code>ls /dev/mapper/</code> and find the correct one</em></p>
+<pre><code>cryptsetup luksOpen /dev/sdb1 &lt;desired_drive_name&gt;
+</code></pre><pre><code>cryptsetup luksOpen /dev/sdb1 ENCRYPTED
+</code></pre><ul>
+<li>
+<p>It will ask for a Passphrase, make sure it is a strong complex passphrase.</p>
+</li>
+<li>
+<p>Now choose the format that best suits your needs. If you intend to use the device on GNU/Linux and Windows alike, you should opt for <code>FAT32</code> (<code>mkfs.vfat</code> command, required to have the <code>dosfstools</code> package installed) or <code>NTFS</code> (<code>mkfs.ntfs</code> command, required to have the <code>ntfs-3g</code> package installed). If you use only on machines with GNU/Linux, <code>EXT4</code> (command <code>mkfs.ext4</code>) will be a good choice.</p>
+</li>
+<li>
+<p>The <code>-L</code> and <code>-n</code> options are used to provide a recognizable name to the unit. In this example we will use in the <code>NAME ENCRYPTED</code>.</p>
+</li>
+</ul>
+<p>To format as EXT4:</p>
+<pre><code>mkfs.ext4 /dev/mapper/LUKS0001 -L ENCRYPTED
+</code></pre><p>To format as FAT32:</p>
+<pre><code>mkfs.vfat /dev/mapper/LUKS0001 -n ENCRYPTED
+</code></pre><p>To format as NTFS:</p>
+<pre><code>mkfs.ntfs /dev/mapper/LUKS0001 -L ENCRYPTED
+</code></pre><p>Finally, close the partition:</p>
+<pre><code>cryptsetup luksClose &lt;desired_drive_name&gt;
+</code></pre><pre><code>cryptsetup luksClose /dev/sdb1 ENCRYPTED
+</code></pre><p>Now it is fine to get back to the regular user.</p>
+<ul>
+<li>To open and mount the encrypted drive from the command line.</li>
+<li>best practice to run <code>lsblk</code> again to check device name.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">udiskie-mount /dev/sdb1 <span style="color:#f92672">&amp;&amp;</span> udiskie-mount /dev/mapper/&lt;encrypted_dev_name&gt;
+</code></pre></div><p>Then to unmount you just</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">udiskie-umount /dev/mapper/&lt;encrypted_dev_name&gt;
+</code></pre></div><ul>
+<li>If it was just and un-encrypted drive the commands would just be:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">udiskie-mount /dev/sdb1
+udiskie-umount /dev/sdb1
+</code></pre></div><p>written by: jb</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Brightxf</title>
+            <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</link>
+            <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
+            
+            <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
+            <description>Brightxf  !! Run at Own Risk !!
+  No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be
+  These scripts are NOT fully dynamic yet(on TODO&amp;rsquo;s) and these values are hard-coded into brightxf:
+ minimum brightness, if you don&amp;rsquo;t want the screen to ever fully go black or if any negative numbers can be written to that file and cause any problems the amount to increment up/down is not dynamic yet, will try to get it 5%-10% each time, sometime.</description>
+            <content type="html"><![CDATA[<h3 id="brightxf">Brightxf</h3>
+<p> <strong>!! Run at Own Risk !!</strong></p>
+<ul>
+<li>
+<p>No issues have come from my use of these but that doesn&rsquo;t mean there won&rsquo;t be</p>
+</li>
+<li>
+<p>These scripts are <strong>NOT</strong> fully dynamic yet(on TODO&rsquo;s) and these values are hard-coded into <a href="https://github.com/jb-williams/Bash_Projects/blob/main/brightxf/brightxf">brightxf</a>:</p>
+<ul>
+<li>minimum brightness, if you don&rsquo;t want the screen to ever fully go black or if any negative numbers can be written to that file and cause any problems</li>
+<li>the amount to increment up/down is not dynamic yet, will try to get it 5%-10% each time, sometime.</li>
+</ul>
+</li>
+</ul>
+<p> I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on a several different laptops of different specs.<br>
+ I have major issues getting all my &ldquo;Fn&rdquo;+ F keys to work properly across all my devices and just can&rsquo;t seem to wrap my head around any explanation I&rsquo;ve come across(very likely just me). So, I put together these series of scripts and a systemd service file to specifically give both easy terminal control of your screen brightness as well as easily assigning hot-keys with sxhkd.</p>
+<ul>
+<li>
+<p>Copy these somewhere in your PATH:</p>
+<ul>
+<li>brcur - current brightness</li>
+<li>brwn  - brightness down</li>
+<li>brup  - brightness up</li>
+<li>brmx  - set brightness to max</li>
+<li>brightxf - main script</li>
+</ul>
+</li>
+<li>
+<p>As sudo(root), make a directory <em>/etc/startup</em> and copy <em>brightness_mod.sh</em> there.</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo mkdir -p /etc/startup
+
+sudo cp /path/to/brightness_mod.sh /etc/startup
+</code></pre></div><ul>
+<li>Also as sudo(root), and copy <em>brightness_mod.service</em> to <em>/etc/systemd/system/</em> .</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp /path/to/brightness_mod.service /etc/systemd/system/
+</code></pre></div><ul>
+<li>Then run:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo systemctl daemon-reload
+
+sudo systemctl enable brightness_mod.service
+</code></pre></div><ul>
+<li>I also believe, with how I&rsquo;ve set it up, it needs a reboot.</li>
+</ul>
+<p>Then the commands are:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brcur
+brwn
+brup
+brmx
+</code></pre></div>]]></content>
+        </item>
+        
+    </channel>
+</rss>

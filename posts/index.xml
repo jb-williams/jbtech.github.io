@@ -149,7 +149,7 @@ udiskie-umount /dev/sdb1
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
             <description>Brightxf  !! Run at Own Risk !!
   No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be
-  These scripts are NOT fully dynamic yet(on TODO&amp;rsquo;s) and these values are hard-coded into brightxf:
+  These scripts are NOT fully dynamic yet(on the TODO&amp;rsquo;s) and these values are hard-coded into brightxf:
  minimum brightness, if you don&amp;rsquo;t want the screen to ever fully go black or if any negative numbers can be written to that file and cause any problems the amount to increment up/down is not dynamic yet, will try to get it 5%-10% each time, sometime.</description>
             <content type="html"><![CDATA[<h3 id="brightxf">Brightxf</h3>
 <p> <strong>!! Run at Own Risk !!</strong></p>
@@ -158,15 +158,15 @@ udiskie-umount /dev/sdb1
 <p>No issues have come from my use of these but that doesn&rsquo;t mean there won&rsquo;t be</p>
 </li>
 <li>
-<p>These scripts are <strong>NOT</strong> fully dynamic yet(on TODO&rsquo;s) and these values are hard-coded into <a href="https://github.com/jb-williams/Bash_Projects/blob/main/brightxf/brightxf">brightxf</a>:</p>
+<p>These scripts are <strong>NOT</strong> fully dynamic yet(on the TODO&rsquo;s) and these values are hard-coded into <a href="https://github.com/jb-williams/Bash_Projects/blob/main/brightxf/brightxf">brightxf</a>:</p>
 <ul>
 <li>minimum brightness, if you don&rsquo;t want the screen to ever fully go black or if any negative numbers can be written to that file and cause any problems</li>
 <li>the amount to increment up/down is not dynamic yet, will try to get it 5%-10% each time, sometime.</li>
 </ul>
 </li>
 </ul>
-<p> I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on a several different laptops of different specs.<br>
- I have major issues getting all my &ldquo;Fn&rdquo;+ F keys to work properly across all my devices and just can&rsquo;t seem to wrap my head around any explanation I&rsquo;ve come across(very likely just me). So, I put together these series of scripts and a systemd service file to specifically give both easy terminal control of your screen brightness as well as easily assigning hot-keys with sxhkd.</p>
+<p> I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.<br>
+ I have major issues getting all my &ldquo;Fn&rdquo;+ F1-12 keys to work properly across all my devices and just can&rsquo;t seem to wrap my head around any explanation I&rsquo;ve come across(very likely just me). So, I put together these series of scripts and a systemd service file to specifically give both easy terminal control of your screen brightness as well as easily assigning hot-keys with sxhkd.</p>
 <ul>
 <li>
 <p>Copy these somewhere in your PATH:</p>

@@ -16,7 +16,8 @@
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
       <description>This is the process I use to partition and encrypt usb drives. * I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.
 !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
- Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) Reqs:   linux cryptsetup (deb package)  (depending on desired file system)</description>
+ Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB)
+Reqs:   linux cryptsetup (deb package)  (depending on desired file system)</description>
     </item>
     
     <item>

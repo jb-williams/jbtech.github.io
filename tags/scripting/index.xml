@@ -15,9 +15,7 @@
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
       <description>Brightxf  !! Run at Own Risk !!
-  No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be
-  These scripts are NOT fully dynamic yet(on the TODO&amp;rsquo;s) and these values are hard-coded into brightxf:
- minimum brightness, if you don&amp;rsquo;t want the screen to ever fully go black or if any negative numbers can be written to that file and cause any problems the amount to increment up/down is not dynamic yet, will try to get it 5%-10% each time, sometime.</description>
+ No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be   I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
     </item>
     
   </channel>

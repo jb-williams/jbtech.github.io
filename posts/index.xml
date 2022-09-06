@@ -54,11 +54,11 @@
 <h3 id="step-1">Step 1</h3>
 <ul>
 <li>(Surprise) Insert the usb</li>
-<li>Find the desired device name for the usb<br>
-<em>for this go threw we are goinig to assume that the Computer Hard Drive is /dev/sda,<br>
+<li>Find the desired device name for the usb</li>
+<li>For this walkthrough we are goinig to assume that the Computer Hard Drive is /dev/sda,<br>
 the desired USB is /dev/sdb from here out<br>
 /dev/sda - computer <br>
-/dev/sdb - usb</em><br>
+/dev/sdb - usb*<br>
 <br>
 to find device name</li>
 </ul>

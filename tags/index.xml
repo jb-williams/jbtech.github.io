@@ -7,22 +7,76 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 26 Aug 2022 16:43:11 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 31 Aug 2022 17:54:28 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>bash</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/bash/</link>
-      <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
+      <title>emails</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/emails/</link>
+      <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/bash/</guid>
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/emails/</guid>
       <description></description>
     </item>
     
     <item>
       <title>encryption</title>
       <link>https://jb-williams.github.io/jbtech.github.io/tags/encryption/</link>
-      <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
+      <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/encryption/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>files</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/files/</link>
+      <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/files/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gpg</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/gpg/</link>
+      <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/gpg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/linux/</link>
+      <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pgp</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/pgp/</link>
+      <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/pgp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>windows</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/windows/</link>
+      <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bash</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/bash/</link>
+      <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/bash/</guid>
       <description></description>
     </item>
     
@@ -36,65 +90,11 @@
     </item>
     
     <item>
-      <title>linux</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/linux/</link>
-      <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>luks</title>
       <link>https://jb-williams.github.io/jbtech.github.io/tags/luks/</link>
       <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/luks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>usb</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/usb/</link>
-      <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/usb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>screen brightness</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/screen-brightness/</link>
-      <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/screen-brightness/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>scripting</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/scripting/</link>
-      <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/scripting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>utility</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/utility/</link>
-      <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/utility/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>about</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/about/</link>
-      <pubDate>Tue, 23 Aug 2022 11:12:14 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/about/</guid>
       <description></description>
     </item>
     

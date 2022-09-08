@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>encryption on jb</title>
-    <link>https://jb-williams.github.io/jbtech.github.io/tags/encryption/</link>
-    <description>Recent content in encryption on jb</description>
+    <title>files on jb</title>
+    <link>https://jb-williams.github.io/jbtech.github.io/tags/files/</link>
+    <description>Recent content in files on jb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 31 Aug 2022 17:54:28 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/encryption/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 31 Aug 2022 17:54:28 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/files/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GPG</title>
       <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/gpg/</link>
@@ -18,17 +18,6 @@
 Works on most all OS&amp;rsquo;s, this will be a Linux, and quick Windows walkthrough.
 Public/Private Keys:
  You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone They use your Public Key to encrypt the message they want to send to you and you decrypt it with your Private Key.</description>
-    </item>
-    
-    <item>
-      <title>My_Usb_Encrypton_Process</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</link>
-      <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
-      <description>This is the process I use to partition and encrypt usb drives. * I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.
-!! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
- Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB)    Reqs:</description>
     </item>
     
   </channel>

@@ -45,8 +45,8 @@ Calculating Key Counts based off of # of People/Employees</li>
 <ul>
 <li>To create a Public/Private Key, Charles will enter the following command:</li>
 </ul>
-<pre><code>gpg --full-gen-key
-</code></pre><ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --full-gen-key
+</code></pre></div><ul>
 <li>
 <p>Next, Charles will be asked to enter the following info:</p>
 <ul>
@@ -71,24 +71,24 @@ Calculating Key Counts based off of # of People/Employees</li>
 <p>Example Output:</p>
 </li>
 </ul>
-<pre><code>gpg: key D81710193A5FC56A marked as ultimately trusted
-gpg: directory '/home/charles/.gnupg/openpgp-revocs.d' created
-gpg: revocation certificate stored as '/home/charles/.gnupg/openpgp-revocs.d/C4A3CFC51B1318FFD4D2C291D81710193A5FC56A.rev'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg: key D81710193A5FC56A marked as ultimately trusted
+gpg: directory <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d&#39;</span> created
+gpg: revocation certificate stored as <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d/C4A3CFC51B1318FFD4D2C291D81710193A5FC56A.rev&#39;</span>
 public and secret key created and signed
-</code></pre><ul>
+</code></pre></div><ul>
 <li>To verify the keys were created you can use this command:(returns all keys in Charles' keyring.</li>
 </ul>
-<pre><code>gpg --list-keys
-</code></pre><ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --list-keys
+</code></pre></div><ul>
 <li>Example Output:</li>
 </ul>
-<pre><code>/home/charles/.gnupg/pubring.kbx
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/home/charles/.gnupg/pubring.kbx
 -----------------------------------
-pub   rsa3072 2019-12-11 [SC] [expires: 2021-12-10]
+pub   rsa3072 2019-12-11 <span style="color:#f92672">[</span>SC<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-10<span style="color:#f92672">]</span>
 C4A3CFC51B1318FFD4D2C291D81710193A5FC56A
-uid           [ultimate] charles &lt;charles@email.com&gt;
-sub   rsa3072 2019-12-11 [E] [expires: 2021-12-10]
-</code></pre><h2 id="step-2-exporting-and-importing-keys">Step 2: Exporting and Importing Keys</h2>
+uid           <span style="color:#f92672">[</span>ultimate<span style="color:#f92672">]</span> charles &lt;charles@email.com&gt;
+sub   rsa3072 2019-12-11 <span style="color:#f92672">[</span>E<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-10<span style="color:#f92672">]</span>
+</code></pre></div><h2 id="step-2-exporting-and-importing-keys">Step 2: Exporting and Importing Keys</h2>
 <p>  The person sending a message needs the receiver&rsquo;s Public Key to encrypt the message for them. Charles will need to export his Public Key to make it Public, so others like Jack can use it.</p>
 <ul>
 <li>
@@ -98,8 +98,8 @@ sub   rsa3072 2019-12-11 [E] [expires: 2021-12-10]
 <p>Charles would use the following command to export his Public Key:</p>
 </li>
 </ul>
-<pre><code>gpg --armor --output charles.gpg --export charles@email.com
-</code></pre><ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --armor --output charles.gpg --export charles@email.com
+</code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run GPG.</p>
 </li>
@@ -116,40 +116,41 @@ sub   rsa3072 2019-12-11 [E] [expires: 2021-12-10]
 <p>To view the exported key, in the folder you exported it:</p>
 </li>
 </ul>
-<pre><code>cat charles.php
-</code></pre><p>Example Output(shortened):</p>
-<pre><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat charles.php
+</code></pre></div><p>Example Output(shortened):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-----BEGIN PGP PUBLIC KEY BLOCK-----
 
 oCN2AghQUDgu5yBVAmPAx7hatvcMBR1X6NqJN4wStLB21OvHdgT2VbiHUtwkGvbJ
 Hsui9eTR7bBY1YgP8PcGFjeMZ5+C7E94uYeksbwMzFWGE79M3kqEi1tgkDZTN/T8
 8O31qQUgDCCbUnuvpW5pYJ2BconeNBHAZNKSKg+9U3DfCazRpky89be6W7WtjDGs
 iFo5PEjBTvCJJXHvDgn2W7I7U0MWO220gyCT/Ja/eKad5GKTeMjOC4ERTwvha0ON 
 -----END PGP PUBLIC KEY BLOCK-----
-</code></pre><ul>
+</code></pre></div><ul>
 <li>Now, Charles can either put this Public Key on his website, and/or share it directly with someone. ie:<code>Jack</code></li>
 </ul>
 <p>  Here are the steps that Jack needs to take.</p>
 <ul>
 <li>After Jack saves the key he will need to import it into the keyring.</li>
 </ul>
-<pre><code>gpg --import charles.gpg
-</code></pre><ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --import charles.gpg
+</code></pre></div><ul>
 <li>Confirm it was imported by listing the keys</li>
 </ul>
-<pre><code>gpg --list-keys
-</code></pre><ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --list-keys
+</code></pre></div><ul>
 <li>This should show Jack&rsquo;s addition of Charles' key( Jack has not created any keys yet)</li>
 </ul>
-<pre><code>pub   rsa3072 2019-12-03 [SC] [expires: 2021-12-02]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>SC<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-02<span style="color:#f92672">]</span>
 39B2BD6C93E1E63E8C004183FE91AF7A7B4EC267
-uid   [ultimate] Charles &lt;charles@email.com&gt;
-sub   rsa3072 2019-12-03 [E] [expires: 2021-12-02]
-</code></pre><h4 id="step-3-encryption">Step 3: Encryption</h4>
+uid   <span style="color:#f92672">[</span>ultimate<span style="color:#f92672">]</span> Charles &lt;charles@email.com&gt;
+sub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>E<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-02<span style="color:#f92672">]</span>
+</code></pre></div><h4 id="step-3-encryption">Step 3: Encryption</h4>
 <p>  Jake now has Charles' Public Key in his key ring, so he is ready to create a message and encrypt it.</p>
 <ul>
 <li>Jake will want to create a file that will contain a message, so we&rsquo;ll use the following echo command to create a file called <code>Jacks_plainmessage.txt</code>.</li>
 </ul>
-<pre><code>echo &quot;Hi Charles, my bank account number is 2783492&quot; &gt; Jacks_plainmessage.txt
+<pre><code>```bash
+echo &quot;Hi Charles, my bank account number is 2783492&quot; &gt; Jacks_plainmessage.txt
 </code></pre><ul>
 <li>
 <p>The next step is to use Charles' Public Key to encrypt <code>Jacks_plainmessage.txt</code>.</p>
@@ -158,8 +159,8 @@ sub   rsa3072 2019-12-03 [E] [expires: 2021-12-02]
 <p>We will use the following command:</p>
 </li>
 </ul>
-<pre><code>gpg --armor --output Jacks_encryptedmessage.txt --encrypt --recipient charles@email.com Jacks_plainmessage.txt
-</code></pre><ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --armor --output Jacks_encryptedmessage.txt --encrypt --recipient charles@email.com Jacks_plainmessage.txt
+</code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run GPG.</p>
 </li>
@@ -181,26 +182,23 @@ sub   rsa3072 2019-12-03 [E] [expires: 2021-12-02]
 <li>
 <p>Run the command to created a file that has ciphertext called <code>Jacks_encryptedmessage.txt</code>.</p>
 <ul>
-<li>
-<p>Run a preview command to illustrate the file has now been encrypted:</p>
-<pre><code>cat Jacks_encryptedmessage.txt
-</code></pre></li>
-<li>
-<p>The encrypted message should look like the following:</p>
-</li>
+<li>Run a preview command to illustrate the file has now been encrypted:</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<pre><code>-----BEGIN PGP MESSAGE-----
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat Jacks_encryptedmessage.txt
+</code></pre></div><pre><code>* The encrypted message should look like the following:
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-----BEGIN PGP MESSAGE-----
 
 hQGMA1p4Le4c2oCaAQv+MT2ghzg9RYymSIxnbwe41LpOPx76mA9f6mQYZO77c/Ij
 u14kEgfaVM9PxxBw8KpEkg5NvmBVPAfxFbFrcLoKB8lVW8MTpp3mQ8r0257PNORK
 bQOC+HHktQN3AJrsgN/Oj4OduM+hMtnPUdWa0X7uOOKRFW9r5CbuYga134EzoHG3
 
 -----END PGP MESSAGE-----
-</code></pre><h2 id="step-4-decryption">Step 4: Decryption</h2>
+</code></pre></div><h2 id="step-4-decryption">Step 4: Decryption</h2>
 <p>The last step is for Jack to send his encrypted message over to Charles, so she can decrypt it with her Private Key.</p>
 <ul>
 <li>
@@ -210,8 +208,8 @@ bQOC+HHktQN3AJrsgN/Oj4OduM+hMtnPUdWa0X7uOOKRFW9r5CbuYga134EzoHG3
 <p>The command that Charles will use to decrypt Jack&rsquo;s encrypted message is:</p>
 </li>
 </ul>
-<pre><code>gpg --output Jacks_decrypted_message --decrypt Jacks_encryptedmessage.txt
-</code></pre><ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --output Jacks_decrypted_message --decrypt Jacks_encryptedmessage.txt
+</code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run gpg.</p>
 </li>
@@ -225,24 +223,24 @@ bQOC+HHktQN3AJrsgN/Oj4OduM+hMtnPUdWa0X7uOOKRFW9r5CbuYga134EzoHG3
 <p>Run the command. It just decrypted Jack&rsquo;s message and placed the results into a file called <code>Jacks_decrypted_message</code>.</p>
 </li>
 <li>
-<p>Preview the decrypted file by running:<br>
-<code>cat Jacks_decrypted_message</code></p>
-</li>
-<li>
-<p>This shows that now Charles can see Jack&rsquo;s plaintext message:<br>
-<code>&quot;Hi Charles, my bank account number is 2783492.&quot;</code></p>
+<p>Preview the decrypted file by running:</p>
 </li>
 </ul>
-<h2 id="signing">Signing</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat Jacks_decrypted_message
+</code></pre></div><ul>
+<li>This shows that now Charles can see Jack&rsquo;s plaintext message:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">&#34;Hi Charles, my bank account number is 2783492.&#34;</span>
+</code></pre></div><h2 id="signing">Signing</h2>
 <p>Signing with GPG gives the ability to verify that a file came from you or a specific person.<br>
 You can verify signature before extracting the data.<br>
 Signing:</p>
-<pre><code>gpg --sign text.txt
-</code></pre><p>Verifying:</p>
-<pre><code>gpg --verify text.txt.gpg
-</code></pre><p>You can also have a detached signature file.</p>
-<pre><code>gpg --detach-sign text.txt
-</code></pre><p>Then, you need to have both <code>text.txt</code> and <code>text.txt.sig</code> in the same directory and verify the signature with <code>gpg --verify text.txt.sig</code>.<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --sign text.txt
+</code></pre></div><p>Verifying:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --verify text.txt.gpg
+</code></pre></div><p>You can also have a detached signature file.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --detach-sign text.txt
+</code></pre></div><p>Then, you need to have both <code>text.txt</code> and <code>text.txt.sig</code> in the same directory and verify the signature with <code>gpg --verify text.txt.sig</code>.<br>
 This part was just a quick overview of the signing.</p>
 <h1 id="windows">Windows</h1>
 <h2 id="setup">Setup</h2>
@@ -351,7 +349,7 @@ This part was just a quick overview of the signing.</p>
 <p><a href="https://www.gnupg.org/related_software/gpa/">gpa</a> - Linux<br>
 <a href="https://apps.kde.org/kleopatra/">Kleopatra</a> - Linux</p>
 <h4 id="gpg-gui-for-windows">GPG GUI for Windows</h4>
-<p><a href="https://www.gpg4win.org">gpg4win</a> - Windows</p>
+<p><a href="https://www.gpg4win.org">gpg4win</a> - Windows(gpg4win comes with Kleopatra)</p>
 <h4 id="good-gui-video-tutorial">Good GUI Video Tutorial</h4>
 <p><a href="https://www.youtube.com/watch?v=CEADq-B8KtI">HackerSploit</a> - YouTube</p>
 ]]></content>

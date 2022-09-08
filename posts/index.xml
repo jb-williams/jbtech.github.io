@@ -158,7 +158,7 @@ sub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>E<span style="color
 <p>We will use the following command:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --armor --output Jacks_encryptedmessage.txt --encrypt --recipient charles@email.com Jacks_plainmessage.txt<span style="color:#e6db74">```</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --armor --output Jacks_encryptedmessage.txt --encrypt --recipient charles@email.com Jacks_plainmessage.txt
 </code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run GPG.</p>
@@ -409,24 +409,22 @@ to find device name</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsblk
 </code></pre></div><p><em>example output</em></p>
-<pre><code>NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
-sda      8:0    0 931.5G  0 disk 
-|-sda1   8:1    0   100M  0 part /boot
-|-sda2   8:2    0    53G  0 part /
-|-sda3   8:3    0   293G  0 part /home
-|-sda7   8:4    0     4G  0 part [SWAP]
-|-sda5   8:5    0    30G  0 part /tmp
-|-sda6   8:6    0    30G  0 part /var
-sdb      8:12   1  14.7G  0 disk 
-|-sdb1   8:13   1     4G  0 part 
-`-sdb2   8:14   1  10.5G  0 part
-</code></pre><ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda      8:0    <span style="color:#ae81ff">0</span> 931.5G  <span style="color:#ae81ff">0</span> disk 
+|-sda1   8:1    <span style="color:#ae81ff">0</span>   100M  <span style="color:#ae81ff">0</span> part /boot
+|-sda2   8:2    <span style="color:#ae81ff">0</span>    53G  <span style="color:#ae81ff">0</span> part /
+|-sda3   8:3    <span style="color:#ae81ff">0</span>   293G  <span style="color:#ae81ff">0</span> part /home
+|-sda7   8:4    <span style="color:#ae81ff">0</span>     4G  <span style="color:#ae81ff">0</span> part <span style="color:#f92672">[</span>SWAP<span style="color:#f92672">]</span>
+|-sda5   8:5    <span style="color:#ae81ff">0</span>    30G  <span style="color:#ae81ff">0</span> part /tmp
+|-sda6   8:6    <span style="color:#ae81ff">0</span>    30G  <span style="color:#ae81ff">0</span> part /var
+sdb      8:12   <span style="color:#ae81ff">1</span>  14.7G  <span style="color:#ae81ff">0</span> disk 
+|-sdb1   8:13   <span style="color:#ae81ff">1</span>     4G  <span style="color:#ae81ff">0</span> part 
+<span style="color:#e6db74">`</span>-sdb2   8:14   <span style="color:#ae81ff">1</span>  10.5G  <span style="color:#ae81ff">0</span> part
+</code></pre></div><ul>
 <li>Then, if you wish you can switch user to <em>root</em>, we will be here. Also make double-check that the device is unmounted.<br>
 Remember USB is /dev/sdb.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">su -
-
-umount /dev/sdb
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">su - <span style="color:#f92672">&amp;&amp;</span> umount /dev/sdb
 </code></pre></div><ul>
 <li>Next, before we partition and encrypt the drive, we will &ldquo;shred&rdquo; the data on the usb. This writes over the data that exists on it in an attempt destroy any recoverable data. It can be done a specified number of times.</li>
 </ul>
@@ -445,9 +443,9 @@ umount /dev/sdb
 </ul>
 <p>Now we are ready to begin encrypting the usb with <em>cryptsetup</em> and give it the name &ldquo;ENCRYPTED&rdquo;.</p>
 <p><em>if the following commands don&rsquo;t properly name the drive. after it&rsquo;s open you can open another terminal and either do <code>lsblk</code> to find the name of the drive, or <code>ls /dev/mapper/</code> and find the correct one</em></p>
-<pre><code>cryptsetup luksOpen /dev/sdb1 &lt;desired_drive_name&gt;
-</code></pre><pre><code>cryptsetup luksOpen /dev/sdb1 ENCRYPTED
-</code></pre><ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cryptsetup luksOpen /dev/sdb1 &lt;desired_drive_name&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cryptsetup luksOpen /dev/sdb1 ENCRYPTED
+</code></pre></div><ul>
 <li>
 <p>It will ask for a Passphrase, make sure it is a strong complex passphrase.</p>
 </li>
@@ -459,15 +457,15 @@ umount /dev/sdb
 </li>
 </ul>
 <p>To format as EXT4:</p>
-<pre><code>mkfs.ext4 /dev/mapper/LUKS0001 -L ENCRYPTED
-</code></pre><p>To format as FAT32:</p>
-<pre><code>mkfs.vfat /dev/mapper/LUKS0001 -n ENCRYPTED
-</code></pre><p>To format as NTFS:</p>
-<pre><code>mkfs.ntfs /dev/mapper/LUKS0001 -L ENCRYPTED
-</code></pre><p>Finally, close the partition:</p>
-<pre><code>cryptsetup luksClose &lt;desired_drive_name&gt;
-</code></pre><pre><code>cryptsetup luksClose /dev/sdb1 ENCRYPTED
-</code></pre><p>Now it is fine to get back to the regular user.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkfs.ext4 /dev/mapper/LUKS0001 -L ENCRYPTED
+</code></pre></div><p>To format as FAT32:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkfs.vfat /dev/mapper/LUKS0001 -n ENCRYPTED
+</code></pre></div><p>To format as NTFS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkfs.ntfs /dev/mapper/LUKS0001 -L ENCRYPTED
+</code></pre></div><p>Finally, close the partition:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cryptsetup luksClose &lt;desired_drive_name&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cryptsetup luksClose /dev/sdb1 ENCRYPTED
+</code></pre></div><p>Now it is fine to get back to the regular user.</p>
 <h3 id="step-3">Step 3</h3>
 <p>Interacting with the drive through command-line.</p>
 <ul>
@@ -516,9 +514,7 @@ udiskie-umount /dev/sdb1
 <p>As sudo(root), make a directory <em>/etc/startup</em> and copy <em>brightness_mod.sh</em> there.</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo mkdir -p /etc/startup
-
-sudo cp /path/to/brightness_mod.sh /etc/startup
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo mkdir -p /etc/startup <span style="color:#f92672">&amp;&amp;</span> sudo cp /path/to/brightness_mod.sh /etc/startup
 </code></pre></div><ul>
 <li>Also as sudo(root), and copy <em>brightness_mod.service</em> to <em>/etc/systemd/system/</em> .</li>
 </ul>
@@ -526,9 +522,7 @@ sudo cp /path/to/brightness_mod.sh /etc/startup
 </code></pre></div><ul>
 <li>Then run:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo systemctl daemon-reload
-
-sudo systemctl enable brightness_mod.service
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo systemctl enable brightness_mod.service <span style="color:#f92672">&amp;&amp;</span> sudo systemctl daemon-reload
 </code></pre></div><ul>
 <li>I also believe, with how I&rsquo;ve set it up, it needs a reboot.</li>
 </ul>

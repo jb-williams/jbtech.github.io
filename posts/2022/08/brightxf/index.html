@@ -44,7 +44,7 @@
  No issues have come from my use of these but that doesn&rsquo;t mean there won&rsquo;t be   I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.">
 <meta itemprop="datePublished" content="2022-08-26T11:59:26-05:00" />
 <meta itemprop="dateModified" content="2022-08-26T11:59:26-05:00" />
-<meta itemprop="wordCount" content="225">
+<meta itemprop="wordCount" content="227">
 <meta itemprop="image" content="https://jb-williams.github.io/jbtech.github.io/"/>
 
 
@@ -183,9 +183,7 @@
 <p>As sudo(root), make a directory <em>/etc/startup</em> and copy <em>brightness_mod.sh</em> there.</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo mkdir -p /etc/startup
-
-sudo cp /path/to/brightness_mod.sh /etc/startup
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo mkdir -p /etc/startup <span style="color:#f92672">&amp;&amp;</span> sudo cp /path/to/brightness_mod.sh /etc/startup
 </code></pre></div><ul>
 <li>Also as sudo(root), and copy <em>brightness_mod.service</em> to <em>/etc/systemd/system/</em> .</li>
 </ul>
@@ -193,9 +191,7 @@ sudo cp /path/to/brightness_mod.sh /etc/startup
 </code></pre></div><ul>
 <li>Then run:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo systemctl daemon-reload
-
-sudo systemctl enable brightness_mod.service
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo systemctl enable brightness_mod.service <span style="color:#f92672">&amp;&amp;</span> sudo systemctl daemon-reload
 </code></pre></div><ul>
 <li>I also believe, with how I&rsquo;ve set it up, it needs a reboot.</li>
 </ul>
@@ -234,7 +230,7 @@ brmx
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        225 Words
+        227 Words
       </p>
 
       <p>

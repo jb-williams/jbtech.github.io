@@ -331,7 +331,8 @@ Calculating Key Counts based off of # of People/Employees</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg: key D81710193A5FC56A marked as ultimately trusted
 gpg: directory <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d&#39;</span> created
-gpg: revocation certificate stored as <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d/C4A3CFC51B1318FFD4D2C291D81710193A5FC56A.rev&#39;</span>
+gpg: revocation certificate stored as <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d/C4A3CFC \
+</span><span style="color:#e6db74">51B1318FFD4D2C291D81710193A5FC56A.rev&#39;</span>
 public and secret key created and signed
 </code></pre></div><ul>
 <li>To verify the keys were created you can use this command:(returns all keys in Charles' keyring.</li>

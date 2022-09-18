@@ -3,6 +3,81 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/bruteforce/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/enumeration/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://jb-williams.github.io/jbtech.github.io/fr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://jb-williams.github.io/jbtech.github.io/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/linux/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/password-cracking/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/posts/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/ssh/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://jb-williams.github.io/jbtech.github.io/fr/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://jb-williams.github.io/jbtech.github.io/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/walkthrough/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/web-app/</loc>
+    <lastmod>2022-09-17T18:46:19-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/emails/</loc>
     <lastmod>2022-08-31T17:54:28-05:00</lastmod>
   </url>
@@ -28,48 +103,8 @@
   </url>
   
   <url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/</loc>
-    <lastmod>2022-08-31T17:54:28-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="https://jb-williams.github.io/jbtech.github.io/fr/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://jb-williams.github.io/jbtech.github.io/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/linux/</loc>
-    <lastmod>2022-08-31T17:54:28-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/pgp/</loc>
     <lastmod>2022-08-31T17:54:28-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/posts/</loc>
-    <lastmod>2022-08-31T17:54:28-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/</loc>
-    <lastmod>2022-08-31T17:54:28-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="https://jb-williams.github.io/jbtech.github.io/fr/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://jb-williams.github.io/jbtech.github.io/tags/"
-                />
   </url>
   
   <url>

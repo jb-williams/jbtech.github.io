@@ -15,7 +15,8 @@
             <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
-            <description>Basic PenTesting Box Performed by Jb Williams facilitated by TryHackMe
+            <description>Basic PenTesting Box Facilitated by TryHackMe
+Performed, Written &amp;amp; Compiled by Jb Williams - @_binford - Github
 Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
   Username (jan and kay found via enum4linux).
   Password(jan:armando found via hydra with ssh).
@@ -24,7 +25,8 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
   Was able to login and read pass.bak
      User Pass Service SSH Key IP Port     jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.</description>
             <content type="html"><![CDATA[<h1 id="basic-pentesting-box">Basic PenTesting Box</h1>
-<p>Performed by Jb Williams facilitated by TryHackMe</p>
+<p>Facilitated by <a href="https://tryhackme.com/hacktivities">TryHackMe</a></p>
+<p>Performed, Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
 <h2 id="summary">Summary</h2>
 <ul>
 <li>
@@ -128,7 +130,7 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
 <span style="color:#ae81ff">8080</span> Apache tomcat 9.0.7
 </code></pre></div><ul>
 <li>
-<p>Began enumeration on the webpage on port <code>80</code> with Dirbuster:</p>
+<p>Began enumeration on the webpage on port 80 with Dirbuster:</p>
 </li>
 <li>
 <p>Discovered:</p>
@@ -157,10 +159,10 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">enum4linux -a 10.10.62.206 | tee -a enum4linux.log
 </code></pre></div><ul>
 <li>
-<p>Enum4linux found the full usernames <code>kay</code> and <code>jan</code>:</p>
+<p>Enum4linux found the full usernames <code>Kay</code> and <code>Jan</code>:</p>
 </li>
 <li>
-<p>Bruteforced ssh to find <code>jan</code>&rsquo;s password:</p>
+<p>Bruteforced ssh to find <code>Jan's</code> password:</p>
 </li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hydra -l jan -P /usr/share/wordlist/rockyou.txt ssh://10.10.62.206
@@ -211,7 +213,7 @@ ssh jan@10.10.62.206
 
 chmod +x linpeas.sh <span style="color:#f92672">&amp;&amp;</span> ./linpeas.sh | tee linlog.txt
 </code></pre></div><ul>
-<li>This enumeration brought me to <code>kay</code>&rsquo;s Private SSH key that I was able to read.</li>
+<li>This enumeration brought me to Kay&rsquo;s Private SSH key that I was able to read.</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/home/kay/.ssh/id_rsa
 </code></pre></div><ul>
@@ -226,10 +228,10 @@ chmod +x linpeas.sh <span style="color:#f92672">&amp;&amp;</span> ./linpeas.sh |
 john forjohn.txt
 </code></pre></div><ul>
 <li>
-<p>John found <code>kay</code>&rsquo;s password: <code>beeswax</code></p>
+<p>John found <code>kay's</code> password: <code>beeswax</code></p>
 </li>
 <li>
-<p>SSH&rsquo;d into the machine as <code>kay</code>:</p>
+<p>SSH&rsquo;d into the machine as <code>Kay</code>:</p>
 </li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -i kay_id_rsa kay@10.10.62.206
@@ -257,14 +259,16 @@ beeswax
 </tbody>
 </table>
 <ul>
-<li>As <code>kay</code> I was able to read that <code>pass.bak</code> file:</li>
+<li>As <code>Kay</code> I was able to read that <code>pass.bak</code> file:</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat pass.bak
 </code></pre></div><ul>
 <li>With that I was able to find the Password/Last Flag:</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">heresareallystrongpasswordthatfollowsthepasswordpolicy$$
-</code></pre></div>]]></content>
+</code></pre></div><h1 id="heading"></h1>
+<p>performed, written &amp; compiled by jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">github</a></p>
+]]></content>
         </item>
         
         <item>
@@ -273,19 +277,24 @@ beeswax
             <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/gpg/</guid>
-            <description>GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
+            <description>GPG Written &amp;amp; Compiled by Jb Williams - @_binford - Github
+ GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
+A quick walkthrough of GPG.
 Works on most all OS&amp;rsquo;s, this will be a Linux, and quick Windows walkthrough.
 Public/Private Keys:
- You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone They use your Public Key to encrypt the message they want to send to you and you decrypt it with your Private Key.</description>
-            <content type="html"><![CDATA[<p>GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.</p>
+ You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone.</description>
+            <content type="html"><![CDATA[<h1 id="gpg">GPG</h1>
+<p>Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
+<h1 id="heading"></h1>
+<p>GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.</p>
+<p>A quick walkthrough  of GPG.</p>
 <p>Works on most all OS&rsquo;s, this will be a Linux, and quick Windows walkthrough.</p>
 <p>Public/Private Keys:</p>
 <ul>
 <li>You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone).</li>
-<li>You give you Public Key out to anyone</li>
+<li>You give you Public Key out to anyone.</li>
 <li>They use your Public Key to encrypt the message they want to send to you and you decrypt it with your Private Key.</li>
-<li>You use their Public Key to encrypt a message you want to send to them and they decrypt it with their Private Key<br>
-Calculating Key Counts based off of # of People/Employees</li>
+<li>You use their Public Key to encrypt a message you want to send to them and they decrypt it with their Private Key Calculating Key Counts based off of # of People Employees.</li>
 <li>Symmetric Key count:
 <ul>
 <li>(N*(N-1))/2 = count of symmetric keys     - N = num of individuals</li>
@@ -293,10 +302,12 @@ Calculating Key Counts based off of # of People/Employees</li>
 </li>
 <li>Asymmetric Key Count:
 <ul>
-<li>N*2</li>
+<li>N*2  \</li>
 </ul>
+<h1 id="heading-1"></h1>
 </li>
 </ul>
+<h1 id="heading-2"></h1>
 <h1 id="linux">Linux</h1>
 <h2 id="step-1-create-a-key-pair">Step 1 Create a Key Pair</h2>
 <p>  The first step in using asymmetric encryption is to generate a key pair. We will be using Charles and Jack as example people.</p>
@@ -312,10 +323,10 @@ Calculating Key Counts based off of # of People/Employees</li>
 <p>Real Name:        What the user will name their key. We will use Charles.</p>
 </li>
 <li>
-<p>Email Address:    Email associated with the key. We will use <a href="mailto:charles@email.com">charles@email.com</a></p>
+<p>Email Address:    Email associated with the key. We will use <a href="mailto:charles@email.com">charles@email.com</a>.</p>
 </li>
 <li>
-<p><code>Change (N)ame, (E)mail, or (O)kay/(Q)uit?:</code> Enter <code>O</code> to confirm your information</p>
+<p><code>Change (N)ame, (E)mail, or (O)kay/(Q)uit?:</code> Enter <code>O</code> to confirm your information.</p>
 </li>
 <li>
 <p>Passphrase:       A password for the encryption key. Anytime Private Key is used, passphrase will be verified:</p>
@@ -331,8 +342,9 @@ Calculating Key Counts based off of # of People/Employees</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg: key D81710193A5FC56A marked as ultimately trusted
 gpg: directory <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d&#39;</span> created
-gpg: revocation certificate stored as <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d/C4A3CFC \
-</span><span style="color:#e6db74">51B1318FFD4D2C291D81710193A5FC56A.rev&#39;</span>
+gpg: revocation certificate stored as <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d/C4A3CFC-
+</span><span style="color:#e6db74">51a
+</span><span style="color:#e6db74">B1318FFD4D2C291D81710193A5FC56A.rev&#39;</span>
 public and secret key created and signed
 </code></pre></div><ul>
 <li>To verify the keys were created you can use this command:(returns all keys in Charles' keyring.</li>
@@ -393,17 +405,17 @@ iFo5PEjBTvCJJXHvDgn2W7I7U0MWO220gyCT/Ja/eKad5GKTeMjOC4ERTwvha0ON
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --import charles.gpg
 </code></pre></div><ul>
-<li>Confirm it was imported by listing the keys</li>
+<li>Confirm it was imported by listing the keys.</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --list-keys
 </code></pre></div><ul>
-<li>This should show Jack&rsquo;s addition of Charles' key( Jack has not created any keys yet)</li>
+<li>This should show Jack&rsquo;s addition of Charles' key (Jack has not created any keys yet).</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>SC<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-02<span style="color:#f92672">]</span>
 39B2BD6C93E1E63E8C004183FE91AF7A7B4EC267
 uid   <span style="color:#f92672">[</span>ultimate<span style="color:#f92672">]</span> Charles &lt;charles@email.com&gt;
 sub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>E<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-02<span style="color:#f92672">]</span>
-</code></pre></div><h4 id="step-3-encryption">Step 3: Encryption</h4>
+</code></pre></div><h2 id="step-3-encryption">Step 3: Encryption</h2>
 <p>  Jake now has Charles' Public Key in his key ring, so he is ready to create a message and encrypt it.</p>
 <ul>
 <li>Jake will want to create a file that will contain a message, so we&rsquo;ll use the following echo command to create a file called <code>Jacks_plainmessage.txt</code>.</li>
@@ -417,7 +429,8 @@ sub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>E<span style="color
 <p>We will use the following command:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --armor --output Jacks_encryptedmessage.txt --encrypt --recipient charles@email.com Jacks_plainmessage.txt
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --armor --output Jacks_encryptedmessage.txt --encrypt --recipient /
+charles@email.com Jacks_plainmessage.txt
 </code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run GPG.</p>
@@ -436,14 +449,12 @@ sub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>E<span style="color
 </li>
 <li>
 <p><code>Jacks_plainmessage.txt</code>: Specifies for GPG which plaintext file to encrypt.</p>
-<ul>
+</li>
 <li>
 <p>Run the command to created a file that has ciphertext called <code>Jacks_encryptedmessage.txt</code>.</p>
-<ul>
-<li>Run a preview command to illustrate the file has now been encrypted:</li>
-</ul>
 </li>
-</ul>
+<li>
+<p>Run a preview command to illustrate the file has now been encrypted:</p>
 </li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat Jacks_encryptedmessage.txt
@@ -458,7 +469,7 @@ bQOC+HHktQN3AJrsgN/Oj4OduM+hMtnPUdWa0X7uOOKRFW9r5CbuYga134EzoHG3
 
 -----END PGP MESSAGE-----
 </code></pre></div><h2 id="step-4-decryption">Step 4: Decryption</h2>
-<p>The last step is for Jack to send his encrypted message over to Charles, so she can decrypt it with her Private Key.</p>
+<p>  The last step is for Jack to send his encrypted message over to Charles, so she can decrypt it with her Private Key.</p>
 <ul>
 <li>
 <p>Once Charles receives Jack&rsquo;s encrypted message, she will save it in a directory and then run decryption commands against the file.</p>
@@ -491,57 +502,50 @@ bQOC+HHktQN3AJrsgN/Oj4OduM+hMtnPUdWa0X7uOOKRFW9r5CbuYga134EzoHG3
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">&#34;Hi Charles, my bank account number is 2783492.&#34;</span>
 </code></pre></div><h2 id="signing">Signing</h2>
-<p>Signing with GPG gives the ability to verify that a file came from you or a specific person.<br>
-You can verify signature before extracting the data.<br>
-Signing:</p>
+<p>  Signing with GPG gives the ability to verify that a file came from you or a specific person.<br>
+You can verify signature before extracting the data.</p>
+<p>Signing:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --sign text.txt
 </code></pre></div><p>Verifying:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --verify text.txt.gpg
 </code></pre></div><p>You can also have a detached signature file.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --detach-sign text.txt
-</code></pre></div><p>Then, you need to have both <code>text.txt</code> and <code>text.txt.sig</code> in the same directory and verify the signature with <code>gpg --verify text.txt.sig</code>.<br>
+</code></pre></div><p>  Then, you need to have both <code>text.txt</code> and <code>text.txt.sig</code> in the same directory and verify the signature with <code>gpg --verify text.txt.sig</code>.<br>
 This part was just a quick overview of the signing.</p>
 <h1 id="windows">Windows</h1>
-<h2 id="setup">Setup</h2>
-<p>Download and Install  <a href="https://www.gpg4win.org">GPG4Win</a>, then run Kleopatra after the Install Wizard is done. You will come to this screen.<br>
-
-    <img src="/img/kleostart.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-</p>
-<h2 id="generating-key-pairs">Generating Key Pairs</h2>
+<h2 id="step-1-setup">Step 1: Setup</h2>
+<p>  Download and Install  <a href="https://www.gpg4win.org">GPG4Win</a>, then run Kleopatra after the Install Wizard is done. You will come to this screen.</p>
+<p><img src="kleostart.PNG" alt="kleostart"></p>
+<h2 id="step-2-generating-key-pairs">Step 2: Generating Key Pairs</h2>
 <ul>
 <li>Then, in Kleopatra, Navigate to:
 <ul>
 <li>File -&gt; New Key Pair</li>
-<li>(this walkthrough) We will be working with the OpenPGP key pairs
-
-    <img src="/img/kleonewpair.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
+<li>(this walkthrough) We will be working with the OpenPGP key pairs.</li>
+</ul>
 </li>
+</ul>
+<p><img src="kleonewpair.PNG" alt="kleonewpair"></p>
+<h1 id="heading-3"></h1>
+<h1 id="heading-4"></h1>
+<ul>
 <li>Now it will ask you to enter your Name and Email, your Identifiers. I would also suggest protecting the generated key with a passphrase. Enter the desired information.</li>
 <li>Click <code>Advanced Settings</code>, this is where you select your encryption type as well as desired usage like Signing, Authentication, and Expiration Date</li>
 <li>We will use <code>RSA</code> for this quick tutorial.</li>
 <li>The <code>2048 bits</code> is the default encryption strength, I suggest using the max number of bits offered. For me <code>4096 bits</code>. Click <code>Ok</code>.</li>
-<li>When everything is set right click <code>Create</code>.
-
-    <img src="/img/kleoadvset.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-</li>
+<li>When everything is set right click <code>Create</code>.</li>
+</ul>
+<p><img src="kleoadvset.PNG" alt="kleoadvset"></p>
+<ul>
 <li>Then enter your desired passphrase for your new key pair.</li>
-<li>Then it will generate the key pair, and depending on your computer the completion time may vary. After it Generates you should see this window
-
-    <img src="/img/kleogensuc.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-</li>
-<li>Then clicking <code>Finish</code>, you should be able to see your key now listed in Kleopatra.
-
-    <img src="/img/kleofirstlist.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-</li>
+<li>Then it will generate the key pair, and depending on your computer the completion time may vary. After it Generates you should see this window.</li>
 </ul>
-</li>
+<p><img src="kleogensuc.PNG" alt="kleogensuc"></p>
+<ul>
+<li>Then clicking <code>Finish</code>, you should be able to see your key now listed in Kleopatra.</li>
 </ul>
-<h2 id="exporting-public-keys">Exporting Public Keys</h2>
+<p><img src="kleofirstlist.PNG" alt="kleofirstlist"></p>
+<h2 id="step-3-exporting-public-keys">Step 3: Exporting Public Keys</h2>
 <p><em>Public Key</em></p>
 <ul>
 <li>For this to function properly, you will need to Export your Public Key so others can get it and encrypt files/messages for you.</li>
@@ -553,63 +557,57 @@ This part was just a quick overview of the signing.</p>
 </ul>
 </li>
 </ul>
-<h2 id="importing-public-keys">Importing Public Keys</h2>
+<h2 id="step-4-importing-public-keys">Step 4: Importing Public Keys</h2>
 <ul>
 <li>Find the Recipients Public Key, and you can copy the contents to a new text file.</li>
 <li>Open Kleopatra, and on the top action bar there is an <code>Import</code> button. Click it then navigate to that text file you just created and <code>Open</code> it.</li>
-<li><em>NOTE You may have to set the dropdown right above the <code>Open</code> button to <code>Any files</code>.</em></li>
-<li>There should now be an <code>Imported Certificates</code> tab next to the <code>All Certificates</code> tab.<br>
-
-    <img src="/img/kleopubimport.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-</li>
+<li><strong>NOTE</strong> You may have to set the dropdown right above the <code>Open</code> button to <code>Any files</code>.</li>
+<li>There should now be an <code>Imported Certificates</code> tab next to the <code>All Certificates</code> tab.</li>
 </ul>
-<h2 id="encrypting-data">Encrypting Data</h2>
+<p><img src="kleopubimport.PNG" alt="kleopubimport"></p>
+<h2 id="step-5-encrypting-data">Step 5: Encrypting Data</h2>
 <ul>
 <li>To Encrypt data, one way is:
 <ul>
 <li>Open the text you are wanting to encrypt.</li>
-<li>Select it all and then Copy it to the clipboard( Ctrl+a, Ctrl+c, or right-click and select <code>Copy</code>.</li>
+<li>Select it all and then Copy it to the clipboard(Ctrl+c, or right-click and select <code>Copy</code>).</li>
 <li>Then go over to your icon tray area. It is likely on the bottom of the screen, I&rsquo;ve set mine to the top of the screen.</li>
 <li>Right Click on the Kleopatra Icon in the tray.</li>
-<li>Got to the <code>Clipboard</code> selection then select <code>Encrypt</code>:<br>
-
-    <img src="/img/kleoencr.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
+<li>Got to the <code>Clipboard</code> selection then select <code>Encrypt</code>:</li>
+</ul>
 </li>
+</ul>
+<p><img src="kleoencr.PNG" alt="kleoencr"></p>
+<ul>
 <li>Once it is encrypted, it gets sent back to your clipboard.</li>
-<li>Paste your newly encrypted text into a document, save and send to the recipient.<br>
-
-    <img src="/img/kleoencrmess.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-</li>
+<li>Paste your newly encrypted text into a document, save and send to the recipient.</li>
 </ul>
-</li>
-</ul>
-<h2 id="decrypting-data">Decrypting Data</h2>
+<p><img src="kleoencrmess.PNG" alt="kleoencrmess"></p>
+<h2 id="step-6-decrypting-data">Step 6: Decrypting Data</h2>
 <ul>
 <li>Open the encrypted file sent to you into a document:
 <ul>
 <li>Select all of the text and Copy it into your clipboard.</li>
-<li>Go back to the icon tray, right click on the Kleopatra Icon, navigate to <code>Clipboard</code> and select <code>Decrypt/Verify</code>.<br>
-
-    <img src="/img/kleodecrmess.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
+<li>Go back to the icon tray, right click on the Kleopatra Icon, navigate to <code>Clipboard</code> and select <code>Decrypt/Verify</code>.</li>
+</ul>
 </li>
-<li>Decrypted text will be in your clipboard</li>
+</ul>
+<p><img src="kleodecrmess.PNG" alt="encrmess"></p>
+<ul>
+<li>Decrypted text will be in your clipboard.</li>
 <li>Open a document and Paste the Decrypted text into that document.</li>
 </ul>
-</li>
-</ul>
-<h3 id="my-simple-programs">My Simple Programs</h3>
-<p>Some simple encrypt/decrypt/signing programs I made.<br>
-<a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">SourceCode</a></p>
-<h4 id="common-gui-apps">Common GUI Apps</h4>
-<p><a href="https://www.gnupg.org/related_software/gpa/">gpa</a> - Linux<br>
-<a href="https://apps.kde.org/kleopatra/">Kleopatra</a> - Linux</p>
-<h4 id="gpg-gui-for-windows">GPG GUI for Windows</h4>
+<h1 id="linksreferences">Links/References</h1>
+<p><em>Twitter</em> - <a href="https://twitter.com/_binford">@_binford</a></p>
+<h2 id="my-simple-programs">My Simple Programs</h2>
+<p>Some simple encrypt/decrypt/signing programs I made.</p>
+<p><a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
+<h2 id="common-gui-apps">Common GUI Apps</h2>
+<p><a href="https://www.gnupg.org/related_software/gpa/">gpa</a> - Linux</p>
+<p><a href="https://apps.kde.org/kleopatra/">Kleopatra</a> - Linux</p>
+<h2 id="gpg-gui-for-windows">GPG GUI for Windows</h2>
 <p><a href="https://www.gpg4win.org">gpg4win</a> - Windows(gpg4win comes with Kleopatra)</p>
-<h4 id="good-gui-video-tutorial">Good GUI Video Tutorial</h4>
+<h2 id="good-gui-video-tutorial">Good GUI Video Tutorial</h2>
 <p><a href="https://www.youtube.com/watch?v=CEADq-B8KtI">HackerSploit</a> - YouTube</p>
 ]]></content>
         </item>
@@ -620,11 +618,16 @@ This part was just a quick overview of the signing.</p>
             <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
-            <description>This is the process I use to partition and encrypt usb drives. * I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.
-!! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
+            <description>LUKS USB Encryption for Linux Tutorial Written &amp;amp; Compiled by Jb Williams - @_binford - Github
+This is the process I use to partition and encrypt usb drives.
+ I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.  !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
  Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB)    Reqs:</description>
-            <content type="html"><![CDATA[<p>This is the process I use to partition and encrypt usb drives.
-* I have not tested tested it on anything other than usb&rsquo;s, though a similar process would potentially work.</p>
+            <content type="html"><![CDATA[<h1 id="luks-usb-encryption-for-linux">LUKS USB Encryption for Linux</h1>
+<p>Tutorial Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
+<p>This is the process I use to partition and encrypt usb drives.</p>
+<ul>
+<li>I have not tested tested it on anything other than usb&rsquo;s, though a similar process would potentially work.</li>
+</ul>
 <p><strong>!! Notice !!</strong>
 <strong>Running these commands on the wrong drive could Erase All Data on that Drive!!</strong></p>
 <ul>
@@ -641,7 +644,7 @@ This part was just a quick overview of the signing.</p>
 <li>linux</li>
 <li>cryptsetup    (deb package)</li>
 </ul>
-<p><strong>(depending on desired file system)</strong></p>
+<p><strong>(depending on desired file system)</strong>\</p>
 <ul>
 <li>
 <p>dosfstools - FAT32, vfat <em>(can be read by both Windows and Linux)</em></p>
@@ -661,13 +664,12 @@ This part was just a quick overview of the signing.</p>
 <li>(Surprise) Insert the usb</li>
 <li>Find the desired device name for the usb</li>
 <li><em>For this walkthrough we are goinig to assume that the Computer Hard Drive is /dev/sda, the desired USB is /dev/sdb from here out</em><br>
-<code>/dev/sda</code> - computer <br>
-<code>/dev/sdb</code> - usb<br>
-<br>
-to find device name</li>
+<code>/dev/sda</code> - computer<br>
+<code>/dev/sdb</code> - usb\</li>
 </ul>
+<p>to find device name:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsblk
-</code></pre></div><p><em>example output</em></p>
+</code></pre></div><p><em>example output</em>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sda      8:0    <span style="color:#ae81ff">0</span> 931.5G  <span style="color:#ae81ff">0</span> disk 
 |-sda1   8:1    <span style="color:#ae81ff">0</span>   100M  <span style="color:#ae81ff">0</span> part /boot
@@ -690,7 +692,7 @@ Remember USB is /dev/sdb.</li>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">shred -v -n <span style="color:#ae81ff">1</span> /dev/sdb
 </code></pre></div><p>Where &ldquo;-v&rdquo; is verbose so you can monitor the progress, and &ldquo;-n 1&rdquo; is the number of iterations or number of times it should be overwitten. I have read anywhere between 1-7 is ok.</p>
 <h3 id="step-2">Step 2</h3>
-<p> At this point the data is clear on the usb and we will start partitioning and formatting the device. During this part you can create several partitions and encrypt and format then as you prefer.</p>
+<p>At this point the data is clear on the usb and we will start partitioning and formatting the device. During this part you can create several partitions and encrypt and format then as you prefer.</p>
 <p>I will will go through this using <em>fdisk</em> and use the all the available space.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">fdisk /dev/sdb
 </code></pre></div><ul>
@@ -701,7 +703,9 @@ Remember USB is /dev/sdb.</li>
 <li>&ldquo;w&rdquo; will write the changes</li>
 </ul>
 <p>Now we are ready to begin encrypting the usb with <em>cryptsetup</em> and give it the name &ldquo;ENCRYPTED&rdquo;.</p>
-<p><em>if the following commands don&rsquo;t properly name the drive. after it&rsquo;s open you can open another terminal and either do <code>lsblk</code> to find the name of the drive, or <code>ls /dev/mapper/</code> and find the correct one</em></p>
+<ul>
+<li>if the following commands don&rsquo;t properly name the drive. after it&rsquo;s open you can open another terminal and either do <code>lsblk</code> to find the name of the drive, or <code>ls /dev/mapper/</code> and find the correct one.</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cryptsetup luksOpen /dev/sdb1 &lt;desired_drive_name&gt;
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cryptsetup luksOpen /dev/sdb1 ENCRYPTED
 </code></pre></div><ul>
@@ -732,14 +736,14 @@ Remember USB is /dev/sdb.</li>
 <li>best practice to run <code>lsblk</code> again to check device name.</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">udiskie-mount /dev/sdb1 <span style="color:#f92672">&amp;&amp;</span> udiskie-mount /dev/mapper/&lt;encrypted_dev_name&gt;
-</code></pre></div><p>Then to unmount you just</p>
+</code></pre></div><p>Then to unmount you just:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">udiskie-umount /dev/mapper/&lt;encrypted_dev_name&gt;
 </code></pre></div><ul>
 <li>If it was just and un-encrypted drive the commands would just be:</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">udiskie-mount /dev/sdb1
 udiskie-umount /dev/sdb1
-</code></pre></div><p>written by: jb</p>
+</code></pre></div><p><em>written by: jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></em></p>
 ]]></content>
         </item>
         
@@ -749,9 +753,12 @@ udiskie-umount /dev/sdb1
             <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
-            <description>Brightxf  !! Run at Own Risk !!
+            <description>Brightxf Written &amp;amp; Compiled by Jb Williams - @_binford - Github
+  !! Run at Own Risk !!
  No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be   I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
             <content type="html"><![CDATA[<h3 id="brightxf">Brightxf</h3>
+<p>Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
+<h1 id="heading"></h1>
 <p> <strong>!! Run at Own Risk !!</strong></p>
 <ul>
 <li>No issues have come from my use of these but that doesn&rsquo;t mean there won&rsquo;t be</li>
@@ -790,7 +797,9 @@ udiskie-umount /dev/sdb1
 brwn
 brup
 brmx
-</code></pre></div><p><a href="https://github.com/jb-williams/brightxf">SourceCode</a></p>
+</code></pre></div><h1 id="heading-1"></h1>
+<p><a href="https://github.com/jb-williams/brightxf">SourceCode</a></p>
+<p>written &amp; compiled by jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">github</a></p>
 ]]></content>
         </item>
         

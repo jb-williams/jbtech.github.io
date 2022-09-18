@@ -14,7 +14,8 @@
       <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
-      <description>Basic PenTesting Box Performed by Jb Williams facilitated by TryHackMe
+      <description>Basic PenTesting Box Facilitated by TryHackMe
+Performed, Written &amp;amp; Compiled by Jb Williams - @_binford - Github
 Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
   Username (jan and kay found via enum4linux).
   Password(jan:armando found via hydra with ssh).
@@ -30,10 +31,12 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
       <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/gpg/</guid>
-      <description>GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
+      <description>GPG Written &amp;amp; Compiled by Jb Williams - @_binford - Github
+ GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
+A quick walkthrough of GPG.
 Works on most all OS&amp;rsquo;s, this will be a Linux, and quick Windows walkthrough.
 Public/Private Keys:
- You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone They use your Public Key to encrypt the message they want to send to you and you decrypt it with your Private Key.</description>
+ You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone.</description>
     </item>
     
     <item>
@@ -42,8 +45,9 @@ Public/Private Keys:
       <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
-      <description>This is the process I use to partition and encrypt usb drives. * I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.
-!! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
+      <description>LUKS USB Encryption for Linux Tutorial Written &amp;amp; Compiled by Jb Williams - @_binford - Github
+This is the process I use to partition and encrypt usb drives.
+ I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.  !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
  Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB)    Reqs:</description>
     </item>
     
@@ -53,7 +57,8 @@ Public/Private Keys:
       <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
-      <description>Brightxf  !! Run at Own Risk !!
+      <description>Brightxf Written &amp;amp; Compiled by Jb Williams - @_binford - Github
+  !! Run at Own Risk !!
  No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be   I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
     </item>
     
@@ -64,7 +69,7 @@ Public/Private Keys:
       
       <guid>https://jb-williams.github.io/jbtech.github.io/about/</guid>
       <description>This site is a place for my to try to gather my notes into a coherent posts.
- In Nov. 2020, I completely switched to Linux, doing a step by step command line installation, having never actually used any Unix-like system before, making myself learn if I wanted to use my computer. Going down this path of learning all I could of computers and operating systems drastically increased my interest in the Cyber Security field.</description>
+ Before 2020, my extent of computer knowledge was how to install Steam and play games. In Nov. 2020, I completely switched to Linux, doing a step by step command line installation, having never actually used any Unix-like system before, making myself learn if I wanted to use my computer. Going down this path of learning all I could of computers and operating systems drastically increased my interest in the Cyber Security field.</description>
     </item>
     
     <item>

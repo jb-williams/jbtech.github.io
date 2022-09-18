@@ -14,10 +14,12 @@
       <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/gpg/</guid>
-      <description>GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
+      <description>GPG Written &amp;amp; Compiled by Jb Williams - @_binford - Github
+ GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
+A quick walkthrough of GPG.
 Works on most all OS&amp;rsquo;s, this will be a Linux, and quick Windows walkthrough.
 Public/Private Keys:
- You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone They use your Public Key to encrypt the message they want to send to you and you decrypt it with your Private Key.</description>
+ You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone.</description>
     </item>
     
   </channel>

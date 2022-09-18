@@ -14,7 +14,8 @@
       <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
-      <description>Basic PenTesting Box Performed by Jb Williams facilitated by TryHackMe
+      <description>Basic PenTesting Box Facilitated by TryHackMe
+Performed, Written &amp;amp; Compiled by Jb Williams - @_binford - Github
 Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
   Username (jan and kay found via enum4linux).
   Password(jan:armando found via hydra with ssh).

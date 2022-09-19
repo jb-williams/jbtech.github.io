@@ -26,7 +26,7 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
      User Pass Service SSH Key IP Port     jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.</description>
             <content type="html"><![CDATA[<h1 id="basic-pentesting-box">Basic PenTesting Box</h1>
 <p>Facilitated by <a href="https://tryhackme.com/hacktivities">TryHackMe</a></p>
-<p>Performed, Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
+<p>Performed, Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">Github</a></p>
 <h2 id="summary">Summary</h2>
 <ul>
 <li>
@@ -267,7 +267,7 @@ beeswax
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">heresareallystrongpasswordthatfollowsthepasswordpolicy$$
 </code></pre></div><h1 id="heading"></h1>
-<p>performed, written &amp; compiled by jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">github</a></p>
+<p>performed, written &amp; compiled by jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></p>
 ]]></content>
         </item>
         
@@ -650,7 +650,7 @@ This is the process I use to partition and encrypt usb drives.
  I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.  !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
  Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB)    Reqs:</description>
             <content type="html"><![CDATA[<h1 id="luks-usb-encryption-for-linux">LUKS USB Encryption for Linux</h1>
-<p>Tutorial Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
+<p>Tutorial Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">Github</a></p>
 <p>This is the process I use to partition and encrypt usb drives.</p>
 <ul>
 <li>I have not tested tested it on anything other than usb&rsquo;s, though a similar process would potentially work.</li>
@@ -770,7 +770,7 @@ Remember USB is /dev/sdb.</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">udiskie-mount /dev/sdb1
 udiskie-umount /dev/sdb1
-</code></pre></div><p><em>written by: jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></em></p>
+</code></pre></div><p><em>written &amp; compiled by: jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></em></p>
 ]]></content>
         </item>
         
@@ -784,7 +784,7 @@ udiskie-umount /dev/sdb1
   !! Run at Own Risk !!
  No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be   I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
             <content type="html"><![CDATA[<h3 id="brightxf">Brightxf</h3>
-<p>Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
+<p>Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/brightxf">Github</a></p>
 <h1 id="heading"></h1>
 <p> <strong>!! Run at Own Risk !!</strong></p>
 <ul>
@@ -826,7 +826,7 @@ brup
 brmx
 </code></pre></div><h1 id="heading-1"></h1>
 <p><a href="https://github.com/jb-williams/brightxf">SourceCode</a></p>
-<p>written &amp; compiled by jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">github</a></p>
+<p><em>written &amp; compiled by: jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></em></p>
 ]]></content>
         </item>
         

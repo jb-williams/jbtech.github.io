@@ -15,11 +15,11 @@
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/gpg/</guid>
       <description>GPG Written &amp;amp; Compiled by Jb Williams - @_binford - Github
- GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
+GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
 A quick walkthrough of GPG.
 Works on most all OS&amp;rsquo;s, this will be a Linux, and quick Windows walkthrough.
 Public/Private Keys:
- You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone.</description>
+You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone.</description>
     </item>
     
     <item>
@@ -30,8 +30,8 @@ Public/Private Keys:
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
       <description>LUKS USB Encryption for Linux Tutorial Written &amp;amp; Compiled by Jb Williams - @_binford - Github
 This is the process I use to partition and encrypt usb drives.
- I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.  !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
- Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB)    Reqs:</description>
+I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
+Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) Reqs:</description>
     </item>
     
   </channel>

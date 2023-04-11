@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 28 Sep 2022 10:21:14 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Apr 2023 15:50:37 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>THM_Vulnversity_Walkthrough</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</link>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</guid>
+      <description>Vulnversity Walkthrough TryHackMe Reconnaisance They first ask for you to search for any nmap resourses(cheatsheets) online, I came across this one that seemed really useful: https://www.stationx.net/nmap-cheat-sheet/
+The First Real Question
+Scan the box, how many ports are open? I like to build up a chain of commands for most boxes.
+While doing my scans I like to create a file that contains just the numerical port values to have. So my command came out like this: nmap -v -T4 -sV -sC -oA nmap/initial 10.</description>
+    </item>
+    
     <item>
       <title>THM_Blue_Walkthrough</title>
       <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_blue_walkthrough/</link>
@@ -17,8 +29,8 @@
       <description>Eternal Blue TryHackMe Performed on TryHackMe.com
 Walkthrough by Jb Williams - @_binford - Github
 Fri 09/23/2022 10:16:54 AM
- Note: some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
- Scanning/Recon After finding the IP address, I ran my basic nmap recon:
+Note: some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
+Scanning/Recon After finding the IP address, I ran my basic nmap recon:
 nmap -v -sV -sC -oN initial 10.10.10.13 Results:
 PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) .</description>
     </item>
@@ -31,13 +43,13 @@ PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
       <description>Basic PenTesting Box Facilitated by TryHackMe
 Performed, Written &amp;amp; Compiled by Jb Williams - @_binford - Github
-Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
-  Username (jan and kay found via enum4linux).
-  Password(jan:armando found via hydra with ssh).
-  Private SSH Key found with Linpeas.
-  Cracked SSH Key
-  Was able to login and read pass.bak
-     User Pass Service SSH Key IP Port     jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.</description>
+Summary Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
+Username (jan and kay found via enum4linux).
+Password(jan:armando found via hydra with ssh).
+Private SSH Key found with Linpeas.
+Cracked SSH Key
+Was able to login and read pass.bak
+User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.10.62.206 22 kay beeswax ssh kay_id_rsa 10.</description>
     </item>
     
     <item>
@@ -47,11 +59,11 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/gpg/</guid>
       <description>GPG Written &amp;amp; Compiled by Jb Williams - @_binford - Github
- GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
+GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
 A quick walkthrough of GPG.
 Works on most all OS&amp;rsquo;s, this will be a Linux, and quick Windows walkthrough.
 Public/Private Keys:
- You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone.</description>
+You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone.</description>
     </item>
     
     <item>
@@ -62,8 +74,8 @@ Public/Private Keys:
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
       <description>LUKS USB Encryption for Linux Tutorial Written &amp;amp; Compiled by Jb Williams - @_binford - Github
 This is the process I use to partition and encrypt usb drives.
- I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.  !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
- Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB)    Reqs:</description>
+I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
+Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) Reqs:</description>
     </item>
     
     <item>
@@ -73,8 +85,8 @@ This is the process I use to partition and encrypt usb drives.
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
       <description>Brightxf Written &amp;amp; Compiled by Jb Williams - @_binford - Github
-  !! Run at Own Risk !!
- No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be   I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
+!! Run at Own Risk !!
+No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
     </item>
     
     <item>
@@ -84,7 +96,7 @@ This is the process I use to partition and encrypt usb drives.
       
       <guid>https://jb-williams.github.io/jbtech.github.io/about/</guid>
       <description>This site is a place for me to try to gather my notes into a coherent posts.
-  My functional experience prior to November of 2020 was all but limited to installing Steam and playing video games. Though I had an interest in programming in high school, where I&amp;rsquo;d want to take those skills felt like a pipedream, as it would have been geared towards the gaming industry. I let that dream fade away in pursuit of what felt more attainable goals.</description>
+My functional experience prior to November of 2020 was all but limited to installing Steam and playing video games. Though I had an interest in programming in high school, where I&amp;rsquo;d want to take those skills felt like a pipedream, as it would have been geared towards the gaming industry. I let that dream fade away in pursuit of what felt more attainable goals.</description>
     </item>
     
     <item>

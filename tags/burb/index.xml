@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>burb on jb</title>
+    <link>https://jb-williams.github.io/jbtech.github.io/tags/burb/</link>
+    <description>Recent content in burb on jb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 11 Apr 2023 15:50:37 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/burb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>THM_Vulnversity_Walkthrough</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</link>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</guid>
+      <description>Vulnversity Walkthrough TryHackMe Reconnaisance They first ask for you to search for any nmap resourses(cheatsheets) online, I came across this one that seemed really useful: https://www.stationx.net/nmap-cheat-sheet/
+The First Real Question
+Scan the box, how many ports are open? I like to build up a chain of commands for most boxes.
+While doing my scans I like to create a file that contains just the numerical port values to have. So my command came out like this: nmap -v -T4 -sV -sC -oA nmap/initial 10.</description>
+    </item>
+    
+  </channel>
+</rss>

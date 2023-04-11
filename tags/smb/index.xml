@@ -17,8 +17,8 @@
       <description>Eternal Blue TryHackMe Performed on TryHackMe.com
 Walkthrough by Jb Williams - @_binford - Github
 Fri 09/23/2022 10:16:54 AM
- Note: some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
- Scanning/Recon After finding the IP address, I ran my basic nmap recon:
+Note: some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
+Scanning/Recon After finding the IP address, I ran my basic nmap recon:
 nmap -v -sV -sC -oN initial 10.10.10.13 Results:
 PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) .</description>
     </item>

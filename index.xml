@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 11 Apr 2023 15:50:37 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Apr 2023 12:25:08 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>THM_Kenobi_Walkthrough</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/</link>
+      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/</guid>
+      <description>Kenobi THM performed by: jb-willams Deploy the vulnerable machine Scan the machine with nmap, how many ports are open? Deploy the Machine and scan it with nmap nmap -v -p- -sV -sC -T4 -oA nmap/initial 10.10.223.56 &amp;amp;&amp;amp; grep -i &amp;#34;open&amp;#34; nmap/initial.nmap ~▹| cut -d&amp;#39; &amp;#39; -f 1 | cut -d&amp;#39;/&amp;#39; -f1 | tee nmap/ports.txt | wc -l notice, you may get some false positives that will have unknown service, ignore them</description>
+    </item>
+    
     <item>
       <title>THM_Vulnversity_Walkthrough</title>
       <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</link>

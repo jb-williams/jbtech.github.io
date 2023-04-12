@@ -7,7 +7,70 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 11 Apr 2023 15:50:37 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Apr 2023 12:25:08 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ftp</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/ftp/</link>
+      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/ftp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/linux/</link>
+      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pentest</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</link>
+      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scanning</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</link>
+      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>searchsploit</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/searchsploit/</link>
+      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/searchsploit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>smb</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/smb/</link>
+      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/smb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SUID</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/suid/</link>
+      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/suid/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>burb</title>
       <link>https://jb-williams.github.io/jbtech.github.io/tags/burb/</link>
@@ -32,69 +95,6 @@
       <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/feroxbuster/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gobuster</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</link>
-      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/linux/</link>
-      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pentest</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</link>
-      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>scanning</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</link>
-      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SUID</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/suid/</link>
-      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/suid/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>metasploit</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/metasploit/</link>
-      <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/metasploit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>password cracking</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/password-cracking/</link>
-      <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/password-cracking/</guid>
       <description></description>
     </item>
     

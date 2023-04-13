@@ -161,7 +161,7 @@
 <ul>
 <li>Deploy the Machine and scan it with nmap</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -p- -sV -sC -T4 -oA nmap/initial 10.10.223.56 <span style="color:#f92672">&amp;&amp;</span> grep -i <span style="color:#e6db74">&#34;open&#34;</span> nmap/initial.nmap     ~▹| cut -d<span style="color:#e6db74">&#39; &#39;</span> -f <span style="color:#ae81ff">1</span> | cut -d<span style="color:#e6db74">&#39;/&#39;</span> -f1 | tee nmap/ports.txt | wc -l
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -p- -sV -sC -T4 -oA nmap/initial 10.10.223.56 <span style="color:#f92672">&amp;&amp;</span> grep -i <span style="color:#e6db74">&#34;open&#34;</span> nmap/initial.nmap | cut -d<span style="color:#e6db74">&#39; &#39;</span> -f <span style="color:#ae81ff">1</span> | cut -d<span style="color:#e6db74">&#39;/&#39;</span> -f1 | tee nmap/ports.txt | wc -l
 </span></span></code></pre></div><p><em>notice, you may get some false positives that will have <code>unknown service</code>, ignore them</em></p>
 <ul>
 <li><strong>Answer</strong>: Number of ports open: <code>7</code></li>

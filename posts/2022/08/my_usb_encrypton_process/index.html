@@ -5,10 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="jb ">
-<meta name="description" content="LUKS USB Encryption for Linux Tutorial Written &amp;amp; Compiled by Jb Williams - @_binford - Github
-This is the process I use to partition and encrypt usb drives.
+<meta name="description" content="LUKS USB Encryption for Linux performed by: jb-williams This is the process I use to partition and encrypt usb drives.
 I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
-Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) Reqs:" />
+Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) REQS:" />
 <meta name="keywords" content=", linux, bash, file system, encryption, luks, usb" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -42,29 +41,26 @@ Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sd
 
 
 <meta itemprop="name" content="My_Usb_Encrypton_Process">
-<meta itemprop="description" content="LUKS USB Encryption for Linux Tutorial Written &amp; Compiled by Jb Williams - @_binford - Github
-This is the process I use to partition and encrypt usb drives.
+<meta itemprop="description" content="LUKS USB Encryption for Linux performed by: jb-williams This is the process I use to partition and encrypt usb drives.
 I have not tested tested it on anything other than usb&rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
-Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) Reqs:"><meta itemprop="datePublished" content="2022-08-26T16:43:11-05:00" />
+Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) REQS:"><meta itemprop="datePublished" content="2022-08-26T16:43:11-05:00" />
 <meta itemprop="dateModified" content="2022-08-26T16:43:11-05:00" />
-<meta itemprop="wordCount" content="722"><meta itemprop="image" content="https://jb-williams.github.io/jbtech.github.io/"/>
+<meta itemprop="wordCount" content="712"><meta itemprop="image" content="https://jb-williams.github.io/jbtech.github.io/"/>
 <meta itemprop="keywords" content="linux,bash,file system,encryption,luks,usb," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jb-williams.github.io/jbtech.github.io/"/>
 
 <meta name="twitter:title" content="My_Usb_Encrypton_Process"/>
-<meta name="twitter:description" content="LUKS USB Encryption for Linux Tutorial Written &amp; Compiled by Jb Williams - @_binford - Github
-This is the process I use to partition and encrypt usb drives.
+<meta name="twitter:description" content="LUKS USB Encryption for Linux performed by: jb-williams This is the process I use to partition and encrypt usb drives.
 I have not tested tested it on anything other than usb&rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
-Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) Reqs:"/>
+Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) REQS:"/>
 
 
 
     <meta property="og:title" content="My_Usb_Encrypton_Process" />
-<meta property="og:description" content="LUKS USB Encryption for Linux Tutorial Written &amp; Compiled by Jb Williams - @_binford - Github
-This is the process I use to partition and encrypt usb drives.
+<meta property="og:description" content="LUKS USB Encryption for Linux performed by: jb-williams This is the process I use to partition and encrypt usb drives.
 I have not tested tested it on anything other than usb&rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
-Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) Reqs:" />
+Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) REQS:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/" /><meta property="og:image" content="https://jb-williams.github.io/jbtech.github.io/"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-08-26T16:43:11-05:00" />
@@ -163,7 +159,8 @@ Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sd
 
       <div class="post-content">
         <h1 id="luks-usb-encryption-for-linux">LUKS USB Encryption for Linux</h1>
-<p>Tutorial Written &amp; Compiled by Jb Williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">Github</a></p>
+<h4 id="performed-by-jb-williams">performed by: jb-williams</h4>
+<h1 id="heading"></h1>
 <p>This is the process I use to partition and encrypt usb drives.</p>
 <ul>
 <li>I have not tested tested it on anything other than usb&rsquo;s, though a similar process would potentially work.</li>
@@ -179,13 +176,15 @@ Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sd
 </ul>
 </li>
 </ul>
-<p><strong>Reqs:</strong></p>
+<p>REQS:</p>
 <ul>
-<li>linux</li>
-<li>cryptsetup    (deb package)</li>
-</ul>
-<p><strong>(depending on desired file system)</strong>\</p>
-<ul>
+<li>
+<p>linux</p>
+</li>
+<li>
+<p>cryptsetup    (deb package)<br>
+<strong>(depending on desired file system)</strong></p>
+</li>
 <li>
 <p>dosfstools - FAT32, vfat <em>(can be read by both Windows and Linux)</em></p>
 </li>
@@ -283,7 +282,9 @@ Remember USB is /dev/sdb.</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>udiskie-mount /dev/sdb1
 </span></span><span style="display:flex;"><span>udiskie-umount /dev/sdb1
-</span></span></code></pre></div><p><em>written &amp; compiled by: jb williams - <a href="https://twitter.com/_binford">@_binford</a> - <a href="https://github.com/jb-williams">github</a></em></p>
+</span></span></code></pre></div><h1 id="heading-1"></h1>
+<h1 id="heading-2"></h1>
+<p><em>written and performed by jb williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
 
       </div>
     </article>
@@ -314,7 +315,7 @@ Remember USB is /dev/sdb.</li>
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        722 Words
+        712 Words
       </p>
 
       <p>

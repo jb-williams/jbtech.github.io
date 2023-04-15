@@ -7,94 +7,94 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 13 Apr 2023 10:04:47 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Apr 2023 10:41:56 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>bash</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/bash/</link>
-      <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
+      <title>escalation</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/escalation/</link>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/bash/</guid>
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/escalation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>feroxbuster</title>
       <link>https://jb-williams.github.io/jbtech.github.io/tags/feroxbuster/</link>
-      <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/feroxbuster/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>file-upload</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/file-upload/</link>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/file-upload/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gobuster</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</link>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>linux</title>
       <link>https://jb-williams.github.io/jbtech.github.io/tags/linux/</link>
-      <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>nmap</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/nmap/</link>
-      <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/nmap/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>pentest</title>
       <link>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</link>
-      <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>php</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/php/</link>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>python</title>
       <link>https://jb-williams.github.io/jbtech.github.io/tags/python/</link>
-      <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>rootme</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/rootme/</link>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/rootme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>scanning</title>
       <link>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</link>
-      <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ftp</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/ftp/</link>
-      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/ftp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>searchsploit</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/searchsploit/</link>
-      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/searchsploit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>smb</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/smb/</link>
-      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/smb/</guid>
       <description></description>
     </item>
     

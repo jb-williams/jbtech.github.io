@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tryhackme on jb</title>
+    <link>https://jb-williams.github.io/jbtech.github.io/tags/tryhackme/</link>
+    <description>Recent content in tryhackme on jb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 15 Apr 2023 10:41:56 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/tryhackme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>THM_RootMe_Walkthrough</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_rootme_walkthrough/</link>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_rootme_walkthrough/</guid>
+      <description>RootMe TryHackMe performed by: jb-williams Deploy the machine Reconnaissance To get info on the target, run this nmap command: nmap -v -T4 -sV -sC -oA nmap/initial 10.10.105.101 This provides the answers to the following three questions. Scan the machine, how many ports ar open? Answer: 2 What version of Apache is running? Answer: 2.4.29 What service is running on port 22? Answer: ssh Find directories on the web server using the GoBuster tool.</description>
+    </item>
+    
+    <item>
+      <title>THM_PickleRick_Walkthrough</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_picklerick_walkthrough/</link>
+      <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_picklerick_walkthrough/</guid>
+      <description>Pickle Rick TryHackMe performed by: jb-williams Pickle Rick To access the box add the machines IP to this https://&amp;lt;IP&amp;gt;.p.thmlabs.com
+Traveling to the sight we can start gathering information First it is always good to View Page Source to see if there are any information disclosers accidently left in the html source code. Doing so, you can see that a comment left in the source code is reminding Rick that the user name for their account is R1ckRul3s Now we scan the box with nmap to see what info we can gather.</description>
+    </item>
+    
+    <item>
+      <title>THM_Kenobi_Walkthrough</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/</link>
+      <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/</guid>
+      <description>Kenobi THM performed by: jb-willams Deploy the vulnerable machine Scan the machine with nmap, how many ports are open? Deploy the Machine and scan it with nmap nmap -v -p- -sV -sC -T4 -oA nmap/initial 10.10.223.56 &amp;amp;&amp;amp; grep -i &amp;#34;open&amp;#34; nmap/initial.nmap | cut -d&amp;#39; &amp;#39; -f 1 | cut -d&amp;#39;/&amp;#39; -f1 | tee nmap/ports.txt | wc -l notice, you may get some false positives that will have unknown service, ignore them</description>
+    </item>
+    
+    <item>
+      <title>THM_Vulnversity_Walkthrough</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</link>
+      <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</guid>
+      <description>Vulnversity Walkthrough TryHackMe performed by: jb-williams Reconnaisance They first ask for you to search for any nmap resourses(cheatsheets) online, I came across this one that seemed really useful: https://www.stationx.net/nmap-cheat-sheet/
+The First Real Question
+Scan the box, how many ports are open? I like to build up a chain of commands for most boxes.
+While doing my scans I like to create a file that contains just the numerical port values to have.</description>
+    </item>
+    
+    <item>
+      <title>THM_Blue_Walkthrough</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_blue_walkthrough/</link>
+      <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_blue_walkthrough/</guid>
+      <description>Eternal Blue TryHackMe performed by: jb-williams Note- some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
+Scanning/Recon After finding the IP address, I ran my basic nmap recon:
+nmap -v -sV -sC -oN initial 10.10.10.13 Results -
+PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) .... .... Came back with these results and noticed ports 138 and 445, which are usually SMB so I ran nmap with specific SMB scripts: the first one could work but I don&amp;rsquo;t think my VM could handle it so I did a little research and ran the second cmd</description>
+    </item>
+    
+    <item>
+      <title>THM_Basic_PenTest_Walkthrough</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</link>
+      <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
+      <description>Basic PenTesting TryHackMe performed by: jb-williams Summary Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
+Username (jan and kay found via enum4linux).
+Password(jan:armando found via hydra with ssh).
+Private SSH Key found with Linpeas.
+Cracked SSH Key
+Was able to login and read pass.bak
+User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.10.62.206 22 kay beeswax ssh kay_id_rsa 10.10.62.206 22 Ports Services 22 SSH 7.2 80 Apache 2.4.18 139 SMB 3.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 11 Apr 2023 15:50:37 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/gobuster/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Apr 2023 10:41:56 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/gobuster/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>THM_RootMe_Walkthrough</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_rootme_walkthrough/</link>
+      <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_rootme_walkthrough/</guid>
+      <description>RootMe TryHackMe performed by: jb-williams Deploy the machine Reconnaissance To get info on the target, run this nmap command: nmap -v -T4 -sV -sC -oA nmap/initial 10.10.105.101 This provides the answers to the following three questions. Scan the machine, how many ports ar open? Answer: 2 What version of Apache is running? Answer: 2.4.29 What service is running on port 22? Answer: ssh Find directories on the web server using the GoBuster tool.</description>
+    </item>
+    
     <item>
       <title>THM_Vulnversity_Walkthrough</title>
       <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_vulnversity_walkthrough/</link>

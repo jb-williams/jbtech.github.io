@@ -2,20 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/cms/</loc>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
+  </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/escalation/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/feroxbuster/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/file-upload/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/ftp/</loc>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/hashcat/</loc>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
@@ -28,31 +34,31 @@
                 />
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/linux/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
-  </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/php/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/posts/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/python/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
-  </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/rootme/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/suid/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/searchsploit/</loc>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/simplectf/</loc>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/sudo/</loc>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
@@ -64,13 +70,31 @@
                 href="https://jb-williams.github.io/jbtech.github.io/tags/"
                 />
   </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_rootme_walkthrough/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <loc>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_simplectf_walkthrough/</loc>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/tryhackme/</loc>
-    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/vim/</loc>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/walkthrough/</loc>
+    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/file-upload/</loc>
+    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/php/</loc>
+    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/rootme/</loc>
+    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/suid/</loc>
+    <lastmod>2023-04-15T10:41:56-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_rootme_walkthrough/</loc>
     <lastmod>2023-04-15T10:41:56-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/bash/</loc>
@@ -85,13 +109,7 @@
     <loc>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_picklerick_walkthrough/</loc>
     <lastmod>2023-04-13T10:04:47-05:00</lastmod>
   </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/ftp/</loc>
-    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
-  </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/kenobi/</loc>
-    <lastmod>2023-04-12T12:25:08-05:00</lastmod>
-  </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/searchsploit/</loc>
     <lastmod>2023-04-12T12:25:08-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/smb/</loc>

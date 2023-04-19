@@ -2,6 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/ad-block/</loc>
+    <lastmod>2023-04-18T20:17:01-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/browser/</loc>
+    <lastmod>2023-04-18T20:17:01-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/browser_extensions/</loc>
+    <lastmod>2023-04-18T20:17:01-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/darkmode/</loc>
+    <lastmod>2023-04-18T20:17:01-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/extensions/</loc>
+    <lastmod>2023-04-18T20:17:01-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/</loc>
+    <lastmod>2023-04-18T20:17:01-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://jb-williams.github.io/jbtech.github.io/fr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://jb-williams.github.io/jbtech.github.io/"
+                />
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/posts/</loc>
+    <lastmod>2023-04-18T20:17:01-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/search-engine/</loc>
+    <lastmod>2023-04-18T20:17:01-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/security/</loc>
+    <lastmod>2023-04-18T20:17:01-05:00</lastmod>
+  </url><url>
+    <loc>https://jb-williams.github.io/jbtech.github.io/tags/</loc>
+    <lastmod>2023-04-18T20:17:01-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://jb-williams.github.io/jbtech.github.io/fr/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://jb-williams.github.io/jbtech.github.io/tags/"
+                />
+  </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/cms/</loc>
     <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
@@ -20,26 +70,10 @@
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/hashcat/</loc>
     <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/</loc>
-    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="https://jb-williams.github.io/jbtech.github.io/fr/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://jb-williams.github.io/jbtech.github.io/"
-                />
-  </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/linux/</loc>
     <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</loc>
-    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
-  </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/posts/</loc>
     <lastmod>2023-04-17T15:34:29-05:00</lastmod>
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/python/</loc>
@@ -56,19 +90,6 @@
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/tags/sudo/</loc>
     <lastmod>2023-04-17T15:34:29-05:00</lastmod>
-  </url><url>
-    <loc>https://jb-williams.github.io/jbtech.github.io/tags/</loc>
-    <lastmod>2023-04-17T15:34:29-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="https://jb-williams.github.io/jbtech.github.io/fr/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://jb-williams.github.io/jbtech.github.io/tags/"
-                />
   </url><url>
     <loc>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_simplectf_walkthrough/</loc>
     <lastmod>2023-04-17T15:34:29-05:00</lastmod>

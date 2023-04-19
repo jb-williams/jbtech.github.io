@@ -7,7 +7,61 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 17 Apr 2023 15:34:29 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Apr 2023 20:17:01 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ad-block</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/ad-block/</link>
+      <pubDate>Tue, 18 Apr 2023 20:17:01 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/ad-block/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>browser</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/browser/</link>
+      <pubDate>Tue, 18 Apr 2023 20:17:01 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/browser/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>darkmode</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/darkmode/</link>
+      <pubDate>Tue, 18 Apr 2023 20:17:01 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/darkmode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>extensions</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/extensions/</link>
+      <pubDate>Tue, 18 Apr 2023 20:17:01 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/extensions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>search-engine</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/search-engine/</link>
+      <pubDate>Tue, 18 Apr 2023 20:17:01 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/search-engine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>https://jb-williams.github.io/jbtech.github.io/tags/security/</link>
+      <pubDate>Tue, 18 Apr 2023 20:17:01 -0500</pubDate>
+      
+      <guid>https://jb-williams.github.io/jbtech.github.io/tags/security/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>cms</title>
       <link>https://jb-williams.github.io/jbtech.github.io/tags/cms/</link>
@@ -41,60 +95,6 @@
       <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
       
       <guid>https://jb-williams.github.io/jbtech.github.io/tags/ftp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gobuster</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</link>
-      <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/gobuster/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hashcat</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/hashcat/</link>
-      <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/hashcat/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/linux/</link>
-      <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pentest</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</link>
-      <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/pentest/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/python/</link>
-      <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>scanning</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</link>
-      <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
-      
-      <guid>https://jb-williams.github.io/jbtech.github.io/tags/scanning/</guid>
       <description></description>
     </item>
     

@@ -64,7 +64,7 @@ All in the hope that at least one person stumbles across it and takes even a lit
 <li>
 <p><a href="!https://duckduckgo.com/app">DuckDuckGo Privacy Essentials</a>:</p>
 <ul>
-<li><em>WARNGING</em> Changes your default search engine from Google to DuckDuckGo. <em>I like not getting paid Google search results first.</em></li>
+<li><em>WARNGING</em> Changes your default search engine from Google to DuckDuckGo. <em>I like not getting paid Google search results first.(can be changed in browser settings)</em></li>
 <li>Blocks many privacy intrusive trackers, fingerprinting, etc.</li>
 <li>Automatically enforces Encryptions (HTTPS)</li>
 </ul>
@@ -72,7 +72,7 @@ All in the hope that at least one person stumbles across it and takes even a lit
 <li>
 <p><a href="!https://www.startpage.com/">Startpage Privacy Protection</a>:</p>
 <ul>
-<li><em>WARNGING</em> Changes your default search engine from Google to Startpage. <em>I like not getting paid Google search results first.</em></li>
+<li><em>WARNGING</em> Changes your default search engine from Google to Startpage. <em>I like not getting paid Google search results first.(can be changed in browser settings)</em></li>
 <li>Does many of the same things as the DuckDuckGo extension, but <code>Defense in Depth</code> is a strong concept in the security world, so having both doesn&rsquo;t seem to be an issue:</li>
 </ul>
 </li>

@@ -4,8 +4,8 @@
         <link>https://jb-williams.github.io/jbtech.github.io/posts/</link>
         <description>Recent content in Posts on jb</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
-        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <language>en</language>
+        <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
         <lastBuildDate>Tue, 18 Apr 2023 20:17:01 -0500</lastBuildDate>
         <atom:link href="https://jb-williams.github.io/jbtech.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
         
@@ -1626,10 +1626,7 @@ This part was just a quick overview of the signing.</p>
 <h1 id="windows">Windows</h1>
 <h2 id="step-1-setup">Step 1: Setup</h2>
 <p>  Download and Install  <a href="https://www.gpg4win.org">GPG4Win</a>, then run Kleopatra after the Install Wizard is done. You will come to this screen.</p>
-
-    <img src="/img/kleostart.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-
+<p><img src="/img/kleostart.PNG" alt="kleostar"></p>
 <h2 id="step-2-generating-key-pairs">Step 2: Generating Key Pairs</h2>
 <ul>
 <li>Then, in Kleopatra, Navigate to:
@@ -1639,10 +1636,7 @@ This part was just a quick overview of the signing.</p>
 </ul>
 </li>
 </ul>
-
-    <img src="/img/kleonewpair.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-
+<p><img src="/img/kleonewpair.PNG" alt="kleonewpair"></p>
 <h1 id="heading-4"></h1>
 <h1 id="heading-5"></h1>
 <ul>
@@ -1652,25 +1646,16 @@ This part was just a quick overview of the signing.</p>
 <li>The <code>2048 bits</code> is the default encryption strength, I suggest using the max number of bits offered. For me <code>4096 bits</code>. Click <code>Ok</code>.</li>
 <li>When everything is set right click <code>Create</code>.</li>
 </ul>
-
-    <img src="/img/kleoadvset.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-
+<p><img src="/img/kleoadvset.PNG" alt="kleoadvset"></p>
 <ul>
 <li>Then enter your desired passphrase for your new key pair.</li>
 <li>Then it will generate the key pair, and depending on your computer the completion time may vary. After it Generates you should see this window.</li>
 </ul>
-
-    <img src="/img/kleogensuc.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-
+<p><img src="/img/kleogensuc.PNG" alt="kleogensuc.PNG"></p>
 <ul>
 <li>Then clicking <code>Finish</code>, you should be able to see your key now listed in Kleopatra.</li>
 </ul>
-
-    <img src="/img/kleofirstlist.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-
+<p><img src="/img/kleofirstlist.PNG" alt="kleofirstlist"></p>
 <h2 id="step-3-exporting-public-keys">Step 3: Exporting Public Keys</h2>
 <p><em>Public Key</em></p>
 <ul>
@@ -1690,10 +1675,7 @@ This part was just a quick overview of the signing.</p>
 <li><strong>NOTE</strong> You may have to set the dropdown right above the <code>Open</code> button to <code>Any files</code>.</li>
 <li>There should now be an <code>Imported Certificates</code> tab next to the <code>All Certificates</code> tab.</li>
 </ul>
-
-    <img src="/img/kleopubimport.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-
+<p><img src="/img/kleopubimport.PNG" alt="kleopubimport"></p>
 <h2 id="step-5-encrypting-data">Step 5: Encrypting Data</h2>
 <ul>
 <li>To Encrypt data, one way is:
@@ -1706,18 +1688,12 @@ This part was just a quick overview of the signing.</p>
 </ul>
 </li>
 </ul>
-
-    <img src="/img/kleoencr.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-
+<p><img src="/img/kleoencr.PNG" alt="kleoencr"></p>
 <ul>
 <li>Once it is encrypted, it gets sent back to your clipboard.</li>
 <li>Paste your newly encrypted text into a document, save and send to the recipient.</li>
 </ul>
-
-    <img src="/img/kleoencrmess.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-
+<p><img src="/img/kleoencrmess.PNG" alt="kleoencrmess"></p>
 <h2 id="step-6-decrypting-data">Step 6: Decrypting Data</h2>
 <ul>
 <li>Open the encrypted file sent to you into a document:
@@ -1727,10 +1703,7 @@ This part was just a quick overview of the signing.</p>
 </ul>
 </li>
 </ul>
-
-    <img src="/img/kleodecrmess.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
-
-
+<p><img src="/img/kleodecrmess.PNG" alt="kleodecrmess"></p>
 <ul>
 <li>Decrypted text will be in your clipboard.</li>
 <li>Open a document and Paste the Decrypted text into that document.</li>

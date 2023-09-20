@@ -6,8 +6,79 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-        <lastBuildDate>Mon, 17 Apr 2023 15:34:29 -0500</lastBuildDate>
+        <lastBuildDate>Tue, 18 Apr 2023 20:17:01 -0500</lastBuildDate>
         <atom:link href="https://jb-williams.github.io/jbtech.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Browser_Extensions</title>
+            <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/browser_extensions/</link>
+            <pubDate>Tue, 18 Apr 2023 20:17:01 -0500</pubDate>
+            
+            <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/browser_extensions/</guid>
+            <description>Browser Extensions by: jb-williams Just a little list of browser extensions I fluctuate between using some to all.
+All in the hope that at least one person stumbles across it and takes even a little step towards better online security and better visual experience.
+All of these should be available in most popular browsers(ex:Google-Chrome,Chromium,Mozilla FireFox,Brave,LibreWolf).
+DarkMode Theming Dark Reader: A browser extention that is very popular and makes all websites that you go to render in a &amp;ldquo;Dark Mode&amp;rdquo; setting.</description>
+            <content type="html"><![CDATA[<h1 id="browser-extensions">Browser Extensions</h1>
+<h2 id="by-jb-williams">by: jb-williams</h2>
+<h1 id="heading"></h1>
+<p>Just a little list of browser extensions I fluctuate between using some to all.<br>
+All in the hope that at least one person stumbles across it and takes even a little step towards better online security and better visual experience.</p>
+<h1 id="heading-1"></h1>
+<p><em>All of these should be available in most popular browsers(ex:Google-Chrome,Chromium,Mozilla FireFox,Brave,LibreWolf).</em></p>
+<h1 id="heading-2"></h1>
+<h2 id="darkmode-theming">DarkMode Theming</h2>
+<ul>
+<li><a href="!https://darkreader.org/">Dark Reader</a>:
+<ul>
+<li>A browser extention that is very popular and makes all websites that you go to render in a &ldquo;Dark Mode&rdquo; setting.</li>
+<li>You can change several different <code>brightness</code> related settings, as well as, the dark coloring.</li>
+<li>Simple to turn <code>on</code>/<code>off</code> as needed.</li>
+</ul>
+</li>
+</ul>
+<h1 id="heading-3"></h1>
+<h2 id="most-of-the-rest-are-privacy-focused-extensions-that-i-tend-to-use"><em>Most of the rest are privacy focused extensions that I tend to use</em></h2>
+<ul>
+<li><a href="!https://github.com/gorhill/uBlock">Ublock Origin</a>:
+<ul>
+<li>It&rsquo;s fairly popular, &ldquo;wide-spectrum content blocker&rdquo;, including ad blocking.</li>
+<li>Touts CPU and memory efficiency as a primary feature.</li>
+</ul>
+</li>
+<li><a href="!https://privacybadger.org/">Privacy Badger</a>:
+<ul>
+<li>Another popular tracking and ad blocker.</li>
+</ul>
+</li>
+<li><a href="!https://decentraleyes.org/">Decentraleyes</a>:
+<ul>
+<li>An extention that limits/blocks tracking from thirdparty content calls from websites.</li>
+<li>It acts like a Content Delivery Network, but attempts to load local sources before continueing to try to inject the local resource first.</li>
+</ul>
+</li>
+</ul>
+<h1 id="heading-4"></h1>
+<p><em>I switch between either using DuckDuckGo or StartPage as my search engine but have both added</em></p>
+<ul>
+<li>
+<p><a href="!https://duckduckgo.com/app">DuckDuckGo Privacy Essentials</a>:</p>
+<ul>
+<li><em>WARNGING</em> Changes your default search engine from Google to DuckDuckGo. <em>I like not getting paid Google search results first.</em></li>
+<li>Blocks many privacy intrusive trackers, fingerprinting, etc.</li>
+<li>Automatically enforces Encryptions (HTTPS)</li>
+</ul>
+</li>
+<li>
+<p><a href="!https://www.startpage.com/">Startpage Privacy Protection</a>:</p>
+<ul>
+<li><em>WARNGING</em> Changes your default search engine from Google to Startpage. <em>I like not getting paid Google search results first.</em></li>
+<li>Does many of the same things as the DuckDuckGo extension, but <code>Defense in Depth</code> is a strong concept in the security world, so having both doesn&rsquo;t seem to be an issue:</li>
+</ul>
+</li>
+</ul>
+]]></content>
+        </item>
         
         <item>
             <title>THM_SimpleCTF_Walkthrough</title>
@@ -1555,7 +1626,10 @@ This part was just a quick overview of the signing.</p>
 <h1 id="windows">Windows</h1>
 <h2 id="step-1-setup">Step 1: Setup</h2>
 <p>  Download and Install  <a href="https://www.gpg4win.org">GPG4Win</a>, then run Kleopatra after the Install Wizard is done. You will come to this screen.</p>
-<p><img src="/img/kleostart.PNG" alt="kleostar"></p>
+
+    <img src="/img/kleostart.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
 <h2 id="step-2-generating-key-pairs">Step 2: Generating Key Pairs</h2>
 <ul>
 <li>Then, in Kleopatra, Navigate to:
@@ -1565,7 +1639,10 @@ This part was just a quick overview of the signing.</p>
 </ul>
 </li>
 </ul>
-<p><img src="/img/kleonewpair.PNG" alt="kleonewpair"></p>
+
+    <img src="/img/kleonewpair.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
 <h1 id="heading-4"></h1>
 <h1 id="heading-5"></h1>
 <ul>
@@ -1575,16 +1652,25 @@ This part was just a quick overview of the signing.</p>
 <li>The <code>2048 bits</code> is the default encryption strength, I suggest using the max number of bits offered. For me <code>4096 bits</code>. Click <code>Ok</code>.</li>
 <li>When everything is set right click <code>Create</code>.</li>
 </ul>
-<p><img src="/img/kleoadvset.PNG" alt="kleoadvset"></p>
+
+    <img src="/img/kleoadvset.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
 <ul>
 <li>Then enter your desired passphrase for your new key pair.</li>
 <li>Then it will generate the key pair, and depending on your computer the completion time may vary. After it Generates you should see this window.</li>
 </ul>
-<p><img src="/img/kleogensuc.PNG" alt="kleogensuc.PNG"></p>
+
+    <img src="/img/kleogensuc.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
 <ul>
 <li>Then clicking <code>Finish</code>, you should be able to see your key now listed in Kleopatra.</li>
 </ul>
-<p><img src="/img/kleofirstlist.PNG" alt="kleofirstlist"></p>
+
+    <img src="/img/kleofirstlist.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
 <h2 id="step-3-exporting-public-keys">Step 3: Exporting Public Keys</h2>
 <p><em>Public Key</em></p>
 <ul>
@@ -1604,7 +1690,10 @@ This part was just a quick overview of the signing.</p>
 <li><strong>NOTE</strong> You may have to set the dropdown right above the <code>Open</code> button to <code>Any files</code>.</li>
 <li>There should now be an <code>Imported Certificates</code> tab next to the <code>All Certificates</code> tab.</li>
 </ul>
-<p><img src="/img/kleopubimport.PNG" alt="kleopubimport"></p>
+
+    <img src="/img/kleopubimport.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
 <h2 id="step-5-encrypting-data">Step 5: Encrypting Data</h2>
 <ul>
 <li>To Encrypt data, one way is:
@@ -1617,12 +1706,18 @@ This part was just a quick overview of the signing.</p>
 </ul>
 </li>
 </ul>
-<p><img src="/img/kleoencr.PNG" alt="kleoencr"></p>
+
+    <img src="/img/kleoencr.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
 <ul>
 <li>Once it is encrypted, it gets sent back to your clipboard.</li>
 <li>Paste your newly encrypted text into a document, save and send to the recipient.</li>
 </ul>
-<p><img src="/img/kleoencrmess.PNG" alt="kleoencrmess"></p>
+
+    <img src="/img/kleoencrmess.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
 <h2 id="step-6-decrypting-data">Step 6: Decrypting Data</h2>
 <ul>
 <li>Open the encrypted file sent to you into a document:
@@ -1632,7 +1727,10 @@ This part was just a quick overview of the signing.</p>
 </ul>
 </li>
 </ul>
-<p><img src="/img/kleodecrmess.PNG" alt="kleodecrmess"></p>
+
+    <img src="/img/kleodecrmess.PNG"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
 <ul>
 <li>Decrypted text will be in your clipboard.</li>
 <li>Open a document and Paste the Decrypted text into that document.</li>

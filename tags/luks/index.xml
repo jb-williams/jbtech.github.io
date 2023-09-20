@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>luks on jb</title>
-    <link>https://jb-williams.github.io/jbtech.github.io/tags/luks/</link>
+    <link>https://xfafnir.com/tags/luks/</link>
     <description>Recent content in luks on jb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 26 Aug 2022 16:43:11 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/luks/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 Aug 2022 16:43:11 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/luks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My_Usb_Encrypton_Process</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</link>
+      <link>https://xfafnir.com/posts/2022/08/my_usb_encrypton_process/</link>
       <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/my_usb_encrypton_process/</guid>
+      <guid>https://xfafnir.com/posts/2022/08/my_usb_encrypton_process/</guid>
       <description>LUKS USB Encryption for Linux performed by: jb-williams This is the process I use to partition and encrypt usb drives.
 I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
 Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) REQS:</description>

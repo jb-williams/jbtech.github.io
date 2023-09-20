@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>smb on jb</title>
-    <link>https://jb-williams.github.io/jbtech.github.io/tags/smb/</link>
+    <link>https://xfafnir.com/tags/smb/</link>
     <description>Recent content in smb on jb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 12 Apr 2023 12:25:08 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/smb/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Apr 2023 12:25:08 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/smb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>THM_Kenobi_Walkthrough</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/</link>
+      <link>https://xfafnir.com/posts/2023/04/thm_kenobi_walkthrough/</link>
       <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/</guid>
+      <guid>https://xfafnir.com/posts/2023/04/thm_kenobi_walkthrough/</guid>
       <description>Kenobi THM performed by: jb-willams Deploy the vulnerable machine Scan the machine with nmap, how many ports are open? Deploy the Machine and scan it with nmap nmap -v -p- -sV -sC -T4 -oA nmap/initial 10.10.223.56 &amp;amp;&amp;amp; grep -i &amp;#34;open&amp;#34; nmap/initial.nmap | cut -d&amp;#39; &amp;#39; -f 1 | cut -d&amp;#39;/&amp;#39; -f1 | tee nmap/ports.txt | wc -l notice, you may get some false positives that will have unknown service, ignore them</description>
     </item>
     
     <item>
       <title>THM_Blue_Walkthrough</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_blue_walkthrough/</link>
+      <link>https://xfafnir.com/posts/2022/09/thm_blue_walkthrough/</link>
       <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_blue_walkthrough/</guid>
+      <guid>https://xfafnir.com/posts/2022/09/thm_blue_walkthrough/</guid>
       <description>Eternal Blue TryHackMe performed by: jb-williams Note- some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
 Scanning/Recon After finding the IP address, I ran my basic nmap recon:
 nmap -v -sV -sC -oN initial 10.10.10.13 Results -

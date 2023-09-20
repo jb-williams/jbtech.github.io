@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>screen brightness on jb</title>
-    <link>https://jb-williams.github.io/jbtech.github.io/tags/screen-brightness/</link>
+    <link>https://xfafnir.com/tags/screen-brightness/</link>
     <description>Recent content in screen brightness on jb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 26 Aug 2022 11:59:26 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/screen-brightness/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 Aug 2022 11:59:26 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/screen-brightness/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Brightxf</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</link>
+      <link>https://xfafnir.com/posts/2022/08/brightxf/</link>
       <pubDate>Fri, 26 Aug 2022 11:59:26 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/08/brightxf/</guid>
+      <guid>https://xfafnir.com/posts/2022/08/brightxf/</guid>
       <description>Brightxf performed by: jb-williams !! Run at Own Risk !!
 No issues have come from my use of these but that doesn&amp;rsquo;t mean there won&amp;rsquo;t be I enjoy making/finding the most minimal gui and still be functional as a daily-driver(functional specifically to my needs). I tend to prefer cwm, a simple window manager, and sxhkd, used as a hot-key daemon, and I test my setup on several different laptops of different specs.</description>
     </item>

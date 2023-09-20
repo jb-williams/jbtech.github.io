@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>personal on jb</title>
-    <link>https://jb-williams.github.io/jbtech.github.io/tags/personal/</link>
+    <link>https://xfafnir.com/tags/personal/</link>
     <description>Recent content in personal on jb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 23 Aug 2022 11:12:14 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/personal/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Aug 2022 11:12:14 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/personal/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/about/</link>
+      <link>https://xfafnir.com/about/</link>
       <pubDate>Tue, 23 Aug 2022 11:12:14 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/about/</guid>
+      <guid>https://xfafnir.com/about/</guid>
       <description>This site is a place for me to try to gather my notes into a coherent posts.
 My functional experience prior to November of 2020 was all but limited to installing Steam and playing video games. Though I had an interest in programming in high school, where I&amp;rsquo;d want to take those skills felt like a pipedream, as it would have been geared towards the gaming industry. I let that dream fade away in pursuit of what felt more attainable goals.</description>
     </item>
     
     <item>
       <title>Contact</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/contact/</link>
+      <link>https://xfafnir.com/contact/</link>
       <pubDate>Tue, 23 Aug 2022 11:12:14 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/contact/</guid>
+      <guid>https://xfafnir.com/contact/</guid>
       <description>github: https://github.com/jb-williams
 linkedin: https://www.linkedin.com/in/jb-williams22
 tryhackme: https://tryhackme.com/p/binford

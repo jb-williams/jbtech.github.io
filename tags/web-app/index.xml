@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>web app on jb</title>
-    <link>https://jb-williams.github.io/jbtech.github.io/tags/web-app/</link>
+    <link>https://xfafnir.com/tags/web-app/</link>
     <description>Recent content in web app on jb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 17 Sep 2022 18:46:19 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/web-app/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Sep 2022 18:46:19 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/web-app/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>THM_Basic_PenTest_Walkthrough</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</link>
+      <link>https://xfafnir.com/posts/2022/09/thm_basic_pentest_walkthrough/</link>
       <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
+      <guid>https://xfafnir.com/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
       <description>Basic PenTesting TryHackMe performed by: jb-williams Summary Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
 Username (jan and kay found via enum4linux).
 Password(jan:armando found via hydra with ssh).

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>picklerick on jb</title>
-    <link>https://jb-williams.github.io/jbtech.github.io/tags/picklerick/</link>
+    <link>https://xfafnir.com/tags/picklerick/</link>
     <description>Recent content in picklerick on jb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 13 Apr 2023 10:04:47 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/picklerick/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Apr 2023 10:04:47 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/picklerick/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>THM_PickleRick_Walkthrough</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_picklerick_walkthrough/</link>
+      <link>https://xfafnir.com/posts/2023/04/thm_picklerick_walkthrough/</link>
       <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_picklerick_walkthrough/</guid>
+      <guid>https://xfafnir.com/posts/2023/04/thm_picklerick_walkthrough/</guid>
       <description>Pickle Rick TryHackMe performed by: jb-williams Pickle Rick To access the box add the machines IP to this https://&amp;lt;IP&amp;gt;.p.thmlabs.com
 Traveling to the sight we can start gathering information First it is always good to View Page Source to see if there are any information disclosers accidently left in the html source code. Doing so, you can see that a comment left in the source code is reminding Rick that the user name for their account is R1ckRul3s Now we scan the box with nmap to see what info we can gather.</description>
     </item>

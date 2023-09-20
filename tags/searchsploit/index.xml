@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>searchsploit on jb</title>
-    <link>https://jb-williams.github.io/jbtech.github.io/tags/searchsploit/</link>
+    <link>https://xfafnir.com/tags/searchsploit/</link>
     <description>Recent content in searchsploit on jb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 17 Apr 2023 15:34:29 -0500</lastBuildDate><atom:link href="https://jb-williams.github.io/jbtech.github.io/tags/searchsploit/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Apr 2023 15:34:29 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/searchsploit/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>THM_SimpleCTF_Walkthrough</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_simplectf_walkthrough/</link>
+      <link>https://xfafnir.com/posts/2023/04/thm_simplectf_walkthrough/</link>
       <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_simplectf_walkthrough/</guid>
+      <guid>https://xfafnir.com/posts/2023/04/thm_simplectf_walkthrough/</guid>
       <description>SimpleCTF TryHackMe performed by: jb-williams Simple CTF Deploy the machine and attempt the questions! Initial Scan First we run nmap on the target IP. The first scan didn&amp;rsquo;t give me any info and even suggested adding -Pn to the command: nmap -v -T4 -sV -sC -Pn -oA nmap/initial 10.10.237.242 This output will provide the answers for the first two questions. In the nmap output I noticed that the ftp service on port 21 allowed anonymous login.</description>
     </item>
     
     <item>
       <title>THM_Kenobi_Walkthrough</title>
-      <link>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/</link>
+      <link>https://xfafnir.com/posts/2023/04/thm_kenobi_walkthrough/</link>
       <pubDate>Wed, 12 Apr 2023 12:25:08 -0500</pubDate>
       
-      <guid>https://jb-williams.github.io/jbtech.github.io/posts/2023/04/thm_kenobi_walkthrough/</guid>
+      <guid>https://xfafnir.com/posts/2023/04/thm_kenobi_walkthrough/</guid>
       <description>Kenobi THM performed by: jb-willams Deploy the vulnerable machine Scan the machine with nmap, how many ports are open? Deploy the Machine and scan it with nmap nmap -v -p- -sV -sC -T4 -oA nmap/initial 10.10.223.56 &amp;amp;&amp;amp; grep -i &amp;#34;open&amp;#34; nmap/initial.nmap | cut -d&amp;#39; &amp;#39; -f 1 | cut -d&amp;#39;/&amp;#39; -f1 | tee nmap/ports.txt | wc -l notice, you may get some false positives that will have unknown service, ignore them</description>
     </item>
     

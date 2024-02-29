@@ -7,30 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 31 Aug 2022 17:54:28 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/encryption/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 31 Aug 2022 17:54:28 -0500</lastBuildDate>
+    <atom:link href="https://xfafnir.com/tags/encryption/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GPG</title>
       <link>https://xfafnir.com/posts/2022/08/gpg/</link>
       <pubDate>Wed, 31 Aug 2022 17:54:28 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2022/08/gpg/</guid>
-      <description>GPG performed by: jb-williams GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.
-A quick walkthrough of GPG.
-Works on most all OS&amp;rsquo;s, this will be a Linux, and quick Windows walkthrough.
-Public/Private Keys:
-You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone. They use your Public Key to encrypt the message they want to send to you and you decrypt it with your Private Key.</description>
+      <description>GPG performed by: jb-williams GPG(GnuPrivacyGuard) is an Open Source implementation of PGP(PrettyGoodPrivacy). It allows you to encrypt/decrypt and sign data communications.&#xA;A quick walkthrough of GPG.&#xA;Works on most all OS&amp;rsquo;s, this will be a Linux, and quick Windows walkthrough.&#xA;Public/Private Keys:&#xA;You make a Public Key and a Private Key(always keep Private Key safe and do not share with anyone). You give you Public Key out to anyone. They use your Public Key to encrypt the message they want to send to you and you decrypt it with your Private Key.</description>
     </item>
-    
     <item>
       <title>My_Usb_Encrypton_Process</title>
       <link>https://xfafnir.com/posts/2022/08/my_usb_encrypton_process/</link>
       <pubDate>Fri, 26 Aug 2022 16:43:11 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2022/08/my_usb_encrypton_process/</guid>
-      <description>LUKS USB Encryption for Linux performed by: jb-williams This is the process I use to partition and encrypt usb drives.
-I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!
-Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) REQS:</description>
+      <description>LUKS USB Encryption for Linux performed by: jb-williams This is the process I use to partition and encrypt usb drives.&#xA;I have not tested tested it on anything other than usb&amp;rsquo;s, though a similar process would potentially work. !! Notice !! Running these commands on the wrong drive could Erase All Data on that Drive!!&#xA;Only Recoverable if You Had a Backup Make sure you know: Device Name(ie: /dev/sdb) Device Size(ie: 15GiB) REQS:</description>
     </item>
-    
   </channel>
 </rss>

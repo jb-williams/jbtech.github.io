@@ -7,21 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 17 Sep 2022 18:46:19 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/enumeration/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Sep 2022 18:46:19 -0500</lastBuildDate>
+    <atom:link href="https://xfafnir.com/tags/enumeration/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>THM_Basic_PenTest_Walkthrough</title>
       <link>https://xfafnir.com/posts/2022/09/thm_basic_pentest_walkthrough/</link>
       <pubDate>Sat, 17 Sep 2022 18:46:19 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2022/09/thm_basic_pentest_walkthrough/</guid>
-      <description>Basic PenTesting TryHackMe performed by: jb-williams Summary Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).
-Username (jan and kay found via enum4linux).
-Password(jan:armando found via hydra with ssh).
-Private SSH Key found with Linpeas.
-Cracked SSH Key
-Was able to login and read pass.bak
-User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.10.62.206 22 kay beeswax ssh kay_id_rsa 10.10.62.206 22 Ports Services 22 SSH 7.2 80 Apache 2.4.18 139 SMB 3.</description>
+      <description>Basic PenTesting TryHackMe performed by: jb-williams Summary Hidden directory on webserver(development, found via dirbuster&amp;amp;rockyou).&#xA;Username (jan and kay found via enum4linux).&#xA;Password(jan:armando found via hydra with ssh).&#xA;Private SSH Key found with Linpeas.&#xA;Cracked SSH Key&#xA;Was able to login and read pass.bak&#xA;User Pass Service SSH Key IP Port jan armando ssh &amp;mdash;&amp;mdash;&amp;mdash;- 10.10.62.206 22 kay beeswax ssh kay_id_rsa 10.10.62.206 22 Ports Services 22 SSH 7.2 80 Apache 2.4.18 139 SMB 3.</description>
     </item>
-    
   </channel>
 </rss>

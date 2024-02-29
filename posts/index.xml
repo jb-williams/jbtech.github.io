@@ -1540,8 +1540,7 @@ You make a Public Key and a Private Key(always keep Private Key safe and do not 
 <p>We will use the following command:</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --armor --output Jacks_encryptedmessage.txt --encrypt --recipient /
-</span></span><span style="display:flex;"><span>charles@email.com Jacks_plainmessage.txt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --armor --output Jacks_encryptedmessage.txt.enc --encrypt --recipient charles@email.com Jacks_plainmessage.txt
 </span></span></code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run GPG.</p>
@@ -1550,7 +1549,7 @@ You make a Public Key and a Private Key(always keep Private Key safe and do not 
 <p><code>--armor</code>: Puts the encrypted message in an ASCII format.</p>
 </li>
 <li>
-<p><code>--output Jacks_encryptedmessage.txt</code>: Command for the output file, which creates the name of the encrypted file.</p>
+<p><code>--output Jacks_encryptedmessage.txt.enc</code>: Command for the output file, which creates the name of the encrypted file.</p>
 </li>
 <li>
 <p><code>--encrypt</code>: Tells GPG to encrypt.</p>
@@ -1589,7 +1588,7 @@ You make a Public Key and a Private Key(always keep Private Key safe and do not 
 <p>The command that Charles will use to decrypt Jack&rsquo;s encrypted message is:</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --output Jacks_decrypted_message --decrypt Jacks_encryptedmessage.txt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --output Jacks_decrypted_message --decrypt Jacks_encryptedmessage.txt.enc
 </span></span></code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run gpg.</p>
@@ -1598,7 +1597,7 @@ You make a Public Key and a Private Key(always keep Private Key safe and do not 
 <p><code>--output Jacks_decrypted_message</code>: This creates an output file, which is the decrypted message.</p>
 </li>
 <li>
-<p><code>--decrypt Jacks_encryptedmessage.txt</code>: This is indicating to decrypt and what file to decrypt.</p>
+<p><code>--decrypt Jacks_encryptedmessage.txt.enc</code>: This is indicating to decrypt and what file to decrypt.</p>
 </li>
 <li>
 <p>Run the command. It just decrypted Jack&rsquo;s message and placed the results into a file called <code>Jacks_decrypted_message</code>.</p>

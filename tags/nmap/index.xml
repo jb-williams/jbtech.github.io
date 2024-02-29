@@ -7,16 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 13 Apr 2023 10:04:47 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/nmap/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Apr 2023 10:04:47 -0500</lastBuildDate>
+    <atom:link href="https://xfafnir.com/tags/nmap/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>THM_PickleRick_Walkthrough</title>
       <link>https://xfafnir.com/posts/2023/04/thm_picklerick_walkthrough/</link>
       <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2023/04/thm_picklerick_walkthrough/</guid>
-      <description>Pickle Rick TryHackMe performed by: jb-williams Pickle Rick To access the box add the machines IP to this https://&amp;lt;IP&amp;gt;.p.thmlabs.com
-Traveling to the sight we can start gathering information First it is always good to View Page Source to see if there are any information disclosers accidently left in the html source code. Doing so, you can see that a comment left in the source code is reminding Rick that the user name for their account is R1ckRul3s Now we scan the box with nmap to see what info we can gather.</description>
+      <description>Pickle Rick TryHackMe performed by: jb-williams Pickle Rick To access the box add the machines IP to this https://&amp;lt;IP&amp;gt;.p.thmlabs.com&#xA;Traveling to the sight we can start gathering information First it is always good to View Page Source to see if there are any information disclosers accidently left in the html source code. Doing so, you can see that a comment left in the source code is reminding Rick that the user name for their account is R1ckRul3s Now we scan the box with nmap to see what info we can gather.</description>
     </item>
-    
   </channel>
 </rss>

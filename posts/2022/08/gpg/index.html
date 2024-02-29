@@ -38,12 +38,10 @@
 <meta itemprop="name" content="GPG">
 <meta itemprop="description" content="GPG Encryption/Decryption/Signing."><meta itemprop="datePublished" content="2022-08-31T17:54:28-05:00" />
 <meta itemprop="dateModified" content="2022-08-31T17:54:28-05:00" />
-<meta itemprop="wordCount" content="1521"><meta itemprop="image" content="https://xfafnir.com"/>
+<meta itemprop="wordCount" content="1520"><meta itemprop="image" content="https://xfafnir.com" />
 <meta itemprop="keywords" content="linux,windows,encryption,pgp,gpg,files,emails,signing,tutorial," />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://xfafnir.com"/>
-
-<meta name="twitter:title" content="GPG"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://xfafnir.com" /><meta name="twitter:title" content="GPG"/>
 <meta name="twitter:description" content="GPG Encryption/Decryption/Signing."/>
 
 
@@ -51,9 +49,10 @@
     <meta property="og:title" content="GPG" />
 <meta property="og:description" content="GPG Encryption/Decryption/Signing." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://xfafnir.com/posts/2022/08/gpg/" /><meta property="og:image" content="https://xfafnir.com"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://xfafnir.com/posts/2022/08/gpg/" /><meta property="og:image" content="https://xfafnir.com" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-08-31T17:54:28-05:00" />
 <meta property="article:modified_time" content="2022-08-31T17:54:28-05:00" />
+
 
 
 
@@ -298,8 +297,7 @@
 <p>We will use the following command:</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --armor --output Jacks_encryptedmessage.txt --encrypt --recipient /
-</span></span><span style="display:flex;"><span>charles@email.com Jacks_plainmessage.txt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --armor --output Jacks_encryptedmessage.txt.enc --encrypt --recipient charles@email.com Jacks_plainmessage.txt
 </span></span></code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run GPG.</p>
@@ -308,7 +306,7 @@
 <p><code>--armor</code>: Puts the encrypted message in an ASCII format.</p>
 </li>
 <li>
-<p><code>--output Jacks_encryptedmessage.txt</code>: Command for the output file, which creates the name of the encrypted file.</p>
+<p><code>--output Jacks_encryptedmessage.txt.enc</code>: Command for the output file, which creates the name of the encrypted file.</p>
 </li>
 <li>
 <p><code>--encrypt</code>: Tells GPG to encrypt.</p>
@@ -347,7 +345,7 @@
 <p>The command that Charles will use to decrypt Jack&rsquo;s encrypted message is:</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --output Jacks_decrypted_message --decrypt Jacks_encryptedmessage.txt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --output Jacks_decrypted_message --decrypt Jacks_encryptedmessage.txt.enc
 </span></span></code></pre></div><ul>
 <li>
 <p><code>gpg</code>: The command to run gpg.</p>
@@ -356,7 +354,7 @@
 <p><code>--output Jacks_decrypted_message</code>: This creates an output file, which is the decrypted message.</p>
 </li>
 <li>
-<p><code>--decrypt Jacks_encryptedmessage.txt</code>: This is indicating to decrypt and what file to decrypt.</p>
+<p><code>--decrypt Jacks_encryptedmessage.txt.enc</code>: This is indicating to decrypt and what file to decrypt.</p>
 </li>
 <li>
 <p>Run the command. It just decrypted Jack&rsquo;s message and placed the results into a file called <code>Jacks_decrypted_message</code>.</p>
@@ -536,7 +534,7 @@ This part was just a quick overview of the signing.</p>
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        1521 Words
+        1520 Words
       </p>
 
       <p>
@@ -595,7 +593,7 @@ This part was just a quick overview of the signing.</p>
     
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2023</span>
+            <span>&copy; 2024</span>
             <span><a href="https://xfafnir.com">jb</a></span>
             <span>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</span>
             <span><a href="https://xfafnir.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
@@ -619,7 +617,7 @@ This part was just a quick overview of the signing.</p>
 
 
 
-<script type="text/javascript" src="https://xfafnir.com/bundle.min.205d491810c28f95aa953fae884e1c27abe13fdf93ec63b882d0036b248d4a6282eb2d134e4e7225c6ad6e86db87b08488a361ca4a7383d01fcff43f3d57b9c3.js" integrity="sha512-IF1JGBDCj5WqlT&#43;uiE4cJ6vhP9&#43;T7GO4gtADaySNSmKC6y0TTk5yJcatbobbh7CEiKNhykpzg9Afz/Q/PVe5ww=="></script>
+<script type="text/javascript" src="https://xfafnir.com/bundle.min.ac2a4bcaed631ec2dc154407be7f09fc28da37de71fae6dee6711b2a3d1622770f87d3cda22c460e9a68ff619bdb1dd75cb7a5d33f159a54e419736cc4541087.js" integrity="sha512-rCpLyu1jHsLcFUQHvn8J/CjaN95x&#43;ube5nEbKj0WIncPh9PNoixGDppo/2Gb2x3XXLel0z8VmlTkGXNsxFQQhw=="></script>
 
 
 

@@ -7,34 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 17 Apr 2023 15:34:29 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Apr 2023 15:34:29 -0500</lastBuildDate>
+    <atom:link href="https://xfafnir.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>THM_SimpleCTF_Walkthrough</title>
       <link>https://xfafnir.com/posts/2023/04/thm_simplectf_walkthrough/</link>
       <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2023/04/thm_simplectf_walkthrough/</guid>
       <description>SimpleCTF TryHackMe performed by: jb-williams Simple CTF Deploy the machine and attempt the questions! Initial Scan First we run nmap on the target IP. The first scan didn&amp;rsquo;t give me any info and even suggested adding -Pn to the command: nmap -v -T4 -sV -sC -Pn -oA nmap/initial 10.10.237.242 This output will provide the answers for the first two questions. In the nmap output I noticed that the ftp service on port 21 allowed anonymous login.</description>
     </item>
-    
     <item>
       <title>THM_RootMe_Walkthrough</title>
       <link>https://xfafnir.com/posts/2023/04/thm_rootme_walkthrough/</link>
       <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2023/04/thm_rootme_walkthrough/</guid>
       <description>RootMe TryHackMe performed by: jb-williams Deploy the machine Reconnaissance To get info on the target, run this nmap command: nmap -v -T4 -sV -sC -oA nmap/initial 10.10.105.101 This provides the answers to the following three questions. Scan the machine, how many ports ar open? Answer: 2 What version of Apache is running? Answer: 2.4.29 What service is running on port 22? Answer: ssh Find directories on the web server using the GoBuster tool.</description>
     </item>
-    
     <item>
       <title>THM_PickleRick_Walkthrough</title>
       <link>https://xfafnir.com/posts/2023/04/thm_picklerick_walkthrough/</link>
       <pubDate>Thu, 13 Apr 2023 10:04:47 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2023/04/thm_picklerick_walkthrough/</guid>
-      <description>Pickle Rick TryHackMe performed by: jb-williams Pickle Rick To access the box add the machines IP to this https://&amp;lt;IP&amp;gt;.p.thmlabs.com
-Traveling to the sight we can start gathering information First it is always good to View Page Source to see if there are any information disclosers accidently left in the html source code. Doing so, you can see that a comment left in the source code is reminding Rick that the user name for their account is R1ckRul3s Now we scan the box with nmap to see what info we can gather.</description>
+      <description>Pickle Rick TryHackMe performed by: jb-williams Pickle Rick To access the box add the machines IP to this https://&amp;lt;IP&amp;gt;.p.thmlabs.com&#xA;Traveling to the sight we can start gathering information First it is always good to View Page Source to see if there are any information disclosers accidently left in the html source code. Doing so, you can see that a comment left in the source code is reminding Rick that the user name for their account is R1ckRul3s Now we scan the box with nmap to see what info we can gather.</description>
     </item>
-    
   </channel>
 </rss>

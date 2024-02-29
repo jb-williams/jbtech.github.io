@@ -7,48 +7,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 17 Apr 2023 15:34:29 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/escalation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Apr 2023 15:34:29 -0500</lastBuildDate>
+    <atom:link href="https://xfafnir.com/tags/escalation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>THM_SimpleCTF_Walkthrough</title>
       <link>https://xfafnir.com/posts/2023/04/thm_simplectf_walkthrough/</link>
       <pubDate>Mon, 17 Apr 2023 15:34:29 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2023/04/thm_simplectf_walkthrough/</guid>
       <description>SimpleCTF TryHackMe performed by: jb-williams Simple CTF Deploy the machine and attempt the questions! Initial Scan First we run nmap on the target IP. The first scan didn&amp;rsquo;t give me any info and even suggested adding -Pn to the command: nmap -v -T4 -sV -sC -Pn -oA nmap/initial 10.10.237.242 This output will provide the answers for the first two questions. In the nmap output I noticed that the ftp service on port 21 allowed anonymous login.</description>
     </item>
-    
     <item>
       <title>THM_RootMe_Walkthrough</title>
       <link>https://xfafnir.com/posts/2023/04/thm_rootme_walkthrough/</link>
       <pubDate>Sat, 15 Apr 2023 10:41:56 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2023/04/thm_rootme_walkthrough/</guid>
       <description>RootMe TryHackMe performed by: jb-williams Deploy the machine Reconnaissance To get info on the target, run this nmap command: nmap -v -T4 -sV -sC -oA nmap/initial 10.10.105.101 This provides the answers to the following three questions. Scan the machine, how many ports ar open? Answer: 2 What version of Apache is running? Answer: 2.4.29 What service is running on port 22? Answer: ssh Find directories on the web server using the GoBuster tool.</description>
     </item>
-    
     <item>
       <title>THM_Vulnversity_Walkthrough</title>
       <link>https://xfafnir.com/posts/2023/04/thm_vulnversity_walkthrough/</link>
       <pubDate>Tue, 11 Apr 2023 15:50:37 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2023/04/thm_vulnversity_walkthrough/</guid>
-      <description>Vulnversity Walkthrough TryHackMe performed by: jb-williams Reconnaisance They first ask for you to search for any nmap resourses(cheatsheets) online, I came across this one that seemed really useful: https://www.stationx.net/nmap-cheat-sheet/
-The First Real Question
-Scan the box, how many ports are open? I like to build up a chain of commands for most boxes.
-While doing my scans I like to create a file that contains just the numerical port values to have.</description>
+      <description>Vulnversity Walkthrough TryHackMe performed by: jb-williams Reconnaisance They first ask for you to search for any nmap resourses(cheatsheets) online, I came across this one that seemed really useful: https://www.stationx.net/nmap-cheat-sheet/&#xA;The First Real Question&#xA;Scan the box, how many ports are open? I like to build up a chain of commands for most boxes.&#xA;While doing my scans I like to create a file that contains just the numerical port values to have.</description>
     </item>
-    
     <item>
       <title>THM_Blue_Walkthrough</title>
       <link>https://xfafnir.com/posts/2022/09/thm_blue_walkthrough/</link>
       <pubDate>Wed, 28 Sep 2022 10:21:14 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2022/09/thm_blue_walkthrough/</guid>
-      <description>Eternal Blue TryHackMe performed by: jb-williams Note- some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;
-Scanning/Recon After finding the IP address, I ran my basic nmap recon:
-nmap -v -sV -sC -oN initial 10.10.10.13 Results -
-PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) .... .... Came back with these results and noticed ports 138 and 445, which are usually SMB so I ran nmap with specific SMB scripts: the first one could work but I don&amp;rsquo;t think my VM could handle it so I did a little research and ran the second cmd</description>
+      <description>Eternal Blue TryHackMe performed by: jb-williams Note- some output will be shortened denoted by &amp;ldquo;&amp;hellip;.&amp;rdquo;&#xA;Scanning/Recon After finding the IP address, I ran my basic nmap recon:&#xA;nmap -v -sV -sC -oN initial 10.10.10.13 Results -&#xA;PORT STATE SERVICE VERSION 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) .... .... Came back with these results and noticed ports 138 and 445, which are usually SMB so I ran nmap with specific SMB scripts: the first one could work but I don&amp;rsquo;t think my VM could handle it so I did a little research and ran the second cmd</description>
     </item>
-    
   </channel>
 </rss>

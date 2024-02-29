@@ -7,18 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 18 Apr 2023 20:17:01 -0500</lastBuildDate><atom:link href="https://xfafnir.com/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Apr 2023 20:17:01 -0500</lastBuildDate>
+    <atom:link href="https://xfafnir.com/tags/security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Browser_Extensions</title>
       <link>https://xfafnir.com/posts/2023/04/browser_extensions/</link>
       <pubDate>Tue, 18 Apr 2023 20:17:01 -0500</pubDate>
-      
       <guid>https://xfafnir.com/posts/2023/04/browser_extensions/</guid>
-      <description>Browser Extensions by: jb-williams Just a little list of browser extensions I fluctuate between using some to all.
-All in the hope that at least one person stumbles across it and takes even a little step towards better online security and better visual experience.
-All of these should be available in most popular browsers(ex:Google-Chrome,Chromium,Mozilla FireFox,Brave,LibreWolf).
-DarkMode Theming Dark Reader: A browser extention that is very popular and makes all websites that you go to render in a &amp;ldquo;Dark Mode&amp;rdquo; setting.</description>
+      <description>Browser Extensions by: jb-williams Just a little list of browser extensions I fluctuate between using some to all.&#xA;All in the hope that at least one person stumbles across it and takes even a little step towards better online security and better visual experience.&#xA;All of these should be available in most popular browsers(ex:Google-Chrome,Chromium,Mozilla FireFox,Brave,LibreWolf).&#xA;DarkMode Theming Dark Reader: A browser extention that is very popular and makes all websites that you go to render in a &amp;ldquo;Dark Mode&amp;rdquo; setting.</description>
     </item>
-    
   </channel>
 </rss>
